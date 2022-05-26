@@ -1,0 +1,11 @@
+.DS_Store/
+.idea/
+node_modules/
+coverage/
+dist/
+public/
+*.map
+out.txt
+.now
+package-lock.json
+
