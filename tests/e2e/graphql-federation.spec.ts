@@ -1,13 +1,13 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { AppModule as PostsModule } from '../graphql-federation/posts-service/federation-posts.module';
-import { AppModule as UsersModule } from '../graphql-federation/users-service/federation-users.module';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { AppModule as PostsModule } from "../graphql-federation/posts-service/federation-posts.module";
+import { AppModule as UsersModule } from "../graphql-federation/users-service/federation-users.module";
 
-describe('GraphQL Federation', () => {
+describe("GraphQL Federation", () => {
   let app: INestApplication;
 
-  describe('UsersService', () => {
+  describe("UsersService", () => {
     beforeEach(async () => {
       const module = await Test.createTestingModule({
         imports: [UsersModule],
@@ -19,7 +19,7 @@ describe('GraphQL Federation', () => {
 
     it(`should return query result`, () => {
       return request(app.getHttpServer())
-        .post('/graphql')
+        .post("/graphql")
         .send({
           operationName: null,
           variables: {},
@@ -34,22 +34,22 @@ describe('GraphQL Federation', () => {
         .expect(200, {
           data: {
             getUser: {
-              id: '5',
-              name: 'GraphQL',
+              id: "5",
+              name: "GraphQL",
             },
           },
         });
     });
 
-    it('should resolve references', () => {
+    it("should resolve references", () => {
       return request(app.getHttpServer())
-        .post('/graphql')
+        .post("/graphql")
         .send({
           variables: {
             representations: [
               {
-                __typename: 'User',
-                id: '5',
+                __typename: "User",
+                id: "5",
               },
             ],
           },
@@ -68,9 +68,9 @@ describe('GraphQL Federation', () => {
           data: {
             _entities: [
               {
-                __typename: 'User',
-                id: '5',
-                name: 'GraphQL',
+                __typename: "User",
+                id: "5",
+                name: "GraphQL",
               },
             ],
           },
@@ -78,7 +78,7 @@ describe('GraphQL Federation', () => {
     });
   });
 
-  describe('PostsService', () => {
+  describe("PostsService", () => {
     beforeEach(async () => {
       const module = await Test.createTestingModule({
         imports: [PostsModule],
@@ -90,7 +90,7 @@ describe('GraphQL Federation', () => {
 
     it(`should return query result`, () => {
       return request(app.getHttpServer())
-        .post('/graphql')
+        .post("/graphql")
         .send({
           operationName: null,
           variables: {},
@@ -107,18 +107,18 @@ describe('GraphQL Federation', () => {
           data: {
             getPosts: [
               {
-                id: '1',
-                title: 'HELLO WORLD',
-                body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                id: "1",
+                title: "HELLO WORLD",
+                body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
               },
             ],
           },
         });
     });
 
-    it('should return a stripped reference', () => {
+    it("should return a stripped reference", () => {
       return request(app.getHttpServer())
-        .post('/graphql')
+        .post("/graphql")
         .send({
           operationName: null,
           variables: {},
@@ -138,11 +138,11 @@ describe('GraphQL Federation', () => {
           data: {
             getPosts: [
               {
-                id: '1',
-                title: 'HELLO WORLD',
-                body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                id: "1",
+                title: "HELLO WORLD",
+                body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 user: {
-                  id: '5',
+                  id: "5",
                 },
               },
             ],
@@ -152,7 +152,7 @@ describe('GraphQL Federation', () => {
 
     it(`should handle scalars`, () => {
       return request(app.getHttpServer())
-        .post('/graphql')
+        .post("/graphql")
         .send({
           operationName: null,
           variables: {},
@@ -169,21 +169,21 @@ describe('GraphQL Federation', () => {
         .expect(200, {
           data: {
             publishPost: {
-              id: '1',
-              title: 'HELLO WORLD',
-              body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+              id: "1",
+              title: "HELLO WORLD",
+              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
               publishDate: 500,
             },
           },
         });
     });
 
-    it('should accept enum as query input', () => {
+    it("should accept enum as query input", () => {
       return request(app.getHttpServer())
-        .post('/graphql')
+        .post("/graphql")
         .send({
           variables: {
-            postType: 'TEXT',
+            postType: "TEXT",
           },
           query: `
             query ($postType: PostType!) {
@@ -197,8 +197,8 @@ describe('GraphQL Federation', () => {
           data: {
             getPosts: [
               {
-                id: '1',
-                type: 'TEXT',
+                id: "1",
+                type: "TEXT",
               },
             ],
           },

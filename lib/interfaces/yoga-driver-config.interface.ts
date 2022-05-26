@@ -1,25 +1,25 @@
-import { YogaServerOptions } from '@graphql-yoga/common';
+import { YogaServerOptions } from "@graphql-yoga/common";
 import {
   GqlModuleAsyncOptions,
   GqlModuleOptions,
   GqlOptionsFactory,
   SubscriptionConfig,
-} from '@nestjs/graphql';
+} from "@nestjs/graphql";
 
 export type YogaDriverSubscriptionConfig = Omit<
   SubscriptionConfig,
-  'graphql-ws' | 'subscriptions-transport-ws'
+  "graphql-ws" | "subscriptions-transport-ws"
 > & {
-  'graphql-ws'?: Omit<SubscriptionConfig['graphql-ws'], 'onSubscribe'>;
-  'subscriptions-transport-ws'?: Omit<
-    SubscriptionConfig['subscriptions-transport-ws'],
-    'onOperation'
+  "graphql-ws"?: Omit<SubscriptionConfig["graphql-ws"], "onSubscribe">;
+  "subscriptions-transport-ws"?: Omit<
+    SubscriptionConfig["subscriptions-transport-ws"],
+    "onOperation"
   >;
 };
 
 export interface YogaDriverConfig
   extends GqlModuleOptions,
-    Omit<YogaServerOptions<{}, {}, {}>, 'context' | 'schema'> {
+    Omit<YogaServerOptions<{}, {}, {}>, "context" | "schema"> {
   /**
    * If enabled, "subscriptions-transport-ws" will be automatically registered.
    */

@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
-import { YogaDriverConfig } from '../../lib';
-import { YogaDriver } from '../../lib/drivers';
-import { DirectionsModule } from './directions/directions.module';
-import { RecipesModule } from './recipes/recipes.module';
+import { Module } from "@nestjs/common";
+import { GraphQLModule } from "@nestjs/graphql";
+import { YogaDriverConfig } from "../../lib";
+import { YogaDriver } from "../../lib/drivers";
+import { DirectionsModule } from "./directions/directions.module";
+import { RecipesModule } from "./recipes/recipes.module";
 
 @Module({
   imports: [

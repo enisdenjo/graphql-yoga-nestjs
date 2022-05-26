@@ -1,28 +1,28 @@
-import { INestApplication } from '@nestjs/common';
-import { FastifyAdapter } from '@nestjs/platform-fastify';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { GlobalPrefixModule } from '../graphql/global-prefix.module';
+import { INestApplication } from "@nestjs/common";
+import { FastifyAdapter } from "@nestjs/platform-fastify";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { GlobalPrefixModule } from "../graphql/global-prefix.module";
 
-describe('GraphQL Fastify (global prefix)', () => {
+describe("GraphQL Fastify (global prefix)", () => {
   let app: INestApplication;
 
-  describe('Global prefix with starting slash', () => {
+  describe("Global prefix with starting slash", () => {
     beforeEach(async () => {
       const module = await Test.createTestingModule({
         imports: [GlobalPrefixModule],
       }).compile();
 
       app = module.createNestApplication(new FastifyAdapter());
-      app.setGlobalPrefix('/api/v1');
+      app.setGlobalPrefix("/api/v1");
       await app.init();
 
       await app.getHttpAdapter().getInstance().ready();
     });
 
-    it('should return query result', () => {
+    it("should return query result", () => {
       return request(app.getHttpServer())
-        .post('/api/v1/graphql')
+        .post("/api/v1/graphql")
         .send({
           operationName: null,
           variables: {},
@@ -40,7 +40,7 @@ describe('GraphQL Fastify (global prefix)', () => {
             getCats: [
               {
                 id: 1,
-                color: 'black',
+                color: "black",
                 weight: 5,
               },
             ],
@@ -53,20 +53,20 @@ describe('GraphQL Fastify (global prefix)', () => {
     });
   });
 
-  describe('Global prefix without starting slash', () => {
+  describe("Global prefix without starting slash", () => {
     beforeEach(async () => {
       const module = await Test.createTestingModule({
         imports: [GlobalPrefixModule],
       }).compile();
 
       app = module.createNestApplication();
-      app.setGlobalPrefix('api/v1');
+      app.setGlobalPrefix("api/v1");
       await app.init();
     });
 
-    it('should return query result', () => {
+    it("should return query result", () => {
       return request(app.getHttpServer())
-        .post('/api/v1/graphql')
+        .post("/api/v1/graphql")
         .send({
           operationName: null,
           variables: {},
@@ -84,7 +84,7 @@ describe('GraphQL Fastify (global prefix)', () => {
             getCats: [
               {
                 id: 1,
-                color: 'black',
+                color: "black",
                 weight: 5,
               },
             ],
@@ -97,20 +97,20 @@ describe('GraphQL Fastify (global prefix)', () => {
     });
   });
 
-  describe('Global prefix with ending slash', () => {
+  describe("Global prefix with ending slash", () => {
     beforeEach(async () => {
       const module = await Test.createTestingModule({
         imports: [GlobalPrefixModule],
       }).compile();
 
       app = module.createNestApplication();
-      app.setGlobalPrefix('/api/v1/');
+      app.setGlobalPrefix("/api/v1/");
       await app.init();
     });
 
-    it('should return query result', () => {
+    it("should return query result", () => {
       return request(app.getHttpServer())
-        .post('/api/v1/graphql')
+        .post("/api/v1/graphql")
         .send({
           operationName: null,
           variables: {},
@@ -128,7 +128,7 @@ describe('GraphQL Fastify (global prefix)', () => {
             getCats: [
               {
                 id: 1,
-                color: 'black',
+                color: "black",
                 weight: 5,
               },
             ],

@@ -1,13 +1,13 @@
-import { Module } from '@nestjs/common';
-import { CatsResolver } from './cats.resolver';
+import { Module } from "@nestjs/common";
+import { CatsResolver } from "./cats.resolver";
 
 @Module({})
 export class CatsModule {
   static register(
-    resolverRegistrationMethod: 'useClass' | 'useFactory' | 'useValue',
+    resolverRegistrationMethod: "useClass" | "useFactory" | "useValue"
   ) {
     switch (resolverRegistrationMethod) {
-      case 'useClass':
+      case "useClass":
         return {
           module: CatsModule,
           providers: [
@@ -18,7 +18,7 @@ export class CatsModule {
           ],
         };
 
-      case 'useValue':
+      case "useValue":
         return {
           module: CatsModule,
           providers: [
@@ -29,7 +29,7 @@ export class CatsModule {
           ],
         };
 
-      case 'useFactory':
+      case "useFactory":
       default:
         return {
           module: CatsModule,

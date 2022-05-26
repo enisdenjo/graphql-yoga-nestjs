@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { GqlSubscriptionService, SubscriptionConfig } from '@nestjs/graphql';
-import { printSchema } from 'graphql';
+import { Injectable } from "@nestjs/common";
+import { GqlSubscriptionService, SubscriptionConfig } from "@nestjs/graphql";
+import { printSchema } from "graphql";
 
-import { YogaDriverConfig } from '../interfaces';
-import { YogaBaseDriver } from './yoga-base.driver';
-import type { ExecutionParams } from 'subscriptions-transport-ws';
+import { YogaDriverConfig } from "../interfaces";
+import { YogaBaseDriver } from "./yoga-base.driver";
+import type { ExecutionParams } from "subscriptions-transport-ws";
 
 @Injectable()
 export class YogaDriver extends YogaBaseDriver {
@@ -12,13 +12,13 @@ export class YogaDriver extends YogaBaseDriver {
 
   public async start(options: YogaDriverConfig) {
     const opts = await this.graphQlFactory.mergeWithSchema<YogaDriverConfig>(
-      options,
+      options
     );
 
     if (opts.definitions && opts.definitions.path) {
       await this.graphQlFactory.generateDefinitions(
         printSchema(opts.schema),
-        opts,
+        opts
       );
     }
 
@@ -26,17 +26,17 @@ export class YogaDriver extends YogaBaseDriver {
 
     if (opts.installSubscriptionHandlers || opts.subscriptions) {
       const subscriptionsOptions: SubscriptionConfig = opts.subscriptions || {
-        'subscriptions-transport-ws': {},
+        "subscriptions-transport-ws": {},
       };
       if (
-        subscriptionsOptions['graphql-ws'] != null &&
-        subscriptionsOptions['graphql-ws'] !== false
+        subscriptionsOptions["graphql-ws"] != null &&
+        subscriptionsOptions["graphql-ws"] !== false
       ) {
-        subscriptionsOptions['graphql-ws'] =
-          typeof subscriptionsOptions['graphql-ws'] === 'object'
-            ? subscriptionsOptions['graphql-ws']
+        subscriptionsOptions["graphql-ws"] =
+          typeof subscriptionsOptions["graphql-ws"] === "object"
+            ? subscriptionsOptions["graphql-ws"]
             : {};
-        subscriptionsOptions['graphql-ws'].onSubscribe = async (ctx, msg) => {
+        subscriptionsOptions["graphql-ws"].onSubscribe = async (ctx, msg) => {
           const {
             schema,
             execute,
@@ -60,16 +60,16 @@ export class YogaDriver extends YogaBaseDriver {
         };
       }
       if (
-        subscriptionsOptions['subscriptions-transport-ws'] != null &&
-        subscriptionsOptions['subscriptions-transport-ws'] !== false
+        subscriptionsOptions["subscriptions-transport-ws"] != null &&
+        subscriptionsOptions["subscriptions-transport-ws"] !== false
       ) {
-        subscriptionsOptions['subscriptions-transport-ws'] =
-          typeof subscriptionsOptions['subscriptions-transport-ws'] === 'object'
-            ? subscriptionsOptions['subscriptions-transport-ws']
+        subscriptionsOptions["subscriptions-transport-ws"] =
+          typeof subscriptionsOptions["subscriptions-transport-ws"] === "object"
+            ? subscriptionsOptions["subscriptions-transport-ws"]
             : {};
-        subscriptionsOptions['subscriptions-transport-ws'].onOperation = async (
+        subscriptionsOptions["subscriptions-transport-ws"].onOperation = async (
           _msg: any,
-          params: ExecutionParams,
+          params: ExecutionParams
         ) => {
           const {
             schema,
@@ -84,7 +84,7 @@ export class YogaDriver extends YogaBaseDriver {
             schema,
             operationName: params.operationName,
             document:
-              typeof params.query === 'string'
+              typeof params.query === "string"
                 ? parse(params.query)
                 : params.query,
             variables: params.variables,
@@ -111,7 +111,7 @@ export class YogaDriver extends YogaBaseDriver {
           },
           ...subscriptionsOptions,
         },
-        this.httpAdapterHost.httpAdapter?.getHttpServer(),
+        this.httpAdapterHost.httpAdapter?.getHttpServer()
       );
     }
   }

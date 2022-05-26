@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { Cat } from './interfaces/cat.interface';
+import { Injectable } from "@nestjs/common";
+import { Cat } from "./interfaces/cat.interface";
 
 @Injectable()
 export class CatsService {
   static COUNTER = 0;
-  private readonly cats: Cat[] = [{ id: 1, name: 'Cat', age: 5 }];
+  private readonly cats: Cat[] = [{ id: 1, name: "Cat", age: 5 }];
 
   constructor() {
     CatsService.COUNTER++;

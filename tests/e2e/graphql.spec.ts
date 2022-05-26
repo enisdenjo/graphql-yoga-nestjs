@@ -1,9 +1,9 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { ApplicationModule } from '../graphql/app.module';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { ApplicationModule } from "../graphql/app.module";
 
-describe('GraphQL', () => {
+describe("GraphQL", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('GraphQL', () => {
 
   it(`should return query result`, () => {
     return request(app.getHttpServer())
-      .post('/graphql')
+      .post("/graphql")
       .send({
         operationName: null,
         variables: {},
@@ -35,7 +35,7 @@ describe('GraphQL', () => {
           getCats: [
             {
               id: 1,
-              color: 'black',
+              color: "black",
               weight: 5,
             },
           ],

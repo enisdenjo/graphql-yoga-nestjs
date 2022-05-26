@@ -1,10 +1,10 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { Type } from 'class-transformer';
-import { Length, MaxLength } from 'class-validator';
+import { Field, InputType } from "@nestjs/graphql";
+import { Type } from "class-transformer";
+import { Length, MaxLength } from "class-validator";
 
-@InputType({ description: 'new recipe input' })
+@InputType({ description: "new recipe input" })
 export class NewRecipeInput {
-  @Field({ description: 'recipe title' })
+  @Field({ description: "recipe title" })
   @MaxLength(30)
   title: string;
 

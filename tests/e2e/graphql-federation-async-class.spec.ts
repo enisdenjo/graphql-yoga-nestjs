@@ -1,9 +1,9 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { AppModule } from '../graphql-federation/users-service/federation-users.async-class.module';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { AppModule } from "../graphql-federation/users-service/federation-users.async-class.module";
 
-describe('GraphQL Federation async-class', () => {
+describe("GraphQL Federation async-class", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('GraphQL Federation async-class', () => {
 
   it(`should return query result`, () => {
     return request(app.getHttpServer())
-      .post('/graphql')
+      .post("/graphql")
       .send({
         operationName: null,
         variables: {},
@@ -32,8 +32,8 @@ describe('GraphQL Federation async-class', () => {
       .expect(200, {
         data: {
           getUser: {
-            id: '5',
-            name: 'GraphQL',
+            id: "5",
+            name: "GraphQL",
           },
         },
       });

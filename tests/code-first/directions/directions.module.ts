@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
-import { DirectionsResolver } from './directions.resolver';
+import { Module } from "@nestjs/common";
+import { DirectionsResolver } from "./directions.resolver";
 
 @Module({
   providers: [DirectionsResolver],

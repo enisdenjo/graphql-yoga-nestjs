@@ -1,13 +1,13 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import ApolloClient, { ApolloError } from 'apollo-client';
-import { WebSocketLink } from 'apollo-link-ws';
-import { gql } from 'graphql-tag';
-import { SubscriptionClient } from 'subscriptions-transport-ws';
-import * as ws from 'ws';
-import { AppModule } from './app/app.module';
-import { pubSub } from './app/notification.resolver';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import ApolloClient, { ApolloError } from "apollo-client";
+import { WebSocketLink } from "apollo-link-ws";
+import { gql } from "graphql-tag";
+import { SubscriptionClient } from "subscriptions-transport-ws";
+import * as ws from "ws";
+import { AppModule } from "./app/app.module";
+import { pubSub } from "./app/notification.resolver";
 
 const subscriptionQuery = gql`
   subscription TestSubscription($id: String!) {
@@ -18,7 +18,7 @@ const subscriptionQuery = gql`
   }
 `;
 
-describe('subscriptions-transport-ws protocol', () => {
+describe("subscriptions-transport-ws protocol", () => {
   let app: INestApplication;
   let wsClient: SubscriptionClient;
 
@@ -30,16 +30,16 @@ describe('subscriptions-transport-ws protocol', () => {
             return connection?.context ?? {};
           },
           subscriptions: {
-            'subscriptions-transport-ws': {
+            "subscriptions-transport-ws": {
               onConnect: (connectionParams) => {
                 if (!connectionParams.authorization) {
-                  throw new Error('Missing authorization header');
+                  throw new Error("Missing authorization header");
                 }
                 const { authorization } = connectionParams;
-                if (!authorization.startsWith('Bearer ')) {
-                  throw new Error('Malformed authorization token');
+                if (!authorization.startsWith("Bearer ")) {
+                  throw new Error("Malformed authorization token");
                 }
-                return { user: authorization.split('Bearer ')[1] };
+                return { user: authorization.split("Bearer ")[1] };
               },
             },
           },
@@ -52,18 +52,18 @@ describe('subscriptions-transport-ws protocol', () => {
     await app.listen(3006);
   });
 
-  it('should receive an error if missing token', (done) => {
+  it("should receive an error if missing token", (done) => {
     wsClient = new SubscriptionClient(
-      'ws://localhost:3006/graphql',
+      "ws://localhost:3006/graphql",
       {
         connectionCallback: (errors) => {
           const error = errors as unknown as Error;
-          expect(error.message).toEqual('Missing authorization header');
+          expect(error.message).toEqual("Missing authorization header");
           done();
         },
         connectionParams: {},
       },
-      ws,
+      ws
     );
 
     const apolloClient = new ApolloClient({
@@ -75,7 +75,7 @@ describe('subscriptions-transport-ws protocol', () => {
       .subscribe({
         query: subscriptionQuery,
         variables: {
-          id: '1',
+          id: "1",
         },
       })
       .subscribe({
@@ -85,20 +85,20 @@ describe('subscriptions-transport-ws protocol', () => {
       });
   });
 
-  it('should receive an error if token is malformed', (done) => {
+  it("should receive an error if token is malformed", (done) => {
     wsClient = new SubscriptionClient(
-      'ws://localhost:3006/graphql',
+      "ws://localhost:3006/graphql",
       {
         connectionCallback: (errors) => {
           const error = errors as unknown as Error;
-          expect(error.message).toEqual('Malformed authorization token');
+          expect(error.message).toEqual("Malformed authorization token");
           done();
         },
         connectionParams: {
-          authorization: 'wrong token',
+          authorization: "wrong token",
         },
       },
-      ws,
+      ws
     );
 
     const apolloClient = new ApolloClient({
@@ -110,7 +110,7 @@ describe('subscriptions-transport-ws protocol', () => {
       .subscribe({
         query: subscriptionQuery,
         variables: {
-          id: '1',
+          id: "1",
         },
       })
       .subscribe({
@@ -120,15 +120,15 @@ describe('subscriptions-transport-ws protocol', () => {
       });
   });
 
-  it('should fail to connect if no authorization is provided', (done) => {
+  it("should fail to connect if no authorization is provided", (done) => {
     wsClient = new SubscriptionClient(
-      'ws://localhost:3006/graphql',
+      "ws://localhost:3006/graphql",
       {
         connectionParams: {
-          authorization: 'Bearer notest',
+          authorization: "Bearer notest",
         },
       },
-      ws,
+      ws
     );
 
     const apolloClient = new ApolloClient({
@@ -140,7 +140,7 @@ describe('subscriptions-transport-ws protocol', () => {
       .subscribe({
         query: subscriptionQuery,
         variables: {
-          id: '1',
+          id: "1",
         },
       })
       .subscribe({
@@ -149,47 +149,47 @@ describe('subscriptions-transport-ws protocol', () => {
         error(error: unknown) {
           expect(error).toBeInstanceOf(ApolloError);
           expect((error as ApolloError).graphQLErrors[0].message).toEqual(
-            'Forbidden resource',
+            "Forbidden resource"
           );
           expect((error as ApolloError).graphQLErrors[0].path[0]).toEqual(
-            'newNotification',
+            "newNotification"
           );
           done();
         },
       });
   });
 
-  it('should receive subscriptions', (done) => {
+  it("should receive subscriptions", (done) => {
     wsClient = new SubscriptionClient(
-      'ws://localhost:3006/graphql',
+      "ws://localhost:3006/graphql",
       {
         connectionParams: {
-          authorization: 'Bearer test',
+          authorization: "Bearer test",
         },
       },
-      ws,
+      ws
     );
 
-    wsClient.on('connected', () => {
-      pubSub.publish('newNotification', {
+    wsClient.on("connected", () => {
+      pubSub.publish("newNotification", {
         newNotification: {
-          id: '2',
-          recipient: 'test',
-          message: 'wrong message!',
+          id: "2",
+          recipient: "test",
+          message: "wrong message!",
         },
       });
-      pubSub.publish('newNotification', {
+      pubSub.publish("newNotification", {
         newNotification: {
-          id: '1',
-          recipient: 'someone-else',
-          message: 'wrong message!',
+          id: "1",
+          recipient: "someone-else",
+          message: "wrong message!",
         },
       });
-      pubSub.publish('newNotification', {
+      pubSub.publish("newNotification", {
         newNotification: {
-          id: '1',
-          recipient: 'test',
-          message: 'Hello subscriptions-transport-ws',
+          id: "1",
+          recipient: "test",
+          message: "Hello subscriptions-transport-ws",
         },
       });
     });
@@ -203,14 +203,14 @@ describe('subscriptions-transport-ws protocol', () => {
       .subscribe({
         query: subscriptionQuery,
         variables: {
-          id: '1',
+          id: "1",
         },
       })
       .subscribe({
         next(value: any) {
-          expect(value.data.newNotification.id).toEqual('1');
+          expect(value.data.newNotification.id).toEqual("1");
           expect(value.data.newNotification.message).toEqual(
-            'Hello subscriptions-transport-ws',
+            "Hello subscriptions-transport-ws"
           );
           done();
         },

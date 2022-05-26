@@ -1,15 +1,15 @@
-import { Post } from './post.entity';
-import { Injectable } from '@nestjs/common';
+import { Post } from "./post.entity";
+import { Injectable } from "@nestjs/common";
 
 const data = [
   {
     id: 1,
-    title: 'HELLO WORLD',
+    title: "HELLO WORLD",
     authorId: 2,
   },
   {
     id: 2,
-    title: 'lorem ipsum',
+    title: "lorem ipsum",
     authorId: 1,
   },
 ];

@@ -1,8 +1,8 @@
-import { Logger, UseGuards } from '@nestjs/common';
-import { Args, Query, Resolver, Subscription } from '@nestjs/graphql';
-import { PubSub } from 'graphql-subscriptions';
-import { AuthGuard } from './auth.guard';
-import { Notification } from './notification';
+import { Logger, UseGuards } from "@nestjs/common";
+import { Args, Query, Resolver, Subscription } from "@nestjs/graphql";
+import { PubSub } from "graphql-subscriptions";
+import { AuthGuard } from "./auth.guard";
+import { Notification } from "./notification";
 
 export const pubSub = new PubSub();
 
@@ -13,7 +13,7 @@ export class NotificationResolver {
   @Query(() => Notification)
   getNotification() {
     return {
-      message: 'Hello!',
+      message: "Hello!",
     };
   }
 
@@ -27,12 +27,12 @@ export class NotificationResolver {
     },
   })
   newNotification(
-    @Args('id', {
+    @Args("id", {
       nullable: false,
     })
-    id: string,
+    id: string
   ) {
-    this.logger.log('User subscribed to newNotification');
-    return pubSub.asyncIterator('newNotification');
+    this.logger.log("User subscribed to newNotification");
+    return pubSub.asyncIterator("newNotification");
   }
 }

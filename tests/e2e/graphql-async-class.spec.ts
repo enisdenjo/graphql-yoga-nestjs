@@ -1,9 +1,9 @@
-import { INestApplication } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import * as request from 'supertest';
-import { AsyncClassApplicationModule } from '../graphql/async-options-class.module';
+import { INestApplication } from "@nestjs/common";
+import { NestFactory } from "@nestjs/core";
+import * as request from "supertest";
+import { AsyncClassApplicationModule } from "../graphql/async-options-class.module";
 
-describe('GraphQL (async class)', () => {
+describe("GraphQL (async class)", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -15,11 +15,11 @@ describe('GraphQL (async class)', () => {
 
   it(`should return query result`, () => {
     return request(app.getHttpServer())
-      .post('/graphql')
+      .post("/graphql")
       .send({
         operationName: null,
         variables: {},
-        query: '{\n  getCats {\n    id\n  }\n}\n',
+        query: "{\n  getCats {\n    id\n  }\n}\n",
       })
       .expect(200, {
         data: {

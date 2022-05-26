@@ -1,10 +1,10 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { AppModule } from '../graphql-federation/posts-service/federation-posts.module';
-import { FastifyAdapter } from '@nestjs/platform-fastify';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { AppModule } from "../graphql-federation/posts-service/federation-posts.module";
+import { FastifyAdapter } from "@nestjs/platform-fastify";
 
-describe('GraphQL federation with fastify', () => {
+describe("GraphQL federation with fastify", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -19,7 +19,7 @@ describe('GraphQL federation with fastify', () => {
 
   it(`should return query result`, () => {
     return request(app.getHttpServer())
-      .post('/graphql')
+      .post("/graphql")
       .send({
         operationName: null,
         variables: {},
@@ -36,9 +36,9 @@ describe('GraphQL federation with fastify', () => {
         data: {
           getPosts: [
             {
-              id: '1',
-              title: 'HELLO WORLD',
-              body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+              id: "1",
+              title: "HELLO WORLD",
+              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             },
           ],
         },

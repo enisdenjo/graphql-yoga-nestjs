@@ -3,8 +3,8 @@ import {
   Inject,
   Injectable,
   PipeTransform,
-} from '@nestjs/common';
-import { UsersService } from './users.service';
+} from "@nestjs/common";
+import { UsersService } from "./users.service";
 
 @Injectable()
 export class UserByIdPipe implements PipeTransform<string> {
@@ -12,8 +12,8 @@ export class UserByIdPipe implements PipeTransform<string> {
   static REQUEST_SCOPED_DATA = [];
 
   constructor(
-    @Inject('REQUEST_ID') private requestId: number,
-    private readonly usersService: UsersService,
+    @Inject("REQUEST_ID") private requestId: number,
+    private readonly usersService: UsersService
   ) {
     UserByIdPipe.COUNTER++;
   }

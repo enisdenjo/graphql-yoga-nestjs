@@ -1,9 +1,9 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { ApplicationModule } from '../code-first/app.module';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { ApplicationModule } from "../code-first/app.module";
 
-describe('GraphQL - Guards', () => {
+describe("GraphQL - Guards", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('GraphQL - Guards', () => {
 
   it(`should throw an error`, () => {
     return request(app.getHttpServer())
-      .post('/graphql')
+      .post("/graphql")
       .send({
         operationName: null,
         variables: {},
@@ -26,16 +26,16 @@ describe('GraphQL - Guards', () => {
       .expect(200, {
         errors: [
           {
-            message: 'Unauthorized error',
+            message: "Unauthorized error",
             locations: [{ line: 2, column: 3 }],
-            path: ['recipe'],
+            path: ["recipe"],
             extensions: {
-              code: 'INTERNAL_SERVER_ERROR',
+              code: "INTERNAL_SERVER_ERROR",
               exception: {
-                response: { statusCode: 401, message: 'Unauthorized' },
+                response: { statusCode: 401, message: "Unauthorized" },
                 status: 401,
-                message: 'Unauthorized error',
-                name: 'UnauthorizedException',
+                message: "Unauthorized error",
+                name: "UnauthorizedException",
               },
             },
           },

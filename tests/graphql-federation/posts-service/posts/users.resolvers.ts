@@ -1,10 +1,10 @@
-import { ResolveField, Resolver } from '@nestjs/graphql';
-import { PostsService } from './posts.service';
-@Resolver('User')
+import { ResolveField, Resolver } from "@nestjs/graphql";
+import { PostsService } from "./posts.service";
+@Resolver("User")
 export class UsersResolvers {
   constructor(private readonly postsService: PostsService) {}
 
-  @ResolveField('posts')
+  @ResolveField("posts")
   getPosts(reference: any) {
     return this.postsService.findByUserId(reference.id);
   }

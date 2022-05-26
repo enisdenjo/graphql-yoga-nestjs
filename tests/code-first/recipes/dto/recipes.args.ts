@@ -1,8 +1,8 @@
-import { ArgsType, Field, Int } from '@nestjs/graphql';
-import { Max, Min } from 'class-validator';
+import { ArgsType, Field, Int } from "@nestjs/graphql";
+import { Max, Min } from "class-validator";
 @ArgsType()
 export class RecipesArgs {
-  @Field((type) => Int, { description: 'number of items to skip' })
+  @Field((type) => Int, { description: "number of items to skip" })
   @Min(0)
   skip: number = 0;
 

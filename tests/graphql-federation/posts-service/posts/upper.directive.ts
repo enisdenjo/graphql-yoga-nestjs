@@ -1,5 +1,5 @@
-import { getDirective, MapperKind, mapSchema } from '@graphql-tools/utils';
-import { defaultFieldResolver } from 'graphql';
+import { getDirective, MapperKind, mapSchema } from "@graphql-tools/utils";
+import { defaultFieldResolver } from "graphql";
 
 export function upperDirectiveTransformer(schema, directiveName) {
   return mapSchema(schema, {
@@ -7,7 +7,7 @@ export function upperDirectiveTransformer(schema, directiveName) {
       const upperDirective = getDirective(
         schema,
         fieldConfig,
-        directiveName,
+        directiveName
       )?.[0];
 
       if (upperDirective) {
@@ -17,7 +17,7 @@ export function upperDirectiveTransformer(schema, directiveName) {
         // the original resolver, then converts its result to upper case
         fieldConfig.resolve = async function (source, args, context, info) {
           const result = await resolve(source, args, context, info);
-          if (typeof result === 'string') {
+          if (typeof result === "string") {
             return result.toUpperCase();
           }
           return result;

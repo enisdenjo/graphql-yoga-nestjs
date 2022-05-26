@@ -1,11 +1,11 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { AppModule as GatewayModule } from '../graphql-federation/gateway/gateway-async.module';
-import { AppModule as PostsModule } from '../graphql-federation/posts-service/federation-posts.module';
-import { AppModule as UsersModule } from '../graphql-federation/users-service/federation-users.module';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { AppModule as GatewayModule } from "../graphql-federation/gateway/gateway-async.module";
+import { AppModule as PostsModule } from "../graphql-federation/posts-service/federation-posts.module";
+import { AppModule as UsersModule } from "../graphql-federation/users-service/federation-users.module";
 
-describe('GraphQL Gateway async', () => {
+describe("GraphQL Gateway async", () => {
   let postsApp: INestApplication;
   let usersApp: INestApplication;
   let gatewayApp: INestApplication;
@@ -35,7 +35,7 @@ describe('GraphQL Gateway async', () => {
 
   it(`should run lookup across boundaries`, () => {
     return request(gatewayApp.getHttpServer())
-      .post('/graphql')
+      .post("/graphql")
       .send({
         operationName: null,
         variables: {},
@@ -56,12 +56,12 @@ describe('GraphQL Gateway async', () => {
         data: {
           getPosts: [
             {
-              id: '1',
-              title: 'HELLO WORLD',
-              body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+              id: "1",
+              title: "HELLO WORLD",
+              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
               user: {
-                id: '5',
-                name: 'GraphQL',
+                id: "5",
+                name: "GraphQL",
               },
             },
           ],

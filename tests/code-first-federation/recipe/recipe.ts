@@ -4,7 +4,7 @@ import {
   ID,
   InterfaceType,
   ObjectType,
-} from '@nestjs/graphql';
+} from "@nestjs/graphql";
 
 @InterfaceType()
 export abstract class Base {
@@ -22,7 +22,7 @@ export abstract class IRecipe extends Base {
   title: string;
 
   @Field()
-  @Directive('@external')
+  @Directive("@external")
   externalField: string;
 }
 

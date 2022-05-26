@@ -1,14 +1,14 @@
-import { INestApplication } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
-import { Test } from '@nestjs/testing';
-import { join } from 'path';
-import * as request from 'supertest';
-import { YogaDriverConfig } from '../../lib';
-import { YogaDriver } from '../../lib/drivers';
-import { CatsRequestScopedService } from '../graphql/cats/cats-request-scoped.service';
-import { CatsModule } from '../graphql/cats/cats.module';
+import { INestApplication } from "@nestjs/common";
+import { GraphQLModule } from "@nestjs/graphql";
+import { Test } from "@nestjs/testing";
+import { join } from "path";
+import * as request from "supertest";
+import { YogaDriverConfig } from "../../lib";
+import { YogaDriver } from "../../lib/drivers";
+import { CatsRequestScopedService } from "../graphql/cats/cats-request-scoped.service";
+import { CatsModule } from "../graphql/cats/cats.module";
 
-describe('GraphQL request scoped', () => {
+describe("GraphQL request scoped", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('GraphQL request scoped', () => {
         CatsModule.enableRequestScope(),
         GraphQLModule.forRoot<YogaDriverConfig>({
           driver: YogaDriver,
-          typePaths: [join(__dirname, '..', 'graphql', '**', '*.graphql')],
+          typePaths: [join(__dirname, "..", "graphql", "**", "*.graphql")],
         }),
       ],
     }).compile();
@@ -27,11 +27,11 @@ describe('GraphQL request scoped', () => {
 
     const performHttpCall = (end) =>
       request(app.getHttpServer())
-        .post('/graphql')
+        .post("/graphql")
         .send({
           operationName: null,
           variables: {},
-          query: '{\n  getCats {\n    id\n  }\n}\n',
+          query: "{\n  getCats {\n    id\n  }\n}\n",
         })
         .expect(200, {
           data: {

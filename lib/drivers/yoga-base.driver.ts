@@ -1,14 +1,14 @@
-import { AbstractGraphQLDriver } from '@nestjs/graphql';
-import type { FastifyRequest, FastifyReply } from 'fastify';
+import { AbstractGraphQLDriver } from "@nestjs/graphql";
+import type { FastifyRequest, FastifyReply } from "fastify";
 
-import { YogaDriverConfig } from '../interfaces';
-import { createServer, YogaNodeServerInstance } from '@graphql-yoga/node';
-import { useApolloServerErrors } from '@envelop/apollo-server-errors';
-import { Logger } from '@nestjs/common';
-import { createAsyncIterator } from '../utils/async-iterator.util';
+import { YogaDriverConfig } from "../interfaces";
+import { createServer, YogaNodeServerInstance } from "@graphql-yoga/node";
+import { useApolloServerErrors } from "@envelop/apollo-server-errors";
+import { Logger } from "@nestjs/common";
+import { createAsyncIterator } from "../utils/async-iterator.util";
 
 export abstract class YogaBaseDriver<
-  T extends YogaDriverConfig = YogaDriverConfig,
+  T extends YogaDriverConfig = YogaDriverConfig
 > extends AbstractGraphQLDriver<T> {
   protected yogaInstance: YogaNodeServerInstance<{}, {}, {}>;
 
@@ -24,15 +24,15 @@ export abstract class YogaBaseDriver<
       // disable graphiql in production
       graphiql:
         (options.graphiql === undefined &&
-          process.env.NODE_ENV === 'production') ||
+          process.env.NODE_ENV === "production") ||
         options.graphiql === false
           ? false
           : options.graphiql,
     };
 
-    if (platformName === 'express') {
+    if (platformName === "express") {
       await this.registerExpress(opts);
-    } else if (platformName === 'fastify') {
+    } else if (platformName === "fastify") {
       await this.registerFastify(opts);
     } else {
       throw new Error(`No support for current HttpAdapter: ${platformName}`);
@@ -44,7 +44,7 @@ export abstract class YogaBaseDriver<
 
   protected async registerExpress(
     options: T,
-    { preStartHook }: { preStartHook?: () => void } = {},
+    { preStartHook }: { preStartHook?: () => void } = {}
   ) {
     const httpAdapter = this.httpAdapterHost.httpAdapter;
     const app = httpAdapter.getInstance();
@@ -56,8 +56,8 @@ export abstract class YogaBaseDriver<
       // disable logging by default, if set to `true`, pass a nestjs Logger or pass custom logger
       logging: !options.logging
         ? false
-        : typeof options.logging === 'boolean'
-        ? new Logger('YogaDriver')
+        : typeof options.logging === "boolean"
+        ? new Logger("YogaDriver")
         : options.logging,
     });
 
@@ -68,7 +68,7 @@ export abstract class YogaBaseDriver<
 
   protected async registerFastify(
     options: T,
-    { preStartHook }: { preStartHook?: () => void } = {},
+    { preStartHook }: { preStartHook?: () => void } = {}
   ) {
     const httpAdapter = this.httpAdapterHost.httpAdapter;
     const app = httpAdapter.getInstance();
@@ -82,7 +82,7 @@ export abstract class YogaBaseDriver<
       ...options,
       logging: !options.logging
         ? false
-        : typeof options.logging === 'boolean'
+        : typeof options.logging === "boolean"
         ? app.log
         : options.logging,
     });
@@ -91,7 +91,7 @@ export abstract class YogaBaseDriver<
 
     app.route({
       url: options.path,
-      method: ['GET', 'POST', 'OPTIONS'],
+      method: ["GET", "POST", "OPTIONS"],
       handler: async (req, reply) => {
         const response = await graphQLServer.handleIncomingMessage(req, {
           req,
@@ -113,15 +113,15 @@ export abstract class YogaBaseDriver<
     filterFn: (
       payload: any,
       variables: any,
-      context: any,
+      context: any
     ) => boolean | Promise<boolean>,
-    createSubscribeContext: Function,
+    createSubscribeContext: Function
   ) {
     return <TPayload, TVariables, TContext, TInfo>(
       ...args: [TPayload, TVariables, TContext, TInfo]
     ): any =>
       createAsyncIterator(createSubscribeContext()(...args), (payload: any) =>
-        filterFn.call(instanceRef, payload, ...args.slice(1)),
+        filterFn.call(instanceRef, payload, ...args.slice(1))
       );
   }
 }

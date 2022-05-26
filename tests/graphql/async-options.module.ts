@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'path';
-import { YogaDriver, YogaDriverConfig } from '../../lib';
-import { CatsModule } from './cats/cats.module';
+import { Module } from "@nestjs/common";
+import { GraphQLModule } from "@nestjs/graphql";
+import { join } from "path";
+import { YogaDriver, YogaDriverConfig } from "../../lib";
+import { CatsModule } from "./cats/cats.module";
 
 @Module({
   imports: [
@@ -10,7 +10,7 @@ import { CatsModule } from './cats/cats.module';
     GraphQLModule.forRootAsync<YogaDriverConfig>({
       driver: YogaDriver,
       useFactory: async () => ({
-        typePaths: [join(__dirname, '**', '*.graphql')],
+        typePaths: [join(__dirname, "**", "*.graphql")],
       }),
     }),
   ],

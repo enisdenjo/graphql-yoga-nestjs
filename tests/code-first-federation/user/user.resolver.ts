@@ -1,6 +1,6 @@
-import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { PostService } from '../post/post.service';
-import { User } from './user.entity';
+import { Parent, ResolveField, Resolver } from "@nestjs/graphql";
+import { PostService } from "../post/post.service";
+import { User } from "./user.entity";
 
 @Resolver((of) => User)
 export class UserResolver {

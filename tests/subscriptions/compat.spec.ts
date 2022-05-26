@@ -1,15 +1,15 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import ApolloClient from 'apollo-client';
-import { WebSocketLink } from 'apollo-link-ws';
-import { gql } from 'graphql-tag';
-import { Client, createClient } from 'graphql-ws';
-import { SubscriptionClient } from 'subscriptions-transport-ws';
-import * as ws from 'ws';
-import { AppModule } from './app/app.module';
-import { pubSub } from './app/notification.resolver';
-import { GraphQLWsLink } from './utils/graphql-ws.link';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import ApolloClient from "apollo-client";
+import { WebSocketLink } from "apollo-link-ws";
+import { gql } from "graphql-tag";
+import { Client, createClient } from "graphql-ws";
+import { SubscriptionClient } from "subscriptions-transport-ws";
+import * as ws from "ws";
+import { AppModule } from "./app/app.module";
+import { pubSub } from "./app/notification.resolver";
+import { GraphQLWsLink } from "./utils/graphql-ws.link";
 
 const subscriptionQuery = gql`
   subscription TestSubscription($id: String!) {
@@ -20,7 +20,7 @@ const subscriptionQuery = gql`
   }
 `;
 
-describe('Use graphql-ws + subscriptions-transport-ws', () => {
+describe("Use graphql-ws + subscriptions-transport-ws", () => {
   let app: INestApplication;
   let wsClient: Client;
   let subWsClient: SubscriptionClient;
@@ -35,16 +35,16 @@ describe('Use graphql-ws + subscriptions-transport-ws', () => {
           context: (context) => {
             const { authorization } = context?.connectionParams ?? {};
             if (authorization) {
-              return { user: authorization.split('Bearer ')[1] };
+              return { user: authorization.split("Bearer ")[1] };
             } else {
               return context?.connection?.context ?? {};
             }
           },
           subscriptions: {
-            'graphql-ws': {
+            "graphql-ws": {
               onConnect: gqlWsOnConnect,
             },
-            'subscriptions-transport-ws': {
+            "subscriptions-transport-ws": {
               onConnect: subTransWsOnConnect,
             },
           },
@@ -57,26 +57,26 @@ describe('Use graphql-ws + subscriptions-transport-ws', () => {
     await app.listen(3002);
   });
 
-  it('graphql-ws receives subscriptions', (done) => {
+  it("graphql-ws receives subscriptions", (done) => {
     gqlWsOnConnect.mockReturnValue(true);
 
     wsClient = createClient({
-      url: 'ws://localhost:3002/graphql',
+      url: "ws://localhost:3002/graphql",
       webSocketImpl: ws,
       connectionParams: {
-        authorization: 'Bearer test',
+        authorization: "Bearer test",
       },
       retryAttempts: 0,
     });
 
-    wsClient.on('connected', () => {
+    wsClient.on("connected", () => {
       // timeout needed to allow the subscription to be established
       setTimeout(() => {
-        pubSub.publish('newNotification', {
+        pubSub.publish("newNotification", {
           newNotification: {
-            id: '1',
-            recipient: 'test',
-            message: 'Hello graphql-ws',
+            id: "1",
+            recipient: "test",
+            message: "Hello graphql-ws",
           },
         });
       }, 100);
@@ -91,14 +91,14 @@ describe('Use graphql-ws + subscriptions-transport-ws', () => {
       .subscribe({
         query: subscriptionQuery,
         variables: {
-          id: '1',
+          id: "1",
         },
       })
       .subscribe({
         next(value: any) {
-          expect(value.data.newNotification.id).toEqual('1');
+          expect(value.data.newNotification.id).toEqual("1");
           expect(value.data.newNotification.message).toEqual(
-            'Hello graphql-ws',
+            "Hello graphql-ws"
           );
           expect(gqlWsOnConnect).toHaveBeenCalledTimes(1);
           expect(subTransWsOnConnect).not.toHaveBeenCalled();
@@ -111,27 +111,27 @@ describe('Use graphql-ws + subscriptions-transport-ws', () => {
       });
   });
 
-  it('subscriptions-transport-ws receives subscriptions', (done) => {
+  it("subscriptions-transport-ws receives subscriptions", (done) => {
     subTransWsOnConnect.mockReturnValue({
-      user: 'test',
+      user: "test",
     });
 
     subWsClient = new SubscriptionClient(
-      'ws://localhost:3002/graphql',
+      "ws://localhost:3002/graphql",
       {
         connectionParams: {
-          authorization: 'Bearer test',
+          authorization: "Bearer test",
         },
       },
-      ws,
+      ws
     );
 
-    subWsClient.on('connected', () => {
-      pubSub.publish('newNotification', {
+    subWsClient.on("connected", () => {
+      pubSub.publish("newNotification", {
         newNotification: {
-          id: '1',
-          recipient: 'test',
-          message: 'Hello subscriptions-transport-ws',
+          id: "1",
+          recipient: "test",
+          message: "Hello subscriptions-transport-ws",
         },
       });
     });
@@ -145,14 +145,14 @@ describe('Use graphql-ws + subscriptions-transport-ws', () => {
       .subscribe({
         query: subscriptionQuery,
         variables: {
-          id: '1',
+          id: "1",
         },
       })
       .subscribe({
         next(value: any) {
-          expect(value.data.newNotification.id).toEqual('1');
+          expect(value.data.newNotification.id).toEqual("1");
           expect(value.data.newNotification.message).toEqual(
-            'Hello subscriptions-transport-ws',
+            "Hello subscriptions-transport-ws"
           );
           expect(subTransWsOnConnect).toHaveBeenCalledTimes(1);
           expect(gqlWsOnConnect).not.toHaveBeenCalled();

@@ -1,13 +1,13 @@
-import { CustomScalar, Scalar } from '@nestjs/graphql';
-import { Kind, ValueNode } from 'graphql';
-@Scalar('Date')
+import { CustomScalar, Scalar } from "@nestjs/graphql";
+import { Kind, ValueNode } from "graphql";
+@Scalar("Date")
 export class DateScalar implements CustomScalar<number, Date> {
-  description = 'Date custom scalar type';
+  description = "Date custom scalar type";
 
   parseValue(value: any): Date {
     const date = new Date(parseInt(value, 10)); // value from the client
     if (isNaN(date.getTime())) {
-      throw new TypeError('Invalid date given');
+      throw new TypeError("Invalid date given");
     }
     return date;
   }

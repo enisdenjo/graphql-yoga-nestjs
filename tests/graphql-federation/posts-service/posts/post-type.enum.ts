@@ -1,4 +1,4 @@
 export enum PostType {
-  IMAGE = 'IMAGE',
-  TEXT = 'TEXT',
+  IMAGE = "IMAGE",
+  TEXT = "TEXT",
 }

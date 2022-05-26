@@ -1,10 +1,10 @@
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { ApplicationModule } from '../graphql/app.module';
-import { FastifyAdapter } from '@nestjs/platform-fastify';
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { ApplicationModule } from "../graphql/app.module";
+import { FastifyAdapter } from "@nestjs/platform-fastify";
 
-describe('GraphQL with fastify', () => {
+describe("GraphQL with fastify", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -19,7 +19,7 @@ describe('GraphQL with fastify', () => {
 
   it(`should return query result`, () => {
     return request(app.getHttpServer())
-      .post('/graphql')
+      .post("/graphql")
       .send({
         operationName: null,
         variables: {},
@@ -37,7 +37,7 @@ describe('GraphQL with fastify', () => {
           getCats: [
             {
               id: 1,
-              color: 'black',
+              color: "black",
               weight: 5,
             },
           ],

@@ -1,4 +1,4 @@
-import { $$asyncIterator } from 'iterall';
+import { $$asyncIterator } from "iterall";
 
 type AsyncIterator<T> = {
   next(value?: any): Promise<IteratorResult<T>>;
@@ -9,11 +9,11 @@ type AsyncIterator<T> = {
 
 export const createAsyncIterator = async <T = any>(
   lazyFactory: Promise<AsyncIterator<T>>,
-  filterFn: Function,
+  filterFn: Function
 ): Promise<AsyncIterator<T>> => {
   const asyncIterator = await lazyFactory;
   const getNextValue = async () => {
-    if (!asyncIterator || typeof asyncIterator.next !== 'function') {
+    if (!asyncIterator || typeof asyncIterator.next !== "function") {
       return Promise.reject(asyncIterator);
     }
 
@@ -32,7 +32,7 @@ export const createAsyncIterator = async <T = any>(
     },
     return() {
       const isAsyncIterator =
-        asyncIterator && typeof asyncIterator.return === 'function';
+        asyncIterator && typeof asyncIterator.return === "function";
 
       return isAsyncIterator
         ? asyncIterator.return()
