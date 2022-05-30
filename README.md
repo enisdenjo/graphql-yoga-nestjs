@@ -15,30 +15,26 @@ GraphQL Yoga is a Fully-featured GraphQL Server with a focus on easy setup, perf
 
 <p>&nbsp;</p>
 
-----
+---
 
 <p>&nbsp;</p>
 
 ## Quick Start
 
-
 Get started with Nest and GraphQL Yoga with the [Overview & Tutorial](https://docs.nestjs.com/graphql/quick-start).
 For more information regarding GraphQL Yoga configuration, please refer to [GraphQL Yoga documentation](https://www.graphql-yoga.com/docs/quick-start).
 
-
 <p>&nbsp;</p>
 
-----
+---
 
 <p>&nbsp;</p>
-
 
 ## Contributing
 
 If this is your first time contributing to this project, please do read our [Contributor Workflow Guide](https://github.com/the-guild-org/Stack/blob/master/CONTRIBUTING.md) before you get started off.
 
 Feel free to open issues and pull requests. We're always welcome support from the community.
-
 
 <p>&nbsp;</p>
 
@@ -49,7 +45,7 @@ of Conduct](https://github.com/the-guild-org/Stack/blob/master/CODE_OF_CONDUCT.m
 
 <p>&nbsp;</p>
 
-----
+---
 
 <p>&nbsp;</p>
 
