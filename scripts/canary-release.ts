@@ -86,7 +86,6 @@ const updateVersions = async (): Promise<void | never> => {
       commit: false,
     },
     false,
-    // @ts-expect-error
     true
   );
 };

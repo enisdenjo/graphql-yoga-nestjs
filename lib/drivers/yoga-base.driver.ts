@@ -39,7 +39,7 @@ export abstract class YogaBaseDriver<
     }
   }
 
-  /* eslit-disable-next-line @typescript-eslint/no-empty-function */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   public async stop(): Promise<void> {}
 
   protected async registerExpress(

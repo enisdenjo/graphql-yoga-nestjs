@@ -4,6 +4,7 @@ module.exports = {
   env: {
     node: true,
   },
+  ignorePatterns: "tests",
   // TODO: remove this line to lint website folder from root folder
   overrides: [
     {
@@ -15,6 +16,7 @@ module.exports = {
         "prettier",
       ],
       rules: {
+        "@typescript-eslint/ban-types": 1,
         "no-console": "error",
       },
     },
