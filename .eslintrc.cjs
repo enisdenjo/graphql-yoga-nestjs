@@ -4,7 +4,6 @@ module.exports = {
   env: {
     node: true,
   },
-  ignorePatterns: "tests",
   // TODO: remove this line to lint website folder from root folder
   overrides: [
     {

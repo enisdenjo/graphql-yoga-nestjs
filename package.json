@@ -27,9 +27,9 @@
     "prebuild": "yarn clean",
     "build": "bob build --single",
     "prepack": "bob prepack",
-    "prettier": "prettier --ignore-path .gitignore --write --list-different .",
-    "prettier:check": "prettier --ignore-path .gitignore --check .",
-    "lint": "eslint --ignore-path .gitignore .",
+    "prettier": "prettier --write --list-different .",
+    "prettier:check": "prettier --check .",
+    "lint": "eslint .",
     "prerelease": "yarn build",
     "release": "changeset publish",
     "release:canary": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/canary-release.ts && yarn build && yarn changeset publish --tag alpha"
@@ -37,7 +37,7 @@
   "dependencies": {
     "@envelop/apollo-server-errors": "^3.3.1",
     "@graphql-yoga/node": "^2.3.0",
-    "@nestjs/graphql": "^10.0.0"
+    "@nestjs/graphql": "10.0.13"
   },
   "devDependencies": {
     "patch-package": "6.4.7",
@@ -63,26 +63,26 @@
     "@apollo/gateway": "0.50.1",
     "@apollo/subgraph": "^0.4.1",
     "@envelop/apollo-federation": "^2.3.1",
-    "@nestjs/common": "8.4.4",
-    "@nestjs/core": "8.4.4",
+    "@nestjs/common": "8.4.5",
+    "@nestjs/core": "8.4.5",
     "reflect-metadata": "0.1.13",
     "fastify": "^3.28.0",
     "graphql": "15.8.0",
     "graphql-subscriptions": "2.0.0",
-    "@nestjs/platform-express": "8.4.4",
-    "@nestjs/platform-fastify": "8.4.4",
+    "@nestjs/platform-express": "8.4.5",
+    "@nestjs/platform-fastify": "8.4.5",
     "rxjs": "7.5.5",
     "apollo-client": "2.6.10",
     "apollo-link-ws": "1.0.20",
     "apollo-cache-inmemory": "1.6.6",
-    "@nestjs/testing": "8.4.4"
+    "@nestjs/testing": "8.4.5"
   },
   "peerDependencies": {
     "@apollo/gateway": "^0.44.1 || ^0.46.0 || ^0.48.0 || ^0.49.0 || ^0.50.0",
     "@apollo/subgraph": "^0.4.1",
     "@envelop/apollo-federation": "^2.3.1",
-    "@nestjs/common": "^8.2.3",
-    "@nestjs/core": "^8.2.3",
+    "@nestjs/common": "^8.4.5",
+    "@nestjs/core": "^8.4.5",
     "graphql": "^15.8.0 || ^16.0.0"
   },
   "peerDependenciesMeta": {
