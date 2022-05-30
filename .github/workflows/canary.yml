@@ -62,7 +62,7 @@ jobs:
       - name: Release Canary
         id: canary
         uses: "kamilkisiela/release-canary@master"
-        if: github.repository == 'kamilkisiela/graphql-config'
+        if: github.repository == 'charlypoly/graphql-yoga-nestjs'
         with:
           npm-token: ${{secrets.NPM_TOKEN}}
           npm-script: "yarn release:canary"
