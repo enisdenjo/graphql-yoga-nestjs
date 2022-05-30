@@ -111,7 +111,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nestjs/graphql"
+    "url": "https://github.com/charlypoly/graphql-yoga-nestjs"
   },
   "lint-staged": {
     "{src,test}/**/*": [
