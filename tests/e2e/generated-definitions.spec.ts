@@ -4,9 +4,9 @@ import {
   GraphQLFederationDefinitionsFactory,
 } from '@nestjs/graphql';
 import { Test } from '@nestjs/testing';
-import * as fs from 'fs';
-import * as path from 'path';
-import * as util from 'util';
+import fs from 'fs';
+import path from 'path';
+import util from 'util';
 import { ApplicationModule } from '../code-first/app.module';
 
 const readFile = util.promisify(fs.readFile);

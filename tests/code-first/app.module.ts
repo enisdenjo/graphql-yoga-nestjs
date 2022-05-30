@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
-import { YogaDriverConfig } from "../../lib";
-import { YogaDriver } from "../../lib/drivers";
+import { YogaDriverConfig } from "../../src";
+import { YogaDriver } from "../../src/drivers";
 import { DirectionsModule } from "./directions/directions.module";
 import { RecipesModule } from "./recipes/recipes.module";
 

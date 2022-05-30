@@ -2,12 +2,14 @@
   "compilerOptions": {
     "types": ["node"],
     "composite": true,
-    "module": "commonjs",
+    "module": "es2015",
+    "moduleResolution": "Node",
     "declaration": true,
     "declarationMap": true,
     "noImplicitAny": false,
     "importHelpers": true,
     "removeComments": false,
+    "esModuleInterop": true,
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -16,7 +18,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "outDir": "./dist",
-    "rootDir": "./lib"
   },
+  "include": ["./src"],
   "exclude": ["node_modules", "dist", "tests/**/*", "*.spec.ts"]
 }

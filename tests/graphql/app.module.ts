@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { join } from "path";
-import { YogaDriverConfig } from "../../lib";
-import { YogaDriver } from "../../lib/drivers";
+import { YogaDriverConfig } from "../../src";
+import { YogaDriver } from "../../src/drivers";
 import { CatsModule } from "./cats/cats.module";
 
 @Module({

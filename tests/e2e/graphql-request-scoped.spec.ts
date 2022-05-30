@@ -2,9 +2,9 @@ import { INestApplication } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { Test } from "@nestjs/testing";
 import { join } from "path";
-import * as request from "supertest";
-import { YogaDriverConfig } from "../../lib";
-import { YogaDriver } from "../../lib/drivers";
+import request from "supertest";
+import { YogaDriverConfig } from "../../src";
+import { YogaDriver } from "../../src/drivers";
 import { CatsRequestScopedService } from "../graphql/cats/cats-request-scoped.service";
 import { CatsModule } from "../graphql/cats/cats.module";
 

@@ -6,7 +6,7 @@ import { WebSocketLink } from "apollo-link-ws";
 import { gql } from "graphql-tag";
 import { Client, createClient } from "graphql-ws";
 import { SubscriptionClient } from "subscriptions-transport-ws";
-import * as ws from "ws";
+import ws from "ws";
 import { AppModule } from "./app/app.module";
 import { pubSub } from "./app/notification.resolver";
 import { GraphQLWsLink } from "./utils/graphql-ws.link";

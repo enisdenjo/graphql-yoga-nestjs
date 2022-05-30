@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
-import { YogaGatewayDriverConfig } from "../../../lib";
-import { YogaGatewayDriver } from "../../../lib/drivers";
+import { YogaGatewayDriverConfig } from "../../../src";
+import { YogaGatewayDriver } from "../../../src/drivers";
 
 @Module({
   imports: [

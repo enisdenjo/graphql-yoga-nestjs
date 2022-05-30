@@ -5,7 +5,7 @@ import ApolloClient, { ApolloError } from "apollo-client";
 import { WebSocketLink } from "apollo-link-ws";
 import { gql } from "graphql-tag";
 import { SubscriptionClient } from "subscriptions-transport-ws";
-import * as ws from "ws";
+import ws from "ws";
 import { AppModule } from "./app/app.module";
 import { pubSub } from "./app/notification.resolver";
 

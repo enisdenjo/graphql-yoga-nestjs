@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { spawnSync } from "child_process";
 import { basename } from "path";
-import * as semver from "semver";
+import semver from "semver";
 import { getPackages } from "@manypkg/get-packages";
 import { read as readConfig } from "@changesets/config";
 import readChangesets from "@changesets/read";

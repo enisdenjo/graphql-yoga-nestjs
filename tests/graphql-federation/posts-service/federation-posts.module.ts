@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { join } from "path";
-import { YogaDriverConfig } from "../../../lib";
-import { YogaFederationDriver } from "../../../lib/drivers";
+import { YogaDriverConfig } from "../../../src";
+import { YogaFederationDriver } from "../../../src/drivers";
 import { PostsModule } from "./posts/posts.module";
 import { upperDirectiveTransformer } from "./posts/upper.directive";
 

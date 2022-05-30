@@ -1,6 +1,6 @@
 import { INestApplication } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
-import * as request from "supertest";
+import request from "supertest";
 import { ApplicationModule } from "../code-first/app.module";
 
 describe.only("Code-first", () => {
