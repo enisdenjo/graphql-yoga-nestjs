@@ -70,7 +70,7 @@
     "ts-jest": "^28.0.0",
     "ts-node": "10.8.0",
     "ts-morph": "14.0.0",
-    "typescript": "4.6.3",
+    "typescript": "4.7.2",
     "class-transformer": "0.5.1",
     "class-validator": "0.13.2",
     "@apollo/gateway": "0.51.0",
