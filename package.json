@@ -50,7 +50,7 @@
   "dependencies": {
     "@envelop/apollo-server-errors": "^3.3.1",
     "@graphql-yoga/node": "^2.3.0",
-    "@nestjs/graphql": "10.0.13"
+    "@nestjs/graphql": "10.0.14"
   },
   "devDependencies": {
     "patch-package": "6.4.7",
