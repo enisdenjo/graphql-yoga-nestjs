@@ -1,6 +1,6 @@
 {
   "name": "@graphql-yoga/nestjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Yoga driver for Nest GraphQL",
   "author": "Charly Poly <charly@the-guild.dev>",
   "license": "MIT",
