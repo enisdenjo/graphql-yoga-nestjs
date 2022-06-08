@@ -1110,10 +1110,10 @@
     tslib "2.4.0"
     uuid "8.3.2"
 
-"@nestjs/graphql@10.0.13":
-  version "10.0.13"
-  resolved "https://registry.yarnpkg.com/@nestjs/graphql/-/graphql-10.0.13.tgz#da415cf21da00f320f1a48e10594bb3d501da9c2"
-  integrity sha512-jTC055SMacsk1me7p49KHq+6IbOT7QNyI0sBeQkvsHilhucJVTIxzNF9vwm7Rc0zsvhJ4DL8Awm7SKpzaa0nGA==
+"@nestjs/graphql@10.0.15":
+  version "10.0.15"
+  resolved "https://registry.yarnpkg.com/@nestjs/graphql/-/graphql-10.0.15.tgz#7ebcd909f0fbf4c1b5ae466829a7a190105e9597"
+  integrity sha512-G/w21tNhHuNe9ux0a/7jFX8MbG0NQhoe0XQKfIK/zbO/RLpUqMZGYW6DpSNIkXD9AWrMSThxOhgAjipAoGhikQ==
   dependencies:
     "@graphql-tools/merge" "8.2.13"
     "@graphql-tools/schema" "8.3.13"
@@ -1326,10 +1326,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
-"@ts-morph/common@~0.13.0":
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/@ts-morph/common/-/common-0.13.0.tgz#77dea1565baaf002d1bc2c20e05d1fb3349008a9"
-  integrity sha512-fEJ6j7Cu8yiWjA4UmybOBH9Efgb/64ZTWuvCF4KysGu4xz8ettfyaqFt8WZ1btCxXsGZJjZ2/3svOF6rL+UFdQ==
+"@ts-morph/common@~0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@ts-morph/common/-/common-0.15.0.tgz#aece752746fc0d779d2acfaece95fb2c23327ba5"
+  integrity sha512-QefRbadcwfBnd3HWrltpjRJprHgeKfQsnbyGbRF8pEjMqISAljJwq4wfRETxxojsmN4GWuJv3PWG+W7kBIHMMw==
   dependencies:
     fast-glob "^3.2.11"
     minimatch "^5.0.1"
@@ -1427,10 +1427,10 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@27.5.1":
-  version "27.5.1"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-27.5.1.tgz#2c8b6dc6ff85c33bcd07d0b62cb3d19ddfdb3ab9"
-  integrity sha512-fUy7YRpT+rHXto1YlL+J9rs0uLGyiqVt3ZOTQR+4ROc47yNl8WLdVLgUloBRhOxP1PZvguHl44T3H0wAWxahYQ==
+"@types/jest@27.5.2":
+  version "27.5.2"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-27.5.2.tgz#ec49d29d926500ffb9fd22b84262e862049c026c"
+  integrity sha512-mpT8LJJ4CMeeahobofYWIjFo0xonRS/HfxnVEPMPFSQdGUt1uHCnoPT7Zhb+sjDU2wz0oKV0OLUR0WzrHNgfeA==
   dependencies:
     jest-matcher-utils "^27.0.0"
     pretty-format "^27.0.0"
@@ -3965,10 +3965,10 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@7.0.4:
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-7.0.4.tgz#242048245dc49c8fb1bf0cc7cfb98dd722531535"
-  integrity sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==
+husky@8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.1.tgz#511cb3e57de3e3190514ae49ed50f6bc3f50b3e9"
+  integrity sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
@@ -6762,12 +6762,12 @@ ts-jest@^28.0.0:
     semver "7.x"
     yargs-parser "^20.x"
 
-ts-morph@14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/ts-morph/-/ts-morph-14.0.0.tgz#6bffb7e4584cf6a9aebce2066bf4258e1d03f9fa"
-  integrity sha512-tO8YQ1dP41fw8GVmeQAdNsD8roZi1JMqB7YwZrqU856DvmG5/710e41q2XauzTYrygH9XmMryaFeLo+kdCziyA==
+ts-morph@15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ts-morph/-/ts-morph-15.0.0.tgz#927a85d22909b95fa81e399c94fea655d98be514"
+  integrity sha512-OZkg0TI1h6FVe8DZXyBo6p7NfCN9EZZkkA736f243KzQ3cypYWtaLc9eyNn/JH/fWYfQ4d6wIA4oM0vElRTGcQ==
   dependencies:
-    "@ts-morph/common" "~0.13.0"
+    "@ts-morph/common" "~0.15.0"
     code-block-writer "^11.0.0"
 
 ts-node@10.8.0:
