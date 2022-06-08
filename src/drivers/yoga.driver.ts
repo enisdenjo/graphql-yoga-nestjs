@@ -1,4 +1,3 @@
-import { Injectable } from "@nestjs/common";
 import { GqlSubscriptionService, SubscriptionConfig } from "@nestjs/graphql";
 import { printSchema } from "graphql";
 
@@ -6,7 +5,6 @@ import { YogaDriverConfig } from "../interfaces";
 import { YogaBaseDriver } from "./yoga-base.driver";
 import type { ExecutionParams } from "subscriptions-transport-ws";
 
-@Injectable()
 export class YogaDriver extends YogaBaseDriver {
   private _subscriptionService?: GqlSubscriptionService;
 
