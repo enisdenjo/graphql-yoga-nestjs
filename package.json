@@ -8,7 +8,12 @@
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "module": "dist/index.mjs",
-  "typescript.definition": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  },
+  "buildOptions": {
+    "input": "./src/index.ts"
+  },
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -29,7 +34,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist"
   },
   "scripts": {
     "test": "jest --passWithNoTests --config ./tests/jest-e2e.ts --runInBand",
