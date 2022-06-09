@@ -34,8 +34,7 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "dist"
+    "access": "public"
   },
   "scripts": {
     "test": "jest --passWithNoTests --config ./tests/jest-e2e.ts --runInBand",
