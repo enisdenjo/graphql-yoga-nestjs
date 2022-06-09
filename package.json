@@ -34,7 +34,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist"
   },
   "scripts": {
     "test": "jest --passWithNoTests --config ./tests/jest-e2e.ts --runInBand",
@@ -44,6 +45,7 @@
     "postinstall": "patch-package",
     "prebuild": "yarn clean",
     "build": "tsc -b -v",
+    "prepack": "tsc -b -v",
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check .",
     "lint": "eslint .",
