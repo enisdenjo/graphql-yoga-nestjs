@@ -44,7 +44,7 @@
     "clean": "rimraf dist",
     "postinstall": "patch-package",
     "prebuild": "yarn clean",
-    "build": "bob build --single",
+    "build": "tsc -b -v",
     "prepack": "bob prepack",
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check .",
