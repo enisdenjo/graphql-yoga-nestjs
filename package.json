@@ -44,7 +44,6 @@
     "postinstall": "patch-package",
     "prebuild": "yarn clean",
     "build": "tsc -b -v",
-    "prepack": "bob prepack",
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check .",
     "lint": "eslint .",
