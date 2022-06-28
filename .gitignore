@@ -8,4 +8,4 @@ public/
 out.txt
 .now
 package-lock.json
-
+*.tsbuildinfo
