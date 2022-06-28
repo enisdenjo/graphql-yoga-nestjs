@@ -6,8 +6,8 @@ import { WebSocketLink } from "apollo-link-ws";
 import { gql } from "graphql-tag";
 import { SubscriptionClient } from "subscriptions-transport-ws";
 import ws from "ws";
-import { AppModule } from "./app/app.module";
-import { pubSub } from "./app/notification.resolver";
+import { AppModule } from "./app/app.module.js";
+import { pubSub } from "./app/notification.resolver.js";
 
 const subscriptionQuery = gql`
   subscription TestSubscription($id: String!) {

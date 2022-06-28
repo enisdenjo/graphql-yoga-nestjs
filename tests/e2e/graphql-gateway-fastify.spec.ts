@@ -2,9 +2,9 @@ import { INestApplication } from "@nestjs/common";
 import { FastifyAdapter } from "@nestjs/platform-fastify";
 import { Test } from "@nestjs/testing";
 import request from "supertest";
-import { AppModule as GatewayModule } from "../graphql-federation/gateway/gateway.module";
-import { AppModule as PostsModule } from "../graphql-federation/posts-service/federation-posts.module";
-import { AppModule as UsersModule } from "../graphql-federation/users-service/federation-users.module";
+import { AppModule as GatewayModule } from "../graphql-federation/gateway/gateway.module.js";
+import { AppModule as PostsModule } from "../graphql-federation/posts-service/federation-posts.module.js";
+import { AppModule as UsersModule } from "../graphql-federation/users-service/federation-users.module.js";
 
 describe("GraphQL Gateway with fastify", () => {
   let postsApp: INestApplication;

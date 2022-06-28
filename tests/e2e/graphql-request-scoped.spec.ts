@@ -3,10 +3,10 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { Test } from "@nestjs/testing";
 import { join } from "path";
 import request from "supertest";
-import { YogaDriverConfig } from "../../src";
-import { YogaDriver } from "../../src/drivers";
-import { CatsRequestScopedService } from "../graphql/cats/cats-request-scoped.service";
-import { CatsModule } from "../graphql/cats/cats.module";
+import { YogaDriverConfig } from "../../src.js";
+import { YogaDriver } from "../../src/drivers.js";
+import { CatsRequestScopedService } from "../graphql/cats/cats-request-scoped.service.js";
+import { CatsModule } from "../graphql/cats/cats.module.js";
 
 describe("GraphQL request scoped", () => {
   let app: INestApplication;

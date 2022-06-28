@@ -13,13 +13,13 @@ import {
   printSchema,
   TypeKind,
 } from "graphql";
-import { DirectionsResolver } from "../code-first/directions/directions.resolver";
-import { SampleOrphanedEnum } from "../code-first/enums/sample-orphaned.enum";
-import { AbstractResolver } from "../code-first/other/abstract.resolver";
-import { SampleOrphanedType } from "../code-first/other/sample-orphaned.type";
-import { IRecipesResolver } from "../code-first/recipes/irecipes.resolver";
-import { Recipe } from "../code-first/recipes/models/recipe";
-import { RecipesResolver } from "../code-first/recipes/recipes.resolver";
+import { DirectionsResolver } from "../code-first/directions/directions.resolver.js";
+import { SampleOrphanedEnum } from "../code-first/enums/sample-orphaned.enum.js";
+import { AbstractResolver } from "../code-first/other/abstract.resolver.js";
+import { SampleOrphanedType } from "../code-first/other/sample-orphaned.type.js";
+import { IRecipesResolver } from "../code-first/recipes/irecipes.resolver.js";
+import { Recipe } from "../code-first/recipes/models/recipe.js";
+import { RecipesResolver } from "../code-first/recipes/recipes.resolver.js";
 import {
   getMutation,
   getMutationByName,
@@ -27,8 +27,8 @@ import {
   getQueryByName,
   getSubscription,
   getSubscriptionByName,
-} from "../utils/introspection-schema.utils";
-import { printedSchemaSnapshot } from "../utils/printed-schema.snapshot";
+} from "../utils/introspection-schema.utils.js";
+import { printedSchemaSnapshot } from "../utils/printed-schema.snapshot.js";
 
 describe("Code-first - schema factory", () => {
   let schemaFactory: GraphQLSchemaFactory;

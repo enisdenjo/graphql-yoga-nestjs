@@ -1,11 +1,11 @@
 import { AbstractGraphQLDriver } from "@nestjs/graphql";
 import type { FastifyRequest, FastifyReply } from "fastify";
 
-import { YogaDriverConfig } from "../interfaces";
+import { YogaDriverConfig } from "../interfaces/index.js";
 import { createServer, YogaNodeServerInstance } from "@graphql-yoga/node";
 import { useApolloServerErrors } from "@envelop/apollo-server-errors";
 import { Logger } from "@nestjs/common";
-import { createAsyncIterator } from "../utils/async-iterator.util";
+import { createAsyncIterator } from "../utils/async-iterator.util.js";
 
 export abstract class YogaBaseDriver<
   T extends YogaDriverConfig = YogaDriverConfig

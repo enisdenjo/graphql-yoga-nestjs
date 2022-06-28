@@ -6,7 +6,7 @@ import {
   GraphQLDriver,
 } from "@nestjs/graphql";
 
-import { YogaDriverConfig } from "./yoga-driver-config.interface";
+import { YogaDriverConfig } from "./yoga-driver-config.interface.js";
 
 export interface YogaGatewayDriverConfig<TDriver extends GraphQLDriver = any> {
   /**

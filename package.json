@@ -4,25 +4,44 @@
   "description": "Yoga driver for Nest GraphQL",
   "author": "Charly Poly <charly@the-guild.dev>",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "module": "dist/index.mjs",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "typescript": {
-    "definition": "dist/index.d.ts"
+    "definition": "dist/typings/index.d.ts"
   },
   "buildOptions": {
     "input": "./src/index.ts"
   },
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "require": {
+        "types": "./dist/typings/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      },
+      "import": {
+        "types": "./dist/typings/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "default": {
+        "types": "./dist/typings/index.d.ts",
+        "default": "./dist/esm/index.js"
+      }
     },
     "./*": {
-      "require": "./dist/*.js",
-      "import": "./dist/*.mjs"
-    }
+      "require": {
+        "types": "./dist/typings/*.d.ts",
+        "default": "./dist/cjs/*.js"
+      },
+      "import": {
+        "types": "./dist/typings/*.d.ts",
+        "default": "./dist/esm/*.js"
+      },
+      "default": {
+        "types": "./dist/typings/*.d.ts",
+        "default": "./dist/esm/*.js"
+      }
+    },
+    "./package.json": "./package.json"
   },
   "keywords": [
     "graphql",
@@ -34,8 +53,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "dist"
+    "directory": "dist",
+    "access": "public"
   },
   "scripts": {
     "test": "jest --passWithNoTests --config ./tests/jest-e2e.ts --runInBand",
@@ -45,11 +64,11 @@
     "postinstall": "patch-package",
     "prebuild": "yarn clean",
     "build": "bob build --single",
-    "prepack": "bob prepack",
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check .",
     "lint": "eslint .",
     "prerelease": "yarn build",
+    "bob:bootstrap": "bob bootstrap",
     "release": "changeset publish",
     "release:canary": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/canary-release.ts && yarn build && yarn changeset publish --tag alpha"
   },
@@ -62,7 +81,7 @@
     "patch-package": "6.4.7",
     "rimraf": "3.0.2",
     "@changesets/cli": "2.22.0",
-    "bob-the-bundler": "1.7.3",
+    "bob-the-bundler": "2.0.0",
     "husky": "8.0.1",
     "lint-staged": "12.5.0",
     "eslint": "8.16.0",
@@ -128,5 +147,7 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "type": "module",
+  "typings": "dist/typings/index.d.ts"
 }
