@@ -3,8 +3,8 @@ import { GraphQLSchemaHost } from "@nestjs/graphql";
 import { GRAPHQL_SDL_FILE_HEADER, FileSystemHelper } from "@nestjs/graphql";
 import { Test } from "@nestjs/testing";
 import { GraphQLSchema, printSchema } from "graphql";
-import { SortAutoSchemaModule } from "../graphql/sort-auto-schema.module";
-import { sortedPrintedSchemaSnapshot } from "../utils/printed-schema.snapshot";
+import { SortAutoSchemaModule } from "../graphql/sort-auto-schema.module.js";
+import { sortedPrintedSchemaSnapshot } from "../utils/printed-schema.snapshot.js";
 
 describe("GraphQL sort autoSchemaFile schema", () => {
   let app: INestApplication;

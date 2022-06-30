@@ -7,7 +7,7 @@ import { Test } from '@nestjs/testing';
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
-import { ApplicationModule } from '../code-first/app.module';
+import { ApplicationModule } from '../code-first/app.module.js';
 
 const readFile = util.promisify(fs.readFile);
 

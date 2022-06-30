@@ -1,7 +1,7 @@
 import { INestApplication } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import request from "supertest";
-import { ApplicationModule } from "../code-first-federation/app.module";
+import { ApplicationModule } from "../code-first-federation/app.module.js";
 
 describe("Code-first - Federation", () => {
   let app: INestApplication;

@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { GqlOptionsFactory, GraphQLModule } from "@nestjs/graphql";
 import { join } from "path";
-import { YogaDriver, YogaDriverConfig } from "../../src";
-import { CatsModule } from "./cats/cats.module";
+import { YogaDriver, YogaDriverConfig } from "../../src/index.js";
+import { CatsModule } from "./cats/cats.module.js";
 
 class ConfigService implements GqlOptionsFactory {
   createGqlOptions(): YogaDriverConfig {

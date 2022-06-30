@@ -1,9 +1,9 @@
 import { INestApplication } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import request from "supertest";
-import { AppModule as GatewayModule } from "../graphql-federation/gateway/gateway-async-class.module";
-import { AppModule as PostsModule } from "../graphql-federation/posts-service/federation-posts.module";
-import { AppModule as UsersModule } from "../graphql-federation/users-service/federation-users.module";
+import { AppModule as GatewayModule } from "../graphql-federation/gateway/gateway-async-class.module.js";
+import { AppModule as PostsModule } from "../graphql-federation/posts-service/federation-posts.module.js";
+import { AppModule as UsersModule } from "../graphql-federation/users-service/federation-users.module.js";
 
 describe("GraphQL Gateway async-class", () => {
   let postsApp: INestApplication;

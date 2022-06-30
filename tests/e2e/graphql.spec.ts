@@ -1,7 +1,7 @@
 import { INestApplication } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import request from "supertest";
-import { ApplicationModule } from "../graphql/app.module";
+import { ApplicationModule } from "../graphql/app.module.js";
 
 describe("GraphQL", () => {
   let app: INestApplication;
