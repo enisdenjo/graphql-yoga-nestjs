@@ -3,8 +3,8 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { Test } from "@nestjs/testing";
 import { join } from "path";
 import request from "supertest";
-import { YogaDriverConfig } from "../../src.js";
-import { YogaDriver } from "../../src/drivers.js";
+import { YogaDriverConfig } from "../../src/index.js";
+import { YogaDriver } from "../../src/drivers/index.js";
 import { CatsRequestScopedService } from "../graphql/cats/cats-request-scoped.service.js";
 import { CatsModule } from "../graphql/cats/cats.module.js";
 

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { loadPackage } from "@nestjs/common/utils/load-package.util";
+import { loadPackage } from "@nestjs/common/utils/load-package.util.js";
 import { printSchema } from "graphql";
 import { buildSubgraphSchema as buildSubgraphSchemaFn } from "@apollo/subgraph";
 

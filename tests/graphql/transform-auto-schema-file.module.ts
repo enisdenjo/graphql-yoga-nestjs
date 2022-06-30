@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { GraphQLSchema, lexicographicSortSchema } from "graphql";
-import { YogaDriverConfig } from "../../src.js";
-import { YogaDriver } from "../../src/drivers.js";
+import { YogaDriverConfig } from "../../src/index.js";
+import { YogaDriver } from "../../src/drivers/index.js";
 import { DirectionsModule } from "../code-first/directions/directions.module.js";
 import { RecipesModule } from "../code-first/recipes/recipes.module.js";
 

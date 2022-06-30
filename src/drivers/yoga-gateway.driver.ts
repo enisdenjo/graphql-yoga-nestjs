@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { loadPackage } from "@nestjs/common/utils/load-package.util";
+import { loadPackage } from "@nestjs/common/utils/load-package.util.js";
 import { useApolloFederation as useApolloFederationPlugin } from "@envelop/apollo-federation";
 import type { ApolloGateway } from "@apollo/gateway";
 

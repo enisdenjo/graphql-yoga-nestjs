@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import {
   YogaGatewayDriverConfig,
   YogaGatewayDriverConfigFactory,
-} from "../../../../src.js";
+} from "../../../../src/index.js";
 
 @Injectable()
 export class ConfigService implements YogaGatewayDriverConfigFactory {

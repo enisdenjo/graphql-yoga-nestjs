@@ -1,8 +1,8 @@
 import { DynamicModule, Inject, Module, Provider, Scope } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { join } from "path";
-import { YogaDriverConfig } from "../../../src.js";
-import { YogaDriver } from "../../../src/drivers.js";
+import { YogaDriverConfig } from "../../../src/index.js";
+import { YogaDriver } from "../../../src/drivers/index.js";
 import { HelloResolver } from "./hello.resolver.js";
 import { HelloService } from "./hello.service.js";
 import { UsersService } from "./users/users.service.js";

@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
-import { YogaFederationDriver, YogaFederationDriverConfig } from "../../src.js";
+import { YogaFederationDriver, YogaFederationDriverConfig } from "../../src/index.js";
 import { PostModule } from "./post/post.module.js";
 import { RecipeModule } from "./recipe/recipe.module.js";
 import { User } from "./user/user.entity.js";
