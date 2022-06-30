@@ -70,7 +70,7 @@
     "prerelease": "yarn build",
     "bob:bootstrap": "bob bootstrap",
     "release": "changeset publish",
-    "release:canary": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/canary-release.ts && yarn build && yarn changeset publish --tag alpha"
+    "release:canary": "(node scripts/canary-release.cjs && yarn build && yarn changeset publish --tag canary) || echo Skipping Canary..."
   },
   "dependencies": {
     "@envelop/apollo-server-errors": "^3.3.1",
