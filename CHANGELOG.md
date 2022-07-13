@@ -1,5 +1,11 @@
 # @graphql-yoga/nestjs
 
+## 0.0.4
+
+### Patch Changes
+
+- b57dd7a: Fix Federated service code-first schema generation
+
 ## 0.0.3
 
 ### Patch Changes
