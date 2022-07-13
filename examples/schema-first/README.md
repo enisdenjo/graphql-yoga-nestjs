@@ -17,9 +17,9 @@ To regenerate or generate the TypeScript typings, please run `yarn generate`.
 To get up and running:
 
 ```sh
-npm i
+yarn
 
-npm start
+yarn start
 ```
 
 Then, open your favorite browser at [http://localhost:3000/graphql](http://localhost:3000/graphql), and try the following query:

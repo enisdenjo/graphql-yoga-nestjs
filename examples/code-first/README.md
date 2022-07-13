@@ -11,9 +11,9 @@ A simple example of a GraphQL server built with GraphQL Yoga using the Code Firs
 To get up and running
 
 ```sh
-npm i
+yarn
 
-npm start
+yarn start
 ```
 
 Then, open your favorite browser at [http://localhost:3000/graphql](http://localhost:3000/graphql), and try the following query:
