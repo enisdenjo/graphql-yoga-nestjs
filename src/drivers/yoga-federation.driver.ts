@@ -1,7 +1,5 @@
 import { Injectable } from "@nestjs/common";
 import { loadPackage } from "@nestjs/common/utils/load-package.util.js";
-import { printSchema } from "graphql";
-import { buildSubgraphSchema as buildSubgraphSchemaFn } from "@apollo/subgraph";
 
 import { YogaFederationDriverConfig } from "../interfaces/index.js";
 import { YogaBaseDriver } from "./yoga-base.driver.js";
@@ -16,27 +14,19 @@ export class YogaFederationDriver extends YogaBaseDriver<YogaFederationDriverCon
   }
 
   public async start(options: YogaFederationDriverConfig) {
-    const opts = await this.graphqlFederationFactory.mergeWithSchema(
-      options,
-      ({ typeDefs, resolvers }) => {
-        const { buildSubgraphSchema } = loadPackage(
-          "@apollo/subgraph",
-          "YogaFederationDriver",
-          () => require("@apollo/subgraph")
-        ) as { buildSubgraphSchema: typeof buildSubgraphSchemaFn };
+    const opts = await this.graphqlFederationFactory.mergeWithSchema(options);
 
-        return buildSubgraphSchema([{ typeDefs, resolvers }]);
-      }
-    );
-
-    if (opts.definitions && opts.definitions.path && opts.schema) {
+    if (options.definitions && options.definitions.path) {
+      const { printSubgraphSchema } = loadPackage(
+        "@apollo/subgraph",
+        "ApolloFederation",
+        () => require("@apollo/subgraph")
+      );
       await this.graphQlFactory.generateDefinitions(
-        printSchema(opts.schema),
-        opts
+        printSubgraphSchema(opts.schema),
+        options
       );
     }
-
-    const { typeDefs, resolvers, ...optsRest } = opts;
 
     await super.start(opts);
 
