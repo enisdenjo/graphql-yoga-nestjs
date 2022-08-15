@@ -641,7 +641,7 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@envelop/apollo-federation@^2.3.1":
+"@envelop/apollo-federation@2.3.2":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@envelop/apollo-federation/-/apollo-federation-2.3.2.tgz#56f2a27821bc0f33c695a58d95af5867a532d830"
   integrity sha512-xqFp4sfSG1LoXl1JcjNnPdUbs+3wat3YwTYeF+uXvOYPJzTHUcCU0BxupYjrll8lp0XnYjGuC4gJZEnyfM98Kw==
@@ -3411,7 +3411,7 @@ fastify-plugin@^3.0.0:
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-3.0.1.tgz#79e84c29f401020f38b524f59f2402103fd21ed2"
   integrity sha512-qKcDXmuZadJqdTm6vlCqioEbyewF60b/0LOFCcYN1B6BIZGlYJumWWOYs70SFYLDAH4YqdE1cxH/RKMG7rFxgA==
 
-fastify@3.29.0, fastify@^3.28.0:
+fastify@3.29.0:
   version "3.29.0"
   resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.29.0.tgz#b840107f4fd40cc999b886548bfcda8062e38168"
   integrity sha512-zXSiDTdHJCHcmDrSje1f1RfzTmUTjMtHnPhh6cdokgfHhloQ+gy0Du+KlEjwTbcNC3Djj4GAsBzl6KvfI9Ah2g==
@@ -4688,7 +4688,7 @@ jest-worker@^28.1.0:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-jest@^28.0.0:
+jest@28.1.0:
   version "28.1.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-28.1.0.tgz#f420e41c8f2395b9a30445a97189ebb57593d831"
   integrity sha512-TZR+tHxopPhzw3c3560IJXZWLNHgpcz1Zh0w5A65vynLGNcg/5pZ+VildAd7+XGOu6jd58XMY/HNn0IkZIXVXg==
@@ -6680,7 +6680,7 @@ ts-invariant@^0.4.0:
   dependencies:
     tslib "^1.9.3"
 
-ts-jest@^28.0.0:
+ts-jest@28.0.3:
   version "28.0.3"
   resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-28.0.3.tgz#d1c47f167e56eef3989bb51afaf7fc1c87a04c52"
   integrity sha512-HzgbEDQ2KgVtDmpXToqAcKTyGHdHsG23i/iUjfxji92G5eT09S1m9UHZd7csF0Bfgh9txM4JzwHnv7r1waFPlw==
