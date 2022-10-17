@@ -2,7 +2,7 @@ import { AbstractGraphQLDriver } from "@nestjs/graphql";
 import type { FastifyRequest, FastifyReply } from "fastify";
 
 import { YogaDriverConfig } from "../interfaces/index.js";
-import { createServer, YogaNodeServerInstance } from "@graphql-yoga/node";
+import { createYoga, YogaServerInstance } from "graphql-yoga";
 import { useApolloServerErrors } from "@envelop/apollo-server-errors";
 import { Logger } from "@nestjs/common";
 import { createAsyncIterator } from "../utils/async-iterator.util.js";
@@ -10,7 +10,8 @@ import { createAsyncIterator } from "../utils/async-iterator.util.js";
 export abstract class YogaBaseDriver<
   T extends YogaDriverConfig = YogaDriverConfig
 > extends AbstractGraphQLDriver<T> {
-  protected yogaInstance: YogaNodeServerInstance<{}, {}, {}>;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  protected yogaInstance: YogaServerInstance<{}, {}>;
 
   public async start(options: T) {
     const httpAdapter = this.httpAdapterHost.httpAdapter;
@@ -51,7 +52,7 @@ export abstract class YogaBaseDriver<
 
     preStartHook?.();
 
-    const graphQLServer = createServer({
+    const yoga = createYoga({
       ...options,
       // disable logging by default, if set to `true`, pass a nestjs Logger or pass custom logger
       logging: !options.logging
@@ -61,9 +62,9 @@ export abstract class YogaBaseDriver<
         : options.logging,
     });
 
-    this.yogaInstance = graphQLServer;
+    this.yogaInstance = yoga;
 
-    app.use(options.path, graphQLServer);
+    app.use(options.path, yoga);
   }
 
   protected async registerFastify(
@@ -75,7 +76,7 @@ export abstract class YogaBaseDriver<
 
     preStartHook?.();
 
-    const graphQLServer = createServer<{
+    const yoga = createYoga<{
       req: FastifyRequest;
       reply: FastifyReply;
     }>({
@@ -87,13 +88,13 @@ export abstract class YogaBaseDriver<
         : options.logging,
     });
 
-    this.yogaInstance = graphQLServer;
+    this.yogaInstance = yoga;
 
     app.route({
       url: options.path,
       method: ["GET", "POST", "OPTIONS"],
       handler: async (req, reply) => {
-        const response = await graphQLServer.handleIncomingMessage(req, {
+        const response = await yoga.handleNodeRequest(req, {
           req,
           reply,
         });
