@@ -44,7 +44,12 @@ export class YogaDriver extends YogaBaseDriver {
             contextFactory,
             parse,
             validate,
-          } = this.yogaInstance.getEnveloped(ctx);
+          } = this.yogaInstance.getEnveloped({
+            ...ctx,
+            req: (ctx.extra as any).request,
+            socket: (ctx.extra as any).socket,
+            params: msg.payload,
+          });
 
           const args = {
             schema,
