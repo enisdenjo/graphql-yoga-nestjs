@@ -54,6 +54,7 @@ export abstract class YogaBaseDriver<
 
     const yoga = createYoga({
       ...options,
+      graphqlEndpoint: options.path,
       // disable logging by default, if set to `true`, pass a nestjs Logger or pass custom logger
       logging: !options.logging
         ? false
@@ -63,6 +64,13 @@ export abstract class YogaBaseDriver<
     });
 
     this.yogaInstance = yoga;
+
+    // Force "Accept: application/json"
+    //  (Yoga defaults to `application/graphql-response+json` which treat errors differently)
+    app.use(function (req, _res, next) {
+      req.headers["Accept"] = "application/json";
+      next();
+    });
 
     app.use(options.path, yoga);
   }
@@ -81,6 +89,7 @@ export abstract class YogaBaseDriver<
       reply: FastifyReply;
     }>({
       ...options,
+      graphqlEndpoint: options.path,
       logging: !options.logging
         ? false
         : typeof options.logging === "boolean"
@@ -94,6 +103,10 @@ export abstract class YogaBaseDriver<
       url: options.path,
       method: ["GET", "POST", "OPTIONS"],
       handler: async (req, reply) => {
+        // Force "Accept: application/json"
+        //  (Yoga defaults to `application/graphql-response+json` which treat errors differently)
+        req.headers["Accept"] = "application/json";
+
         const response = await yoga.handleNodeRequest(req, {
           req,
           reply,
