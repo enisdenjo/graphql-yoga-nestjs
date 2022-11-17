@@ -1,16 +1,14 @@
 import { AbstractGraphQLDriver } from "@nestjs/graphql";
-import type { FastifyRequest, FastifyReply } from "fastify";
 
 import { YogaDriverConfig } from "../interfaces/index.js";
-import { createServer, YogaNodeServerInstance } from "@graphql-yoga/node";
 import { useApolloServerErrors } from "@envelop/apollo-server-errors";
-import { Logger } from "@nestjs/common";
 import { createAsyncIterator } from "../utils/async-iterator.util.js";
+import { createYoga, YogaServerInstance } from "graphql-yoga";
 
 export abstract class YogaBaseDriver<
   T extends YogaDriverConfig = YogaDriverConfig
 > extends AbstractGraphQLDriver<T> {
-  protected yogaInstance: YogaNodeServerInstance<{}, {}, {}>;
+  protected yogaInstance: YogaServerInstance<{}, {}>;
 
   public async start(options: T) {
     const httpAdapter = this.httpAdapterHost.httpAdapter;
@@ -40,7 +38,7 @@ export abstract class YogaBaseDriver<
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public async stop(): Promise<void> {}
+  public async stop() {}
 
   protected async registerExpress(
     options: T,
@@ -51,19 +49,9 @@ export abstract class YogaBaseDriver<
 
     preStartHook?.();
 
-    const graphQLServer = createServer({
-      ...options,
-      // disable logging by default, if set to `true`, pass a nestjs Logger or pass custom logger
-      logging: !options.logging
-        ? false
-        : typeof options.logging === "boolean"
-        ? new Logger("YogaDriver")
-        : options.logging,
-    });
+    this.yogaInstance = createYoga(options);
 
-    this.yogaInstance = graphQLServer;
-
-    app.use(options.path, graphQLServer);
+    app.use(options.path, this.yogaInstance);
   }
 
   protected async registerFastify(
@@ -75,36 +63,12 @@ export abstract class YogaBaseDriver<
 
     preStartHook?.();
 
-    const graphQLServer = createServer<{
-      req: FastifyRequest;
-      reply: FastifyReply;
-    }>({
-      ...options,
-      logging: !options.logging
-        ? false
-        : typeof options.logging === "boolean"
-        ? app.log
-        : options.logging,
-    });
-
-    this.yogaInstance = graphQLServer;
+    this.yogaInstance = createYoga(options);
 
     app.route({
       url: options.path,
       method: ["GET", "POST", "OPTIONS"],
-      handler: async (req, reply) => {
-        const response = await graphQLServer.handleIncomingMessage(req, {
-          req,
-          reply,
-        });
-        response.headers.forEach((value, key) => {
-          reply.header(key, value);
-        });
-
-        reply.status(response.status);
-
-        reply.send(response.body);
-      },
+      handler: this.yogaInstance, // Not tested
     });
   }
 

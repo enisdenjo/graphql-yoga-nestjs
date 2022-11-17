@@ -10,22 +10,22 @@ import type { ExecutionParams } from "subscriptions-transport-ws";
 export class YogaDriver extends YogaBaseDriver {
   private _subscriptionService?: GqlSubscriptionService;
 
-  public async start(options: YogaDriverConfig) {
-    const opts = await this.graphQlFactory.mergeWithSchema<YogaDriverConfig>(
-      options
+  public async start(yogaOptions: YogaDriverConfig) {
+    const options = await this.graphQlFactory.mergeWithSchema<YogaDriverConfig>(
+      yogaOptions
     );
 
-    if (opts.definitions && opts.definitions.path) {
+    if (options.definitions && options.definitions.path) {
       await this.graphQlFactory.generateDefinitions(
-        printSchema(opts.schema),
-        opts
+        printSchema(options.schema),
+        options
       );
     }
 
-    await super.start(opts);
+    await super.start(options);
 
-    if (opts.installSubscriptionHandlers || opts.subscriptions) {
-      const subscriptionsOptions: SubscriptionConfig = opts.subscriptions || {
+    if (options.installSubscriptionHandlers || options.subscriptions) {
+      const subscriptionsOptions: SubscriptionConfig = options.subscriptions || {
         "subscriptions-transport-ws": {},
       };
       if (
@@ -99,14 +99,14 @@ export class YogaDriver extends YogaBaseDriver {
 
       this._subscriptionService = new GqlSubscriptionService(
         {
-          schema: opts.schema,
-          path: opts.path,
+          schema: options.schema,
+          path: options.path,
           execute: (...args) => {
-            const contextValue = args[3] || args[0].contextValue;
+            const contextValue = args[0].contextValue as any;
             return contextValue.execute(...args);
           },
           subscribe: (...args) => {
-            const contextValue = args[3] || args[0].contextValue;
+            const contextValue = args[0].contextValue as any;
             return contextValue.subscribe(...args);
           },
           ...subscriptionsOptions,
