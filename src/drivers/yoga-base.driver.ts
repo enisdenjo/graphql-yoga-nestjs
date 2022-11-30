@@ -65,10 +65,8 @@ export abstract class YogaBaseDriver<
 
     this.yogaInstance = yoga;
 
-    // Force "Accept: application/json"
-    //  (Yoga defaults to `application/graphql-response+json` which treat errors differently)
     app.use(function (req, _res, next) {
-      req.headers["Accept"] = "application/json";
+      req.headers.accept = "application/json"; // make sure to always use application/json
       next();
     });
 
@@ -103,9 +101,7 @@ export abstract class YogaBaseDriver<
       url: options.path,
       method: ["GET", "POST", "OPTIONS"],
       handler: async (req, reply) => {
-        // Force "Accept: application/json"
-        //  (Yoga defaults to `application/graphql-response+json` which treat errors differently)
-        req.headers["Accept"] = "application/json";
+        req.headers.accept = "application/json"; // make sure to always use application/json
 
         const response = await yoga.handleNodeRequest(req, {
           req,
