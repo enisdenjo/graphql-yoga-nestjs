@@ -65,11 +65,6 @@ export abstract class YogaBaseDriver<
 
     this.yogaInstance = yoga;
 
-    app.use(function (req, _res, next) {
-      req.headers.accept = "application/json"; // make sure to always use application/json
-      next();
-    });
-
     app.use(options.path, yoga);
   }
 
@@ -101,8 +96,6 @@ export abstract class YogaBaseDriver<
       url: options.path,
       method: ["GET", "POST", "OPTIONS"],
       handler: async (req, reply) => {
-        req.headers.accept = "application/json"; // make sure to always use application/json
-
         const response = await yoga.handleNodeRequest(req, {
           req,
           reply,
