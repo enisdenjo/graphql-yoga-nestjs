@@ -1,4 +1,4 @@
-import { YogaServerOptions } from "@graphql-yoga/common";
+import { YogaServerOptions } from "graphql-yoga";
 import {
   GqlModuleAsyncOptions,
   GqlModuleOptions,
@@ -19,7 +19,8 @@ export type YogaDriverSubscriptionConfig = Omit<
 
 export interface YogaDriverConfig
   extends GqlModuleOptions,
-    Omit<YogaServerOptions<{}, {}, {}>, "context" | "schema"> {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    Omit<YogaServerOptions<{}, {}>, "context" | "schema"> {
   /**
    * If enabled, "subscriptions-transport-ws" will be automatically registered.
    */
