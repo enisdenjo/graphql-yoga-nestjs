@@ -1,5 +1,11 @@
 # @graphql-yoga/nestjs
 
+## 0.1.0
+
+### Minor Changes
+
+- c58c7d5: Yoga v3
+
 ## 0.0.4
 
 ### Patch Changes
