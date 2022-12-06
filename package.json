@@ -90,7 +90,7 @@
     "@apollo/subgraph": "0.4.2",
     "@envelop/apollo-federation": "2.3.2",
     "reflect-metadata": "0.1.13",
-    "fastify": "3.29.0",
+    "fastify": "3.29.4",
     "graphql": "15.8.0",
     "graphql-subscriptions": "2.0.0",
     "rxjs": "7.5.5",
