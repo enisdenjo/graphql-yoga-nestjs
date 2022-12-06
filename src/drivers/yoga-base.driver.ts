@@ -40,8 +40,9 @@ export abstract class YogaBaseDriver<
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public async stop(): Promise<void> {}
+  public async stop() {
+    // noop
+  }
 
   protected async registerExpress(
     options: T,
