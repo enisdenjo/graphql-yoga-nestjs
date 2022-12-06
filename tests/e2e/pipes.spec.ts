@@ -16,8 +16,8 @@ describe("GraphQL - Pipes", () => {
     await app.init();
   });
 
-  it(`should throw an error`, () => {
-    return request(app.getHttpServer())
+  it(`should throw an error`, async () => {
+    const res = await request(app.getHttpServer())
       .post("/graphql")
       .send({
         operationName: null,
@@ -25,31 +25,34 @@ describe("GraphQL - Pipes", () => {
         query:
           'mutation {\n  addRecipe(newRecipeData: {title: "test", ingredients: []}) {\n    id\n  }\n}\n',
       })
-      .expect(200, {
-        errors: [
-          {
-            message: "Bad Request Exception",
-            locations: [{ line: 2, column: 3 }],
-            path: ["addRecipe"],
-            extensions: {
-              code: "INTERNAL_SERVER_ERROR",
-              exception: {
-                response: {
-                  statusCode: 400,
-                  message: [
-                    "description must be longer than or equal to 30 characters",
-                  ],
-                  error: "Bad Request",
-                },
-                status: 400,
-                message: "Bad Request Exception",
-                name: "BadRequestException",
+      .expect(200);
+
+    expect(res.body).toEqual({
+      errors: [
+        {
+          message: "Bad Request Exception",
+          locations: [{ line: 2, column: 3 }],
+          path: ["addRecipe"],
+          extensions: {
+            code: "INTERNAL_SERVER_ERROR",
+            exception: {
+              response: {
+                statusCode: 400,
+                message: [
+                  "description must be longer than or equal to 30 characters",
+                ],
+                error: "Bad Request",
               },
+              status: 400,
+              message: "Bad Request Exception",
+              name: "BadRequestException",
+              options: {}
             },
           },
-        ],
-        data: null,
-      });
+        },
+      ],
+      data: null,
+    });
   });
 
   afterEach(async () => {
