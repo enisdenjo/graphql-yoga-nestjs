@@ -1,5 +1,11 @@
 # @graphql-yoga/nestjs
 
+## 0.2.0
+
+### Minor Changes
+
+- 8161b3e: Support NestJS v9
+
 ## 0.1.0
 
 ### Minor Changes
