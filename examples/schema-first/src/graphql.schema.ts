@@ -7,6 +7,7 @@
 
 /* tslint:disable */
 /* eslint-disable */
+
 export class CreateCatInput {
     name?: Nullable<string>;
     age?: Nullable<number>;
