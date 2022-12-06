@@ -15,33 +15,36 @@ describe("GraphQL - Guards", () => {
     await app.init();
   });
 
-  it(`should throw an error`, () => {
-    return request(app.getHttpServer())
+  it(`should throw an error`, async () => {
+    const res = await request(app.getHttpServer())
       .post("/graphql")
       .send({
         operationName: null,
         variables: {},
         query: '{\n  recipe(id: "3") {\n    id\n  }\n}\n',
       })
-      .expect(200, {
-        errors: [
-          {
-            message: "Unauthorized error",
-            locations: [{ line: 2, column: 3 }],
-            path: ["recipe"],
-            extensions: {
-              code: "INTERNAL_SERVER_ERROR",
-              exception: {
-                response: { statusCode: 401, message: "Unauthorized" },
-                status: 401,
-                message: "Unauthorized error",
-                name: "UnauthorizedException",
-              },
+      .expect(200);
+
+    expect(res.body).toEqual({
+      errors: [
+        {
+          message: "Unauthorized error",
+          locations: [{ line: 2, column: 3 }],
+          path: ["recipe"],
+          extensions: {
+            code: "INTERNAL_SERVER_ERROR",
+            exception: {
+              response: { statusCode: 401, message: "Unauthorized" },
+              status: 401,
+              message: "Unauthorized error",
+              name: "UnauthorizedException",
+              options: {},
             },
           },
-        ],
-        data: null,
-      });
+        },
+      ],
+      data: null,
+    });
   });
 
   afterEach(async () => {
