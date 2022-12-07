@@ -71,7 +71,7 @@
     "rimraf": "3.0.2",
     "@changesets/cli": "2.22.0",
     "bob-the-bundler": "4.0.0",
-    "husky": "8.0.1",
+    "husky": "8.0.2",
     "lint-staged": "12.5.0",
     "eslint": "8.16.0",
     "eslint-config-prettier": "8.5.0",
