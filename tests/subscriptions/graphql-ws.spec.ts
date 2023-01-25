@@ -31,9 +31,8 @@ describe('graphql-ws protocol', () => {
             const { authorization } = context?.connectionParams ?? {};
             if (authorization) {
               return { user: authorization.split('Bearer ')[1] };
-            } 
-              return {};
-            
+            }
+            return {};
           },
           subscriptions: {
             'graphql-ws': {

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DynamicModule } from '@nestjs/common/interfaces';
-import { GraphQLModule , GqlModuleOptions } from '@nestjs/graphql';
+import { GqlModuleOptions, GraphQLModule } from '@nestjs/graphql';
 import { YogaDriver, YogaDriverConfig } from '../../../src/index.js';
 import { NotificationModule } from './notification.module.js';
 

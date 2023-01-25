@@ -36,9 +36,8 @@ describe('Use graphql-ws + subscriptions-transport-ws', () => {
             const { authorization } = context?.connectionParams ?? {};
             if (authorization) {
               return { user: authorization.split('Bearer ')[1] };
-            } 
-              return context?.connection?.context ?? {};
-            
+            }
+            return context?.connection?.context ?? {};
           },
           subscriptions: {
             'graphql-ws': {

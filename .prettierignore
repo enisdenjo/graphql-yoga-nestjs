@@ -5,4 +5,5 @@ yarn.lock
 
 # auto-generated
 examples/code-first/schema.gql
+examples/schema-first/src/graphql.schema.ts
 tests/generated-definitions/
