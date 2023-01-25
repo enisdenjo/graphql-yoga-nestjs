@@ -46,7 +46,7 @@ describe("GraphQL - Pipes", () => {
               status: 400,
               message: "Bad Request Exception",
               name: "BadRequestException",
-              options: {}
+              options: {},
             },
           },
         },

@@ -1,6 +1,6 @@
 ## GraphQL Standalone API - Code First
-A simple example of a GraphQL server built with GraphQL Yoga using the Code First approach.
 
+A simple example of a GraphQL server built with GraphQL Yoga using the Code First approach.
 
 <p>&nbsp;</p>
 

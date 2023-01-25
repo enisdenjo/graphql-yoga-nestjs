@@ -2,7 +2,6 @@
 
 A simple example of a GraphQL Federation setup built with GraphQL Yoga using the Code First approach.
 
-
 <p>&nbsp;</p>
 
 ## Quick Start

@@ -1,7 +1,8 @@
-tests/**
 node_modules/
-coverage/
 dist/
 yarn.lock
 .bob/
-examples/
+
+# auto-generated
+examples/code-first/schema.gql
+tests/generated-definitions/

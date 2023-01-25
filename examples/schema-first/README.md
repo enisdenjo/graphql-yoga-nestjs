@@ -1,6 +1,6 @@
 ## GraphQL Standalone API - Schema First
-A simple example of a GraphQL server built with GraphQL Yoga using the Schema First approach.
 
+A simple example of a GraphQL server built with GraphQL Yoga using the Schema First approach.
 
 <p>&nbsp;</p>
 
@@ -10,9 +10,7 @@ A simple example of a GraphQL server built with GraphQL Yoga using the Schema Fi
 
 To regenerate or generate the TypeScript typings, please run `yarn generate`.
 
-
 <br/>
-
 
 To get up and running:
 
