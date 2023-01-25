@@ -7,5 +7,5 @@ public/
 *.map
 out.txt
 .now
-package-lock.json
 .bob/
+yarn-error.log
