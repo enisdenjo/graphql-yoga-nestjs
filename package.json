@@ -39,20 +39,17 @@
     "graphql-yoga"
   ],
   "scripts": {
-    "bob:bootstrap": "bob bootstrap",
-    "build": "bob build --single",
+    "build": "bob build",
     "clean": "rimraf dist",
     "lint": "eslint .",
     "postinstall": "patch-package",
     "prebuild": "yarn clean",
-    "prepublishOnly": "yarn build",
-    "prerelease": "yarn build",
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check .",
-    "release": "changeset publish",
+    "release": "yarn build && changeset publish",
     "release:canary": "(node scripts/canary-release.cjs && yarn build && yarn changeset publish --tag canary) || echo Skipping Canary...",
-    "test": "jest --passWithNoTests --config ./tests/jest-e2e.ts --runInBand",
-    "test:dev": "jest --passWithNoTests --config ./tests/jest-e2e.ts --runInBand --watch"
+    "test": "jest --config ./tests/jest-e2e.ts --runInBand",
+    "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
     "@apollo/gateway": "^0.44.1 || ^0.46.0 || ^0.48.0 || ^0.49.0 || ^0.50.0 || ^0.51.0 || ^2.0.0",
