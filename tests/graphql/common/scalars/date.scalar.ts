@@ -1,9 +1,9 @@
-import { Kind } from "graphql";
-import { Scalar } from "../../../../src/index.js";
+import { Kind } from 'graphql';
+import { Scalar } from '../../../../src/index.js';
 
-@Scalar("Date")
+@Scalar('Date')
 export class DateScalar {
-  description = "Date custom scalar type";
+  description = 'Date custom scalar type';
 
   parseValue(value) {
     return new Date(value); // value from the client

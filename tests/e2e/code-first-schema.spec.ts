@@ -1,10 +1,4 @@
 import {
-  GraphQLSchemaBuilderModule,
-  GraphQLSchemaFactory,
-} from "@nestjs/graphql";
-import { GRAPHQL_SDL_FILE_HEADER } from "@nestjs/graphql";
-import { Test } from "@nestjs/testing";
-import {
   getIntrospectionQuery,
   graphql,
   GraphQLSchema,
@@ -12,14 +6,17 @@ import {
   IntrospectionSchema,
   printSchema,
   TypeKind,
-} from "graphql";
-import { DirectionsResolver } from "../code-first/directions/directions.resolver.js";
-import { SampleOrphanedEnum } from "../code-first/enums/sample-orphaned.enum.js";
-import { AbstractResolver } from "../code-first/other/abstract.resolver.js";
-import { SampleOrphanedType } from "../code-first/other/sample-orphaned.type.js";
-import { IRecipesResolver } from "../code-first/recipes/irecipes.resolver.js";
-import { Recipe } from "../code-first/recipes/models/recipe.js";
-import { RecipesResolver } from "../code-first/recipes/recipes.resolver.js";
+} from 'graphql';
+import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
+import { GRAPHQL_SDL_FILE_HEADER } from '@nestjs/graphql';
+import { Test } from '@nestjs/testing';
+import { DirectionsResolver } from '../code-first/directions/directions.resolver.js';
+import { SampleOrphanedEnum } from '../code-first/enums/sample-orphaned.enum.js';
+import { AbstractResolver } from '../code-first/other/abstract.resolver.js';
+import { SampleOrphanedType } from '../code-first/other/sample-orphaned.type.js';
+import { IRecipesResolver } from '../code-first/recipes/irecipes.resolver.js';
+import { Recipe } from '../code-first/recipes/models/recipe.js';
+import { RecipesResolver } from '../code-first/recipes/recipes.resolver.js';
 import {
   getMutation,
   getMutationByName,
@@ -27,10 +24,10 @@ import {
   getQueryByName,
   getSubscription,
   getSubscriptionByName,
-} from "../utils/introspection-schema.utils.js";
-import { printedSchemaSnapshot } from "../utils/printed-schema.snapshot.js";
+} from '../utils/introspection-schema.utils.js';
+import { printedSchemaSnapshot } from '../utils/printed-schema.snapshot.js';
 
-describe("Code-first - schema factory", () => {
+describe('Code-first - schema factory', () => {
   let schemaFactory: GraphQLSchemaFactory;
 
   beforeAll(async () => {
@@ -41,45 +38,30 @@ describe("Code-first - schema factory", () => {
     schemaFactory = moduleRef.get(GraphQLSchemaFactory);
   });
 
-  describe("generated schema", () => {
+  describe('generated schema', () => {
     let schema: GraphQLSchema;
     let introspectionSchema: IntrospectionSchema;
 
     beforeAll(async () => {
       schema = await schemaFactory.create(
-        [
-          RecipesResolver,
-          DirectionsResolver,
-          AbstractResolver,
-          IRecipesResolver,
-        ],
-        { orphanedTypes: [SampleOrphanedType, SampleOrphanedEnum] }
+        [RecipesResolver, DirectionsResolver, AbstractResolver, IRecipesResolver],
+        { orphanedTypes: [SampleOrphanedType, SampleOrphanedEnum] },
       );
 
-      introspectionSchema = await (
-        await graphql(schema, getIntrospectionQuery())
-      ).data.__schema;
+      introspectionSchema = await (await graphql(schema, getIntrospectionQuery())).data.__schema;
     });
-    it("should be valid", async () => {
+    it('should be valid', async () => {
       expect(schema).toBeInstanceOf(GraphQLSchema);
     });
-    it("should match schema snapshot", () => {
-      expect(GRAPHQL_SDL_FILE_HEADER + printSchema(schema)).toEqual(
-        printedSchemaSnapshot
-      );
+    it('should match schema snapshot', () => {
+      expect(GRAPHQL_SDL_FILE_HEADER + printSchema(schema)).toEqual(printedSchemaSnapshot);
     });
-    it("should define 5 queries", async () => {
+    it('should define 5 queries', async () => {
       const type = getQuery(introspectionSchema);
 
       expect(type.fields.length).toEqual(5);
-      expect(type.fields.map((item) => item.name)).toEqual(
-        expect.arrayContaining([
-          "recipes",
-          "search",
-          "categories",
-          "move",
-          "recipe",
-        ])
+      expect(type.fields.map(item => item.name)).toEqual(
+        expect.arrayContaining(['recipes', 'search', 'categories', 'move', 'recipe']),
       );
     });
 
@@ -87,8 +69,8 @@ describe("Code-first - schema factory", () => {
       const type = getMutation(introspectionSchema);
 
       expect(type.fields.length).toEqual(2);
-      expect(type.fields.map((item) => item.name)).toEqual(
-        expect.arrayContaining(["addRecipe", "removeRecipe"])
+      expect(type.fields.map(item => item.name)).toEqual(
+        expect.arrayContaining(['addRecipe', 'removeRecipe']),
       );
     });
 
@@ -96,96 +78,85 @@ describe("Code-first - schema factory", () => {
       const type = getSubscription(introspectionSchema);
 
       expect(type.fields.length).toEqual(1);
-      expect(type.fields.map((item) => item.name)).toEqual(
-        expect.arrayContaining(["recipeAdded"])
-      );
+      expect(type.fields.map(item => item.name)).toEqual(expect.arrayContaining(['recipeAdded']));
     });
 
-    it("should not define an abstract resolver", () => {
-      const abstractQuery = getQueryByName(
-        introspectionSchema,
-        "abstractRecipes"
-      );
+    it('should not define an abstract resolver', () => {
+      const abstractQuery = getQueryByName(introspectionSchema, 'abstractRecipes');
       expect(abstractQuery).toBeUndefined();
     });
 
     it('should define "Direction" enum', () => {
-      const type = introspectionSchema.types.find(
-        ({ name }) => name === "Direction"
-      );
+      const type = introspectionSchema.types.find(({ name }) => name === 'Direction');
       expect(type).toEqual(
         expect.objectContaining({
           kind: TypeKind.ENUM,
-          name: "Direction",
-          description: "The basic directions",
+          name: 'Direction',
+          description: 'The basic directions',
           enumValues: [
             {
               deprecationReason: null,
-              description: "The primary direction",
+              description: 'The primary direction',
               isDeprecated: false,
-              name: "Up",
+              name: 'Up',
             },
             {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "Down",
+              name: 'Down',
             },
             {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "Left",
+              name: 'Left',
             },
             {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "Right",
+              name: 'Right',
             },
             {
-              deprecationReason: "Replaced with Left or Right",
+              deprecationReason: 'Replaced with Left or Right',
               description: null,
               isDeprecated: true,
-              name: "Sideways",
+              name: 'Sideways',
             },
           ],
-        })
+        }),
       );
     });
 
     it('should define "SearchResultUnion" union', () => {
-      const type = introspectionSchema.types.find(
-        ({ name }) => name === "SearchResultUnion"
-      );
+      const type = introspectionSchema.types.find(({ name }) => name === 'SearchResultUnion');
       expect(type).toEqual(
         expect.objectContaining({
-          description: "Search result description",
+          description: 'Search result description',
           kind: TypeKind.UNION,
-          name: "SearchResultUnion",
+          name: 'SearchResultUnion',
           possibleTypes: [
             {
               kind: TypeKind.OBJECT,
-              name: "Ingredient",
+              name: 'Ingredient',
               ofType: null,
             },
             {
               kind: TypeKind.OBJECT,
-              name: "Recipe",
+              name: 'Recipe',
               ofType: null,
             },
           ],
-        })
+        }),
       );
     });
 
     it('should define "Ingredient" type', () => {
-      const type = introspectionSchema.types.find(
-        ({ name }) => name === "Ingredient"
-      );
+      const type = introspectionSchema.types.find(({ name }) => name === 'Ingredient');
       expect(type).toEqual(
         expect.objectContaining({
-          name: "Ingredient",
+          name: 'Ingredient',
           kind: TypeKind.OBJECT,
           fields: expect.arrayContaining([
             {
@@ -193,53 +164,49 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "id",
+              name: 'id',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "ID", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'ID', ofType: null },
               },
             },
             {
               args: [],
-              deprecationReason: "is deprecated",
-              description: "ingredient name",
+              deprecationReason: 'is deprecated',
+              description: 'ingredient name',
               isDeprecated: true,
-              name: "name",
+              name: 'name',
               type: {
                 kind: TypeKind.SCALAR,
-                name: "String",
+                name: 'String',
                 ofType: null,
               },
             },
           ]),
-        })
+        }),
       );
     });
 
     it('should define "Recipe" type', () => {
-      const type = introspectionSchema.types.find(
-        ({ name }) => name === "Recipe"
-      );
+      const type = introspectionSchema.types.find(({ name }) => name === 'Recipe');
       expect(type).toEqual(
         expect.objectContaining({
           name: Recipe.name,
           kind: TypeKind.OBJECT,
-          description: "recipe object type",
-          interfaces: [
-            { kind: TypeKind.INTERFACE, name: "IRecipe", ofType: null },
-          ],
+          description: 'recipe object type',
+          interfaces: [{ kind: TypeKind.INTERFACE, name: 'IRecipe', ofType: null }],
           fields: [
             {
               args: [],
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "id",
+              name: 'id',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "ID", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'ID', ofType: null },
               },
             },
             {
@@ -247,11 +214,11 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "title",
+              name: 'title',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
               },
             },
             {
@@ -259,20 +226,20 @@ describe("Code-first - schema factory", () => {
                 {
                   defaultValue: null,
                   description: null,
-                  name: "arg",
-                  type: { kind: "SCALAR", name: "Float", ofType: null },
+                  name: 'arg',
+                  type: { kind: 'SCALAR', name: 'Float', ofType: null },
                 },
               ],
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "interfaceResolver",
+              name: 'interfaceResolver',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
                 ofType: {
                   kind: TypeKind.SCALAR,
-                  name: "Boolean",
+                  name: 'Boolean',
                   ofType: null,
                 },
               },
@@ -282,21 +249,21 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "description",
-              type: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+              name: 'description',
+              type: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
             },
             {
               args: [],
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "creationDate",
+              name: 'creationDate',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
                 ofType: {
                   kind: TypeKind.SCALAR,
-                  name: "DateTime",
+                  name: 'DateTime',
                   ofType: null,
                 },
               },
@@ -306,27 +273,27 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "averageRating",
+              name: 'averageRating',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "Float", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'Float', ofType: null },
               },
             },
             {
               args: [],
               deprecationReason: null,
-              description: "last rate description",
+              description: 'last rate description',
               isDeprecated: false,
-              name: "lastRate",
-              type: { kind: TypeKind.SCALAR, name: "Float", ofType: null },
+              name: 'lastRate',
+              type: { kind: TypeKind.SCALAR, name: 'Float', ofType: null },
             },
             {
               args: [],
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "tags",
+              name: 'tags',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
@@ -338,7 +305,7 @@ describe("Code-first - schema factory", () => {
                     name: null,
                     ofType: {
                       kind: TypeKind.SCALAR,
-                      name: "String",
+                      name: 'String',
                       ofType: null,
                     },
                   },
@@ -350,19 +317,19 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "ingredients",
+              name: 'ingredients',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
                 ofType: {
-                  kind: "LIST",
+                  kind: 'LIST',
                   name: null,
                   ofType: {
                     kind: TypeKind.NON_NULL,
                     name: null,
                     ofType: {
-                      kind: "OBJECT",
-                      name: "Ingredient",
+                      kind: 'OBJECT',
+                      name: 'Ingredient',
                       ofType: null,
                     },
                   },
@@ -374,24 +341,24 @@ describe("Code-first - schema factory", () => {
                 {
                   defaultValue: null,
                   description: null,
-                  name: "type",
-                  type: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+                  name: 'type',
+                  type: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
                 },
                 {
                   defaultValue: null,
                   description: null,
-                  name: "status",
-                  type: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+                  name: 'status',
+                  type: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
                 },
               ],
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "count",
+              name: 'count',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "Float", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'Float', ofType: null },
               },
             },
             {
@@ -399,25 +366,23 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "rating",
+              name: 'rating',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "Float", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'Float', ofType: null },
               },
             },
           ],
-        })
+        }),
       );
     });
 
     it('should define "SampleOrphanedType" orphaned type', () => {
-      const type = introspectionSchema.types.find(
-        ({ name }) => name === "SampleOrphanedType"
-      );
+      const type = introspectionSchema.types.find(({ name }) => name === 'SampleOrphanedType');
       expect(type).toEqual(
         expect.objectContaining({
-          description: "orphaned type",
+          description: 'orphaned type',
           enumValues: null,
           fields: [
             {
@@ -425,11 +390,11 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "id",
+              name: 'id',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "ID", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'ID', ofType: null },
               },
             },
             {
@@ -437,11 +402,11 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "title",
+              name: 'title',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
               },
             },
             {
@@ -449,21 +414,21 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "description",
-              type: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+              name: 'description',
+              type: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
             },
             {
               args: [],
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "creationDate",
+              name: 'creationDate',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
                 ofType: {
                   kind: TypeKind.SCALAR,
-                  name: "DateTime",
+                  name: 'DateTime',
                   ofType: null,
                 },
               },
@@ -473,85 +438,79 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "averageRating",
+              name: 'averageRating',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "Float", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'Float', ofType: null },
               },
             },
           ],
           inputFields: null,
           interfaces: [],
-          kind: "OBJECT",
-          name: "SampleOrphanedType",
+          kind: 'OBJECT',
+          name: 'SampleOrphanedType',
           possibleTypes: null,
-        })
+        }),
       );
     });
 
     it('should define "SampleOrphanedEnum" orphaned type', () => {
-      const type = introspectionSchema.types.find(
-        ({ name }) => name === "SampleOrphanedEnum"
-      );
+      const type = introspectionSchema.types.find(({ name }) => name === 'SampleOrphanedEnum');
       expect(type).toEqual(
         expect.objectContaining({
           kind: TypeKind.ENUM,
-          name: "SampleOrphanedEnum",
-          description: "orphaned enum",
+          name: 'SampleOrphanedEnum',
+          description: 'orphaned enum',
           enumValues: [
             {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "Red",
+              name: 'Red',
             },
             {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "Blue",
+              name: 'Blue',
             },
             {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "Black",
+              name: 'Black',
             },
             {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "White",
+              name: 'White',
             },
           ],
-        })
+        }),
       );
     });
 
     it('should define "IRecipe" interface', () => {
-      const type = introspectionSchema.types.find(
-        ({ name }) => name === "IRecipe"
-      );
+      const type = introspectionSchema.types.find(({ name }) => name === 'IRecipe');
       expect(type).toEqual(
         expect.objectContaining({
-          name: "IRecipe",
+          name: 'IRecipe',
           kind: TypeKind.INTERFACE,
-          description: "example interface",
-          possibleTypes: [
-            { kind: TypeKind.OBJECT, name: "Recipe", ofType: null },
-          ],
+          description: 'example interface',
+          possibleTypes: [{ kind: TypeKind.OBJECT, name: 'Recipe', ofType: null }],
           fields: [
             {
               args: [],
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "id",
+              name: 'id',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "ID", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'ID', ofType: null },
               },
             },
             {
@@ -559,11 +518,11 @@ describe("Code-first - schema factory", () => {
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "title",
+              name: 'title',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
               },
             },
             {
@@ -571,59 +530,57 @@ describe("Code-first - schema factory", () => {
                 {
                   defaultValue: null,
                   description: null,
-                  name: "arg",
-                  type: { kind: "SCALAR", name: "Float", ofType: null },
+                  name: 'arg',
+                  type: { kind: 'SCALAR', name: 'Float', ofType: null },
                 },
               ],
               deprecationReason: null,
               description: null,
               isDeprecated: false,
-              name: "interfaceResolver",
+              name: 'interfaceResolver',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
                 ofType: {
                   kind: TypeKind.SCALAR,
-                  name: "Boolean",
+                  name: 'Boolean',
                   ofType: null,
                 },
               },
             },
           ],
-        })
+        }),
       );
     });
 
     it('should define "NewRecipeInput" input type', () => {
-      const type = introspectionSchema.types.find(
-        ({ name }) => name === "NewRecipeInput"
-      );
+      const type = introspectionSchema.types.find(({ name }) => name === 'NewRecipeInput');
       expect(type).toEqual(
         expect.objectContaining({
-          name: "NewRecipeInput",
+          name: 'NewRecipeInput',
           kind: TypeKind.INPUT_OBJECT,
-          description: "new recipe input",
+          description: 'new recipe input',
           inputFields: [
             {
               defaultValue: null,
-              description: "recipe title",
-              name: "title",
+              description: 'recipe title',
+              name: 'title',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
-                ofType: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+                ofType: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
               },
             },
             {
               defaultValue: null,
               description: null,
-              name: "description",
-              type: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+              name: 'description',
+              type: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
             },
             {
               defaultValue: null,
               description: null,
-              name: "ingredients",
+              name: 'ingredients',
               type: {
                 kind: TypeKind.NON_NULL,
                 name: null,
@@ -635,7 +592,7 @@ describe("Code-first - schema factory", () => {
                     name: null,
                     ofType: {
                       kind: TypeKind.SCALAR,
-                      name: "String",
+                      name: 'String',
                       ofType: null,
                     },
                   },
@@ -643,7 +600,7 @@ describe("Code-first - schema factory", () => {
               },
             },
           ],
-        })
+        }),
       );
     });
 
@@ -651,19 +608,19 @@ describe("Code-first - schema factory", () => {
       let recipeQuery: IntrospectionField;
 
       beforeAll(() => {
-        recipeQuery = getQueryByName(introspectionSchema, "recipe");
+        recipeQuery = getQueryByName(introspectionSchema, 'recipe');
       });
-      it("should define description", () => {
-        expect(recipeQuery.description).toEqual("get recipe by id");
+      it('should define description', () => {
+        expect(recipeQuery.description).toEqual('get recipe by id');
       });
-      it("should set as not deprecated", () => {
+      it('should set as not deprecated', () => {
         expect(recipeQuery.isDeprecated).toBeFalsy();
       });
       it('should return "IRecipe" interface', () => {
         expect(recipeQuery.type).toEqual({
           kind: TypeKind.NON_NULL,
           name: null,
-          ofType: { kind: TypeKind.INTERFACE, name: "IRecipe", ofType: null },
+          ofType: { kind: TypeKind.INTERFACE, name: 'IRecipe', ofType: null },
         });
       });
       it('should take "id" as an input argument', () => {
@@ -672,11 +629,11 @@ describe("Code-first - schema factory", () => {
           expect.arrayContaining([
             {
               defaultValue: '"1"',
-              description: "recipe id",
-              name: "id",
-              type: { kind: TypeKind.SCALAR, name: "String", ofType: null },
+              description: 'recipe id',
+              name: 'id',
+              type: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
             },
-          ])
+          ]),
         );
       });
     });
@@ -684,14 +641,14 @@ describe("Code-first - schema factory", () => {
       let searchQuery: IntrospectionField;
 
       beforeAll(() => {
-        searchQuery = getQueryByName(introspectionSchema, "search");
+        searchQuery = getQueryByName(introspectionSchema, 'search');
       });
-      it("should not set description", () => {
+      it('should not set description', () => {
         expect(searchQuery.description).toEqual(null);
       });
-      it("should set as deprecated", () => {
+      it('should set as deprecated', () => {
         expect(searchQuery.isDeprecated).toBeTruthy();
-        expect(searchQuery.deprecationReason).toEqual("test");
+        expect(searchQuery.deprecationReason).toEqual('test');
       });
       it('should return "SearchResultUnion" union', () => {
         expect(searchQuery.type).toEqual({
@@ -705,14 +662,14 @@ describe("Code-first - schema factory", () => {
               name: null,
               ofType: {
                 kind: TypeKind.UNION,
-                name: "SearchResultUnion",
+                name: 'SearchResultUnion',
                 ofType: null,
               },
             },
           },
         });
       });
-      it("should not take any input arguments", () => {
+      it('should not take any input arguments', () => {
         expect(searchQuery.args.length).toEqual(0);
       });
     });
@@ -720,12 +677,12 @@ describe("Code-first - schema factory", () => {
       let recipesQuery: IntrospectionField;
 
       beforeAll(() => {
-        recipesQuery = getQueryByName(introspectionSchema, "recipes");
+        recipesQuery = getQueryByName(introspectionSchema, 'recipes');
       });
-      it("should not set description", () => {
+      it('should not set description', () => {
         expect(recipesQuery.description).toEqual(null);
       });
-      it("should not set as deprecated", () => {
+      it('should not set as deprecated', () => {
         expect(recipesQuery.isDeprecated).toBeFalsy();
       });
       it('should return non nullable "Recipe[]" list', () => {
@@ -738,28 +695,28 @@ describe("Code-first - schema factory", () => {
             ofType: {
               kind: TypeKind.NON_NULL,
               name: null,
-              ofType: { kind: TypeKind.OBJECT, name: "Recipe", ofType: null },
+              ofType: { kind: TypeKind.OBJECT, name: 'Recipe', ofType: null },
             },
           },
         });
       });
-      it("should take 2 input arguments", () => {
+      it('should take 2 input arguments', () => {
         expect(recipesQuery.args.length).toEqual(2);
         expect(recipesQuery.args).toEqual(
           expect.arrayContaining([
             {
-              defaultValue: "0",
-              description: "number of items to skip",
-              name: "skip",
-              type: { kind: TypeKind.SCALAR, name: "Int", ofType: null },
+              defaultValue: '0',
+              description: 'number of items to skip',
+              name: 'skip',
+              type: { kind: TypeKind.SCALAR, name: 'Int', ofType: null },
             },
             {
-              defaultValue: "25",
+              defaultValue: '25',
               description: null,
-              name: "take",
-              type: { kind: TypeKind.SCALAR, name: "Int", ofType: null },
+              name: 'take',
+              type: { kind: TypeKind.SCALAR, name: 'Int', ofType: null },
             },
-          ])
+          ]),
         );
       });
     });
@@ -767,19 +724,19 @@ describe("Code-first - schema factory", () => {
       let addRecipeMutation: IntrospectionField;
 
       beforeAll(() => {
-        addRecipeMutation = getMutationByName(introspectionSchema, "addRecipe");
+        addRecipeMutation = getMutationByName(introspectionSchema, 'addRecipe');
       });
-      it("should not set description", () => {
+      it('should not set description', () => {
         expect(addRecipeMutation.description).toEqual(null);
       });
-      it("should not set as deprecated", () => {
+      it('should not set as deprecated', () => {
         expect(addRecipeMutation.isDeprecated).toBeFalsy();
       });
       it('should return non nullable "Recipe" object', () => {
         expect(addRecipeMutation.type).toEqual({
           kind: TypeKind.NON_NULL,
           name: null,
-          ofType: { kind: TypeKind.OBJECT, name: "Recipe", ofType: null },
+          ofType: { kind: TypeKind.OBJECT, name: 'Recipe', ofType: null },
         });
       });
       it('should take "NewRecipeInput" input type object as argument', () => {
@@ -788,13 +745,13 @@ describe("Code-first - schema factory", () => {
           {
             defaultValue: null,
             description: null,
-            name: "newRecipeData",
+            name: 'newRecipeData',
             type: {
               kind: TypeKind.NON_NULL,
               name: null,
               ofType: {
                 kind: TypeKind.INPUT_OBJECT,
-                name: "NewRecipeInput",
+                name: 'NewRecipeInput',
                 ofType: null,
               },
             },
@@ -806,25 +763,22 @@ describe("Code-first - schema factory", () => {
       let recipeAddedSub: IntrospectionField;
 
       beforeAll(() => {
-        recipeAddedSub = getSubscriptionByName(
-          introspectionSchema,
-          "recipeAdded"
-        );
+        recipeAddedSub = getSubscriptionByName(introspectionSchema, 'recipeAdded');
       });
-      it("should set description", () => {
-        expect(recipeAddedSub.description).toEqual("subscription description");
+      it('should set description', () => {
+        expect(recipeAddedSub.description).toEqual('subscription description');
       });
-      it("should not set as deprecated", () => {
+      it('should not set as deprecated', () => {
         expect(recipeAddedSub.isDeprecated).toBeFalsy();
       });
       it('should return non nullable "Recipe" object', () => {
         expect(recipeAddedSub.type).toEqual({
           kind: TypeKind.NON_NULL,
           name: null,
-          ofType: { kind: TypeKind.OBJECT, name: "Recipe", ofType: null },
+          ofType: { kind: TypeKind.OBJECT, name: 'Recipe', ofType: null },
         });
       });
-      it("should not take any arguments", () => {
+      it('should not take any arguments', () => {
         expect(recipeAddedSub.args.length).toEqual(0);
       });
     });

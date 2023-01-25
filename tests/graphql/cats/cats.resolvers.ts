@@ -1,20 +1,13 @@
-import { ParseIntPipe, UseGuards } from "@nestjs/common";
-import {
-  Args,
-  Mutation,
-  Query,
-  ResolveField,
-  Resolver,
-  Subscription,
-} from "@nestjs/graphql";
-import { PubSub } from "graphql-subscriptions";
-import { CatsGuard } from "./cats.guard.js";
-import { CatsService } from "./cats.service.js";
-import { Cat } from "./interfaces/cat.interface.js";
+import { PubSub } from 'graphql-subscriptions';
+import { ParseIntPipe, UseGuards } from '@nestjs/common';
+import { Args, Mutation, Query, ResolveField, Resolver, Subscription } from '@nestjs/graphql';
+import { CatsGuard } from './cats.guard.js';
+import { CatsService } from './cats.service.js';
+import { Cat } from './interfaces/cat.interface.js';
 
 const pubSub = new PubSub();
 
-@Resolver("Cat")
+@Resolver('Cat')
 export class CatsResolvers {
   constructor(private readonly catsService: CatsService) {}
 
@@ -24,9 +17,9 @@ export class CatsResolvers {
     return await this.catsService.findAll();
   }
 
-  @ResolveField("color")
+  @ResolveField('color')
   getColor() {
-    return "black";
+    return 'black';
   }
 
   @ResolveField()
@@ -34,23 +27,23 @@ export class CatsResolvers {
     return 5;
   }
 
-  @Query("cat")
+  @Query('cat')
   async findOneById(
-    @Args("id", ParseIntPipe)
-    id: number
+    @Args('id', ParseIntPipe)
+    id: number,
   ): Promise<Cat> {
     return await this.catsService.findOneById(id);
   }
 
-  @Mutation("createCat")
+  @Mutation('createCat')
   async create(@Args() args: Cat): Promise<Cat> {
     const createdCat = await this.catsService.create(args);
-    pubSub.publish("catCreated", { catCreated: createdCat });
+    pubSub.publish('catCreated', { catCreated: createdCat });
     return createdCat;
   }
 
-  @Subscription("catCreated")
+  @Subscription('catCreated')
   catCreated() {
-    return pubSub.asyncIterator("catCreated");
+    return pubSub.asyncIterator('catCreated');
   }
 }

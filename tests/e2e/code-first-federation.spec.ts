@@ -1,9 +1,9 @@
-import { INestApplication } from "@nestjs/common";
-import { NestFactory } from "@nestjs/core";
-import request from "supertest";
-import { ApplicationModule } from "../code-first-federation/app.module.js";
+import request from 'supertest';
+import { INestApplication } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { ApplicationModule } from '../code-first-federation/app.module.js';
 
-describe("Code-first - Federation", () => {
+describe('Code-first - Federation', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -13,7 +13,7 @@ describe("Code-first - Federation", () => {
 
   it(`should return query result`, async () => {
     return request(app.getHttpServer())
-      .post("/graphql")
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
@@ -67,9 +67,9 @@ union FederationSearchResultUnion = Post | User
       });
   });
 
-  it("should return the search result", async () => {
+  it('should return the search result', async () => {
     return request(app.getHttpServer())
-      .post("/graphql")
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
@@ -91,12 +91,12 @@ union FederationSearchResultUnion = Post | User
         data: {
           search: [
             {
-              id: "1",
-              __typename: "User",
+              id: '1',
+              __typename: 'User',
             },
             {
-              title: "lorem ipsum",
-              __typename: "Post",
+              title: 'lorem ipsum',
+              __typename: 'Post',
             },
           ],
         },
@@ -105,7 +105,7 @@ union FederationSearchResultUnion = Post | User
 
   it(`should return query result`, async () => {
     return request(app.getHttpServer())
-      .post("/graphql")
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
@@ -124,9 +124,9 @@ union FederationSearchResultUnion = Post | User
       .expect(200, {
         data: {
           recipe: {
-            id: "1",
-            title: "Recipe",
-            description: "Interface description",
+            id: '1',
+            title: 'Recipe',
+            description: 'Interface description',
           },
         },
       });

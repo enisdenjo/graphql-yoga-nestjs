@@ -1,10 +1,10 @@
-import { Module } from "@nestjs/common";
-import { GraphQLModule } from "@nestjs/graphql";
-import { GraphQLSchema, lexicographicSortSchema } from "graphql";
-import { YogaDriverConfig } from "../../src/index.js";
-import { YogaDriver } from "../../src/drivers/index.js";
-import { DirectionsModule } from "../code-first/directions/directions.module.js";
-import { RecipesModule } from "../code-first/recipes/recipes.module.js";
+import { GraphQLSchema, lexicographicSortSchema } from 'graphql';
+import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { YogaDriver } from '../../src/drivers/index.js';
+import { YogaDriverConfig } from '../../src/index.js';
+import { DirectionsModule } from '../code-first/directions/directions.module.js';
+import { RecipesModule } from '../code-first/recipes/recipes.module.js';
 
 @Module({
   imports: [
@@ -12,9 +12,8 @@ import { RecipesModule } from "../code-first/recipes/recipes.module.js";
     DirectionsModule,
     GraphQLModule.forRoot<YogaDriverConfig>({
       driver: YogaDriver,
-      autoSchemaFile: "schema.graphql",
-      transformSchema: (schema: GraphQLSchema) =>
-        lexicographicSortSchema(schema),
+      autoSchemaFile: 'schema.graphql',
+      transformSchema: (schema: GraphQLSchema) => lexicographicSortSchema(schema),
       transformAutoSchemaFile: true,
     }),
   ],

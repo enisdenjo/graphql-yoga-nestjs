@@ -20,7 +20,8 @@ yarn
 yarn start
 ```
 
-Then, open your favorite browser at [http://localhost:3000/graphql](http://localhost:3000/graphql), and try the following query:
+Then, open your favorite browser at [http://localhost:3000/graphql](http://localhost:3000/graphql),
+and try the following query:
 
 ```gql
 {

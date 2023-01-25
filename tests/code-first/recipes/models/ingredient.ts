@@ -1,13 +1,14 @@
-import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from '@nestjs/graphql';
+
 @ObjectType()
 export class Ingredient {
-  @Field((type) => ID)
+  @Field(type => ID)
   id: string;
 
   @Field({
-    defaultValue: "default",
-    deprecationReason: "is deprecated",
-    description: "ingredient name",
+    defaultValue: 'default',
+    deprecationReason: 'is deprecated',
+    description: 'ingredient name',
     nullable: true,
   })
   name: string;

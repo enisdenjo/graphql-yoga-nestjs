@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import {
   CallHandler,
   ExecutionContext,
@@ -5,15 +6,14 @@ import {
   Injectable,
   NestInterceptor,
   Scope,
-} from "@nestjs/common";
-import { Observable } from "rxjs";
+} from '@nestjs/common';
 
 @Injectable({ scope: Scope.REQUEST })
 export class Interceptor implements NestInterceptor {
   static COUNTER = 0;
   static REQUEST_SCOPED_DATA = [];
 
-  constructor(@Inject("REQUEST_ID") private requestId: number) {
+  constructor(@Inject('REQUEST_ID') private requestId: number) {
     Interceptor.COUNTER++;
   }
 

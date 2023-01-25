@@ -13,16 +13,14 @@ export class CreateCatInput {
 }
 
 export abstract class IQuery {
-  abstract cats():
-    | Nullable<Nullable<Cat>[]>
-    | Promise<Nullable<Nullable<Cat>[]>>;
+  abstract cats(): Nullable<Nullable<Cat>[]> | Promise<Nullable<Nullable<Cat>[]>>;
 
   abstract cat(id: string): Nullable<Cat> | Promise<Nullable<Cat>>;
 }
 
 export abstract class IMutation {
   abstract createCat(
-    createCatInput?: Nullable<CreateCatInput>
+    createCatInput?: Nullable<CreateCatInput>,
   ): Nullable<Cat> | Promise<Nullable<Cat>>;
 }
 

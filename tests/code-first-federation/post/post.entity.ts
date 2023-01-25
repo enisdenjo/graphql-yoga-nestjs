@@ -1,15 +1,15 @@
-import { Directive, Field, ID, Int, ObjectType } from "@nestjs/graphql";
+import { Directive, Field, ID, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 @Directive('@key(fields: "id")')
 export class Post {
-  @Field((type) => ID)
+  @Field(type => ID)
   public id: number;
 
   @Field()
   public title: string;
 
-  @Field((type) => Int)
+  @Field(type => Int)
   public authorId: number;
 
   constructor(post: Partial<Post>) {

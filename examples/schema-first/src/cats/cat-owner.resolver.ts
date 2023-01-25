@@ -1,8 +1,8 @@
-import { Parent, ResolveField, Resolver } from "@nestjs/graphql";
-import { Cat, Owner } from "../graphql.schema";
-import { OwnersService } from "../owners/owners.service";
+import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
+import { Cat, Owner } from '../graphql.schema';
+import { OwnersService } from '../owners/owners.service';
 
-@Resolver("Cat")
+@Resolver('Cat')
 export class CatOwnerResolver {
   constructor(private readonly ownersService: OwnersService) {}
 

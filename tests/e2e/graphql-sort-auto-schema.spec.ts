@@ -1,12 +1,12 @@
-import { INestApplication } from "@nestjs/common";
-import { GraphQLSchemaHost } from "@nestjs/graphql";
-import { GRAPHQL_SDL_FILE_HEADER, FileSystemHelper } from "@nestjs/graphql";
-import { Test } from "@nestjs/testing";
-import { GraphQLSchema, printSchema } from "graphql";
-import { SortAutoSchemaModule } from "../graphql/sort-auto-schema.module.js";
-import { sortedPrintedSchemaSnapshot } from "../utils/printed-schema.snapshot.js";
+import { GraphQLSchema, printSchema } from 'graphql';
+import { INestApplication } from '@nestjs/common';
+import { GraphQLSchemaHost } from '@nestjs/graphql';
+import { FileSystemHelper, GRAPHQL_SDL_FILE_HEADER } from '@nestjs/graphql';
+import { Test } from '@nestjs/testing';
+import { SortAutoSchemaModule } from '../graphql/sort-auto-schema.module.js';
+import { sortedPrintedSchemaSnapshot } from '../utils/printed-schema.snapshot.js';
 
-describe("GraphQL sort autoSchemaFile schema", () => {
+describe('GraphQL sort autoSchemaFile schema', () => {
   let app: INestApplication;
   let schema: GraphQLSchema;
   let writeFileMock: jest.Mock;
@@ -29,16 +29,11 @@ describe("GraphQL sort autoSchemaFile schema", () => {
     schema = graphQLSchemaHost.schema;
   });
 
-  it("should match schema snapshot", () => {
-    expect(GRAPHQL_SDL_FILE_HEADER + printSchema(schema)).toEqual(
-      sortedPrintedSchemaSnapshot
-    );
+  it('should match schema snapshot', () => {
+    expect(GRAPHQL_SDL_FILE_HEADER + printSchema(schema)).toEqual(sortedPrintedSchemaSnapshot);
 
     expect(writeFileMock).toHaveBeenCalledTimes(1);
-    expect(writeFileMock).toHaveBeenCalledWith(
-      "schema.graphql",
-      sortedPrintedSchemaSnapshot
-    );
+    expect(writeFileMock).toHaveBeenCalledWith('schema.graphql', sortedPrintedSchemaSnapshot);
   });
 
   afterEach(async () => {

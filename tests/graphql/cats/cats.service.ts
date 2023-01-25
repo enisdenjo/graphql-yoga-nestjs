@@ -1,10 +1,10 @@
-import { Injectable } from "@nestjs/common";
-import { Cat } from "./interfaces/cat.interface.js";
+import { Injectable } from '@nestjs/common';
+import { Cat } from './interfaces/cat.interface.js';
 
 @Injectable()
 export class CatsService {
   static COUNTER = 0;
-  private readonly cats: Cat[] = [{ id: 1, name: "Cat", age: 5 }];
+  private readonly cats: Cat[] = [{ id: 1, name: 'Cat', age: 5 }];
 
   constructor() {
     CatsService.COUNTER++;
@@ -20,6 +20,6 @@ export class CatsService {
   }
 
   findOneById(id: number): Cat {
-    return this.cats.find((cat) => cat.id === id);
+    return this.cats.find(cat => cat.id === id);
   }
 }

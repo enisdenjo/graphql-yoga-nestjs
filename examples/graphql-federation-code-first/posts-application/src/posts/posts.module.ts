@@ -1,13 +1,10 @@
-import {
-  YogaFederationDriver,
-  YogaFederationDriverConfig,
-} from "@graphql-yoga/nestjs";
-import { Module } from "@nestjs/common";
-import { GraphQLModule } from "@nestjs/graphql";
-import { User } from "./models/user.model";
-import { PostsResolver } from "./posts.resolver";
-import { PostsService } from "./posts.service";
-import { UsersResolver } from "./users.resolver";
+import { YogaFederationDriver, YogaFederationDriverConfig } from '@graphql-yoga/nestjs';
+import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { User } from './models/user.model';
+import { PostsResolver } from './posts.resolver';
+import { PostsService } from './posts.service';
+import { UsersResolver } from './users.resolver';
 
 @Module({
   imports: [

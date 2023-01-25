@@ -1,10 +1,10 @@
-import { Query, Resolver } from "@nestjs/graphql";
-import { IRecipe } from "./recipe.js";
+import { Query, Resolver } from '@nestjs/graphql';
+import { IRecipe } from './recipe.js';
 
-@Resolver((of) => IRecipe)
+@Resolver(of => IRecipe)
 export class IRecipeResolver {
-  @Query((returns) => IRecipe)
+  @Query(returns => IRecipe)
   public recipe() {
-    return { id: "1", title: "Recipe", description: "Interface description" };
+    return { id: '1', title: 'Recipe', description: 'Interface description' };
   }
 }

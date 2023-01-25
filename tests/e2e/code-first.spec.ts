@@ -1,9 +1,9 @@
-import { INestApplication } from "@nestjs/common";
-import { NestFactory } from "@nestjs/core";
-import request from "supertest";
-import { ApplicationModule } from "../code-first/app.module.js";
+import request from 'supertest';
+import { INestApplication } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { ApplicationModule } from '../code-first/app.module.js';
 
-describe.only("Code-first", () => {
+describe.only('Code-first', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -11,9 +11,9 @@ describe.only("Code-first", () => {
     await app.init();
   });
 
-  it("should return the categories result", async () => {
+  it('should return the categories result', async () => {
     return request(app.getHttpServer())
-      .post("/graphql")
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
@@ -31,8 +31,8 @@ describe.only("Code-first", () => {
         data: {
           categories: [
             {
-              name: "Category #1",
-              description: "default value",
+              name: 'Category #1',
+              description: 'default value',
               tags: [],
             },
           ],
@@ -40,9 +40,9 @@ describe.only("Code-first", () => {
       });
   });
 
-  it("should return the search result", async () => {
+  it('should return the search result', async () => {
     return request(app.getHttpServer())
-      .post("/graphql")
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
@@ -63,10 +63,10 @@ describe.only("Code-first", () => {
         data: {
           search: [
             {
-              title: "recipe",
+              title: 'recipe',
             },
             {
-              name: "test",
+              name: 'test',
             },
           ],
         },
@@ -75,7 +75,7 @@ describe.only("Code-first", () => {
 
   it(`should return query result`, async () => {
     return request(app.getHttpServer())
-      .post("/graphql")
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
@@ -98,11 +98,11 @@ describe.only("Code-first", () => {
         data: {
           recipes: [
             {
-              id: "1",
-              description: "Description: Calzone",
+              id: '1',
+              description: 'Description: Calzone',
               ingredients: [
                 {
-                  name: "cherry",
+                  name: 'cherry',
                 },
               ],
               rating: 10,
@@ -110,11 +110,11 @@ describe.only("Code-first", () => {
               averageRating: 0.5,
             },
             {
-              id: "2",
-              description: "Placeholder",
+              id: '2',
+              description: 'Placeholder',
               ingredients: [
                 {
-                  name: "cherry",
+                  name: 'cherry',
                 },
               ],
               rating: 10,
@@ -128,7 +128,7 @@ describe.only("Code-first", () => {
 
   it(`should return query result`, async () => {
     return request(app.getHttpServer())
-      .post("/graphql")
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
@@ -149,20 +149,20 @@ describe.only("Code-first", () => {
         data: {
           recipes: [
             {
-              id: "1",
+              id: '1',
               ingredients: [
                 {
-                  name: "cherry",
+                  name: 'cherry',
                 },
               ],
               rating: 10,
               averageRating: 0.5,
             },
             {
-              id: "2",
+              id: '2',
               ingredients: [
                 {
-                  name: "cherry",
+                  name: 'cherry',
                 },
               ],
               rating: 10,

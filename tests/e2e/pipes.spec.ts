@@ -1,9 +1,9 @@
-import { INestApplication, ValidationPipe } from "@nestjs/common";
-import { Test } from "@nestjs/testing";
-import request from "supertest";
-import { ApplicationModule } from "../code-first/app.module.js";
+import request from 'supertest';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+import { ApplicationModule } from '../code-first/app.module.js';
 
-describe("GraphQL - Pipes", () => {
+describe('GraphQL - Pipes', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -18,7 +18,7 @@ describe("GraphQL - Pipes", () => {
 
   it(`should throw an error`, async () => {
     const res = await request(app.getHttpServer())
-      .post("/graphql")
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
@@ -30,22 +30,20 @@ describe("GraphQL - Pipes", () => {
     expect(res.body).toEqual({
       errors: [
         {
-          message: "Bad Request Exception",
+          message: 'Bad Request Exception',
           locations: [{ line: 2, column: 3 }],
-          path: ["addRecipe"],
+          path: ['addRecipe'],
           extensions: {
-            code: "INTERNAL_SERVER_ERROR",
+            code: 'INTERNAL_SERVER_ERROR',
             exception: {
               response: {
                 statusCode: 400,
-                message: [
-                  "description must be longer than or equal to 30 characters",
-                ],
-                error: "Bad Request",
+                message: ['description must be longer than or equal to 30 characters'],
+                error: 'Bad Request',
               },
               status: 400,
-              message: "Bad Request Exception",
-              name: "BadRequestException",
+              message: 'Bad Request Exception',
+              name: 'BadRequestException',
               options: {},
             },
           },

@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { NewRecipeInput } from "./dto/new-recipe.input.js";
-import { RecipesArgs } from "./dto/recipes.args.js";
-import { Recipe } from "./models/recipe.js";
+import { Injectable } from '@nestjs/common';
+import { NewRecipeInput } from './dto/new-recipe.input.js';
+import { RecipesArgs } from './dto/recipes.args.js';
+import { Recipe } from './models/recipe.js';
 
 @Injectable()
 export class RecipesService {
@@ -25,14 +25,14 @@ export class RecipesService {
   async findAll(recipesArgs: RecipesArgs): Promise<Recipe[]> {
     return [
       new Recipe({
-        id: "1",
-        title: "Pizza",
-        description: "Calzone",
+        id: '1',
+        title: 'Pizza',
+        description: 'Calzone',
         creationDate: new Date(),
       }),
       new Recipe({
-        id: "2",
-        title: "Spaghetti",
+        id: '2',
+        title: 'Spaghetti',
         creationDate: new Date(),
       }),
     ] as Recipe[];

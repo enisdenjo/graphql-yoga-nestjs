@@ -1,11 +1,11 @@
-import { INestApplication } from "@nestjs/common";
-import { Test } from "@nestjs/testing";
-import request from "supertest";
-import { Guard } from "../graphql/hello/guards/request-scoped.guard.js";
-import { HelloModule } from "../graphql/hello/hello.module.js";
-import { HelloResolver } from "../graphql/hello/hello.resolver.js";
-import { Interceptor } from "../graphql/hello/interceptors/logging.interceptor.js";
-import { UsersService } from "../graphql/hello/users/users.service.js";
+import request from 'supertest';
+import { INestApplication } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+import { Guard } from '../graphql/hello/guards/request-scoped.guard.js';
+import { HelloModule } from '../graphql/hello/hello.module.js';
+import { HelloResolver } from '../graphql/hello/hello.resolver.js';
+import { Interceptor } from '../graphql/hello/interceptors/logging.interceptor.js';
+import { UsersService } from '../graphql/hello/users/users.service.js';
 
 class Meta {
   static COUNTER = 0;
@@ -14,7 +14,7 @@ class Meta {
   }
 }
 
-describe("Request scope", () => {
+describe('Request scope', () => {
   let server;
   let app: INestApplication;
 
@@ -22,7 +22,7 @@ describe("Request scope", () => {
     const module = await Test.createTestingModule({
       imports: [
         HelloModule.forRoot({
-          provide: "META",
+          provide: 'META',
           useClass: Meta,
         }),
       ],
@@ -33,11 +33,11 @@ describe("Request scope", () => {
     await app.init();
   });
 
-  describe("when one service is request scoped", () => {
+  describe('when one service is request scoped', () => {
     beforeAll(async () => {
-      const performHttpCall = (end) =>
+      const performHttpCall = end =>
         request(server)
-          .post("/graphql")
+          .post('/graphql')
           .send({
             operationName: null,
             variables: {},
@@ -54,9 +54,9 @@ describe("Request scope", () => {
             if (err) return end(err);
             end();
           });
-      await new Promise((resolve) => performHttpCall(resolve));
-      await new Promise((resolve) => performHttpCall(resolve));
-      await new Promise((resolve) => performHttpCall(resolve));
+      await new Promise(resolve => performHttpCall(resolve));
+      await new Promise(resolve => performHttpCall(resolve));
+      await new Promise(resolve => performHttpCall(resolve));
     });
 
     it(`should create resolver for each request`, async () => {

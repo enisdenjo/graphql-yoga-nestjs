@@ -1,11 +1,11 @@
-import { INestApplication } from "@nestjs/common";
-import { GraphQLSchemaHost } from "@nestjs/graphql";
-import { GRAPHQL_SDL_FILE_HEADER } from "@nestjs/graphql";
-import { Test } from "@nestjs/testing";
-import { GraphQLSchema, printSchema } from "graphql";
-import { SortSchemaModule } from "../graphql/sort-schema.module.js";
+import { GraphQLSchema, printSchema } from 'graphql';
+import { INestApplication } from '@nestjs/common';
+import { GraphQLSchemaHost } from '@nestjs/graphql';
+import { GRAPHQL_SDL_FILE_HEADER } from '@nestjs/graphql';
+import { Test } from '@nestjs/testing';
+import { SortSchemaModule } from '../graphql/sort-schema.module.js';
 
-describe("GraphQL sort schema", () => {
+describe('GraphQL sort schema', () => {
   let app: INestApplication;
   let schema: GraphQLSchema;
 
@@ -21,10 +21,8 @@ describe("GraphQL sort schema", () => {
     schema = graphQLSchemaHost.schema;
   });
 
-  it("should match schema snapshot", () => {
-    expect(GRAPHQL_SDL_FILE_HEADER + printSchema(schema)).toEqual(
-      expectedSchema
-    );
+  it('should match schema snapshot', () => {
+    expect(GRAPHQL_SDL_FILE_HEADER + printSchema(schema)).toEqual(expectedSchema);
   });
 
   afterEach(async () => {

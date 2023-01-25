@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common";
-import { GraphQLModule } from "@nestjs/graphql";
-import { YogaGatewayDriverConfig } from "../../../src/index.js";
-import { YogaGatewayDriver } from "../../../src/drivers/index.js";
+import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { YogaGatewayDriver } from '../../../src/drivers/index.js';
+import { YogaGatewayDriverConfig } from '../../../src/index.js';
 
 @Module({
   imports: [
@@ -10,8 +10,8 @@ import { YogaGatewayDriver } from "../../../src/drivers/index.js";
       gateway: {
         debug: false,
         serviceList: [
-          { name: "users", url: "http://localhost:3001/graphql" },
-          { name: "posts", url: "http://localhost:3002/graphql" },
+          { name: 'users', url: 'http://localhost:3001/graphql' },
+          { name: 'posts', url: 'http://localhost:3002/graphql' },
         ],
       },
     }),

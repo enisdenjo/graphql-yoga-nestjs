@@ -1,15 +1,15 @@
-import { Injectable } from "@nestjs/common";
-import { Post } from "./posts.interfaces.js";
-import { PostType } from "./post-type.enum.js";
+import { Injectable } from '@nestjs/common';
+import { PostType } from './post-type.enum.js';
+import { Post } from './posts.interfaces.js';
 
 @Injectable()
 export class PostsService {
   private readonly posts: Post[] = [
     {
-      id: "1",
-      title: "HELLO WORLD",
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      userId: "5",
+      id: '1',
+      title: 'HELLO WORLD',
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      userId: '5',
       publishDate: new Date(0),
       type: PostType.TEXT,
     },
@@ -20,15 +20,15 @@ export class PostsService {
   }
 
   findById(id: string) {
-    return Promise.resolve(this.posts.find((p) => p.id === id));
+    return Promise.resolve(this.posts.find(p => p.id === id));
   }
 
   findByUserId(id: string) {
-    return Promise.resolve(this.posts.filter((p) => p.userId === id));
+    return Promise.resolve(this.posts.filter(p => p.userId === id));
   }
 
   findByType(type: PostType) {
-    return Promise.resolve(this.posts.filter((p) => p.type === type));
+    return Promise.resolve(this.posts.filter(p => p.type === type));
   }
 
   async publish(id: string, publishDate: Date) {
