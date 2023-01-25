@@ -65,14 +65,14 @@ type Query {
   """get recipe by id"""
   recipe(
     """recipe id"""
-    id: String = "1"
+    id: String! = "1"
   ): IRecipe!
   search: [SearchResultUnion!]! @deprecated(reason: "test")
   categories: [Category!]!
   recipes(
     """number of items to skip"""
-    skip: Int = 0
-    take: Int = 25
+    skip: Int! = 0
+    take: Int! = 25
   ): [Recipe!]!
   move(direction: Direction!): Direction!
 }
@@ -168,12 +168,12 @@ type Query {
   """get recipe by id"""
   recipe(
     """recipe id"""
-    id: String = "1"
+    id: String! = "1"
   ): IRecipe!
   recipes(
     """number of items to skip"""
-    skip: Int = 0
-    take: Int = 25
+    skip: Int! = 0
+    take: Int! = 25
   ): [Recipe!]!
   search: [SearchResultUnion!]! @deprecated(reason: "test")
 }
