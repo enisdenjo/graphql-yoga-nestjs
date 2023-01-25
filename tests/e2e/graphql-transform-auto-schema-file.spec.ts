@@ -1,10 +1,10 @@
-import { INestApplication } from "@nestjs/common";
-import { FileSystemHelper } from "@nestjs/graphql";
-import { Test } from "@nestjs/testing";
-import { TransformAutoSchemaFileModule } from "../graphql/transform-auto-schema-file.module.js";
-import { sortedPrintedSchemaSnapshot } from "../utils/printed-schema.snapshot.js";
+import { INestApplication } from '@nestjs/common';
+import { FileSystemHelper } from '@nestjs/graphql';
+import { Test } from '@nestjs/testing';
+import { TransformAutoSchemaFileModule } from '../graphql/transform-auto-schema-file.module.js';
+import { sortedPrintedSchemaSnapshot } from '../utils/printed-schema.snapshot.js';
 
-describe("GraphQL with transformAutoSchemaFile", () => {
+describe('GraphQL with transformAutoSchemaFile', () => {
   let app: INestApplication;
 
   const writeFileMock = jest.fn().mockImplementation(() => Promise.resolve());
@@ -24,10 +24,7 @@ describe("GraphQL with transformAutoSchemaFile", () => {
 
   it(`should write transformed auto schema file`, () => {
     expect(writeFileMock).toHaveBeenCalledTimes(1);
-    expect(writeFileMock).toHaveBeenCalledWith(
-      "schema.graphql",
-      sortedPrintedSchemaSnapshot
-    );
+    expect(writeFileMock).toHaveBeenCalledWith('schema.graphql', sortedPrintedSchemaSnapshot);
   });
 
   afterEach(async () => {

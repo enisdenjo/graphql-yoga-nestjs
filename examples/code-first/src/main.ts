@@ -7,6 +7,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(3000);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  // eslint-disable-next-line no-console
+  console.log(`Application is runconsolening on: ${await app.getUrl()}`);
 }
 bootstrap();

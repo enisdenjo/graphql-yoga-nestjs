@@ -1,23 +1,12 @@
 module.exports = {
-  root: true,
-  reportUnusedDisableDirectives: true,
-  env: {
-    node: true,
+  extends: ['@theguild'],
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/ban-types': 'warn',
+    '@typescript-eslint/no-unused-vars': 'off', // TODO: check with typescript compiler
+    '@typescript-eslint/no-empty-function': 'off',
+    'no-empty': 'off',
+    'unicorn/prefer-node-protocol': 'off',
+    'import/extensions': 'off',
   },
-  // TODO: remove this line to lint website folder from root folder
-  overrides: [
-    {
-      files: "*.{js,ts,jsx,tsx,cjs,cts,mjs,mts,cjsx,ctsx,mjsx,mtsx}",
-      parser: "@typescript-eslint/parser",
-      extends: [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier",
-      ],
-      rules: {
-        "@typescript-eslint/ban-types": 1,
-        "no-console": "error",
-      },
-    },
-  ],
 };

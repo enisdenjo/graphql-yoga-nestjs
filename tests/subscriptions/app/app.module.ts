@@ -1,13 +1,12 @@
-import { Module } from "@nestjs/common";
-import { DynamicModule } from "@nestjs/common/interfaces";
-import { GraphQLModule } from "@nestjs/graphql";
-import { GqlModuleOptions } from "@nestjs/graphql";
-import { YogaDriver, YogaDriverConfig } from "../../../src/index.js";
-import { NotificationModule } from "./notification.module.js";
+import { Module } from '@nestjs/common';
+import { DynamicModule } from '@nestjs/common/interfaces';
+import { GqlModuleOptions, GraphQLModule } from '@nestjs/graphql';
+import { YogaDriver, YogaDriverConfig } from '../../../src/index.js';
+import { NotificationModule } from './notification.module.js';
 
 export type AppModuleConfig = {
-  context?: GqlModuleOptions["context"];
-  subscriptions?: YogaDriverConfig["subscriptions"];
+  context?: GqlModuleOptions['context'];
+  subscriptions?: YogaDriverConfig['subscriptions'];
 };
 
 @Module({})

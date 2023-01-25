@@ -1,17 +1,14 @@
-import { INestApplication } from '@nestjs/common';
-import {
-  GraphQLFactory,
-  GraphQLFederationDefinitionsFactory,
-} from '@nestjs/graphql';
-import { Test } from '@nestjs/testing';
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
+import { INestApplication } from '@nestjs/common';
+import { GraphQLFactory, GraphQLFederationDefinitionsFactory } from '@nestjs/graphql';
+import { Test } from '@nestjs/testing';
 import { ApplicationModule } from '../code-first/app.module.js';
 
 const readFile = util.promisify(fs.readFile);
 
-const generatedDefinitions = (fileName) =>
+const generatedDefinitions = fileName =>
   path.join(__dirname, '..', 'generated-definitions', fileName);
 
 describe('Generated Definitions', () => {
@@ -30,10 +27,7 @@ describe('Generated Definitions', () => {
   });
 
   it('should generate interface definitions for types', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('simple-type.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('simple-type.graphql'), 'utf8');
 
     const outputFile = generatedDefinitions('simple-type.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
@@ -42,59 +36,43 @@ describe('Generated Definitions', () => {
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('simple-type.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('simple-type.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate properties referencing other interfaces', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('interface-property.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('interface-property.graphql'), 'utf8');
 
-    const outputFile = generatedDefinitions(
-      'interface-property.test-definitions.ts',
-    );
+    const outputFile = generatedDefinitions('interface-property.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
       definitions: {
         path: outputFile,
       },
     });
 
-    expect(
-      await readFile(
-        generatedDefinitions('interface-property.fixture.ts'),
-        'utf8',
-      ),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('interface-property.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate array properties with correct optionality', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('array-property.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('array-property.graphql'), 'utf8');
 
-    const outputFile = generatedDefinitions(
-      'array-property.test-definitions.ts',
-    );
+    const outputFile = generatedDefinitions('array-property.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
       definitions: {
         path: outputFile,
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('array-property.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('array-property.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate queries', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('query.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('query.graphql'), 'utf8');
 
     const outputFile = generatedDefinitions('query.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
@@ -103,20 +81,15 @@ describe('Generated Definitions', () => {
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('query.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('query.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate queries with methods as fields (skipResolverArgs: true)', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('query.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('query.graphql'), 'utf8');
 
-    const outputFile = generatedDefinitions(
-      'query-skip-args.test-definitions.ts',
-    );
+    const outputFile = generatedDefinitions('query-skip-args.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
       definitions: {
         path: outputFile,
@@ -124,19 +97,13 @@ describe('Generated Definitions', () => {
       },
     });
 
-    expect(
-      await readFile(
-        generatedDefinitions('query-skip-args.fixture.ts'),
-        'utf8',
-      ),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('query-skip-args.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate mutations', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('mutation.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('mutation.graphql'), 'utf8');
 
     const outputFile = generatedDefinitions('mutation.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
@@ -145,16 +112,13 @@ describe('Generated Definitions', () => {
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('mutation.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('mutation.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate enums', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('enum.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('enum.graphql'), 'utf8');
 
     const outputFile = generatedDefinitions('enum.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
@@ -163,16 +127,13 @@ describe('Generated Definitions', () => {
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('enum.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('enum.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate enums as types', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('enum-as-type.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('enum-as-type.graphql'), 'utf8');
 
     const outputFile = generatedDefinitions('enum-as-type.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
@@ -182,40 +143,30 @@ describe('Generated Definitions', () => {
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('enum-as-type.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('enum-as-type.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate custom scalars', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('custom-scalar.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('custom-scalar.graphql'), 'utf8');
 
-    const outputFile = generatedDefinitions(
-      'custom-scalar.test-definitions.ts',
-    );
+    const outputFile = generatedDefinitions('custom-scalar.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
       definitions: {
         path: outputFile,
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('custom-scalar.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('custom-scalar.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate custom scalars with a default type', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('custom-scalar.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('custom-scalar.graphql'), 'utf8');
 
-    const outputFile = generatedDefinitions(
-      'custom-scalar-default-type.test-definitions.ts',
-    );
+    const outputFile = generatedDefinitions('custom-scalar-default-type.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
       definitions: {
         path: outputFile,
@@ -224,10 +175,7 @@ describe('Generated Definitions', () => {
     });
 
     expect(
-      await readFile(
-        generatedDefinitions('custom-scalar-default-type.fixture.ts'),
-        'utf8',
-      ),
+      await readFile(generatedDefinitions('custom-scalar-default-type.fixture.ts'), 'utf8'),
     ).toBe(await readFile(outputFile, 'utf8'));
   });
 
@@ -237,9 +185,7 @@ describe('Generated Definitions', () => {
       'utf8',
     );
 
-    const outputFile = generatedDefinitions(
-      'custom-scalar-type-mapping.test-definitions.ts',
-    );
+    const outputFile = generatedDefinitions('custom-scalar-type-mapping.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
       definitions: {
         path: outputFile,
@@ -252,22 +198,14 @@ describe('Generated Definitions', () => {
     });
 
     expect(
-      await readFile(
-        generatedDefinitions('custom-scalar-type-mapping.fixture.ts'),
-        'utf8',
-      ),
+      await readFile(generatedDefinitions('custom-scalar-type-mapping.fixture.ts'), 'utf8'),
     ).toBe(await readFile(outputFile, 'utf8'));
   });
 
   it('should prepend a custom header', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('custom-header.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('custom-header.graphql'), 'utf8');
 
-    const outputFile = generatedDefinitions(
-      'custom-header.test-definitions.ts',
-    );
+    const outputFile = generatedDefinitions('custom-header.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
       definitions: {
         path: outputFile,
@@ -275,9 +213,9 @@ describe('Generated Definitions', () => {
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('custom-header.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('custom-header.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate for a federated graph', async () => {
@@ -289,15 +227,13 @@ describe('Generated Definitions', () => {
       outputAs: 'class',
     });
 
-    expect(
-      await readFile(generatedDefinitions('federation.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('federation.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate for a federated graph with typeDef', async () => {
-    const outputFile = generatedDefinitions(
-      'federation-typedef.test-definitions.ts',
-    );
+    const outputFile = generatedDefinitions('federation-typedef.test-definitions.ts');
     const factory = new GraphQLFederationDefinitionsFactory();
     await factory.generate({
       typePaths: [generatedDefinitions('federation-typedef.graphql')],
@@ -309,19 +245,13 @@ describe('Generated Definitions', () => {
       outputAs: 'class',
     });
 
-    expect(
-      await readFile(
-        generatedDefinitions('federation-typedef.fixture.ts'),
-        'utf8',
-      ),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('federation-typedef.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   it('should generate with __typename field for each object type', async () => {
-    const typeDefs = await readFile(
-      generatedDefinitions('typename.graphql'),
-      'utf8',
-    );
+    const typeDefs = await readFile(generatedDefinitions('typename.graphql'), 'utf8');
 
     const outputFile = generatedDefinitions('typename.test-definitions.ts');
     await graphqlFactory.generateDefinitions(typeDefs, {
@@ -331,9 +261,9 @@ describe('Generated Definitions', () => {
       },
     });
 
-    expect(
-      await readFile(generatedDefinitions('typename.fixture.ts'), 'utf8'),
-    ).toBe(await readFile(outputFile, 'utf8'));
+    expect(await readFile(generatedDefinitions('typename.fixture.ts'), 'utf8')).toBe(
+      await readFile(outputFile, 'utf8'),
+    );
   });
 
   afterEach(async () => {

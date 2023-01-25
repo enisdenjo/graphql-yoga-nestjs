@@ -8,11 +8,10 @@ on:
 
 jobs:
   test:
-    name: Node ${{matrix.node_version}} on ${{matrix.os}}
-    runs-on: ${{matrix.os}}
+    name: Test on Node ${{ matrix.node_version }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest]
         node_version: [16]
     steps:
       - uses: actions/checkout@v3
@@ -20,24 +19,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node_version}}
-
       - uses: actions/cache@v3
         id: yarn-cache
         with:
           path: node_modules
           key: ${{runner.os}}-${{matrix.node_version}}-yarn-${{hashFiles('yarn.lock')}}
-
       - name: Install Dependencies
         run: yarn
         if: steps.yarn-cache.outputs.cache-hit != 'true'
-
       - name: Test
         run: yarn test
 
-      - name: Build
-        run: yarn build
   lint:
-    name: Lint source files
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -45,12 +39,21 @@ jobs:
         with:
           node-version: 16
           cache: yarn
-
       - name: Install Dependencies
         run: yarn
+      - name: Lint
+        run: yarn prettier:check && yarn lint
 
-      - name: Lint ESLint
-        run: yarn lint
-
-      - name: Lint Prettier
-        run: yarn prettier:check
+  type-check:
+    name: Type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn
+      - name: Lint
+        run: yarn type-check

@@ -1,19 +1,13 @@
-import {
-  Directive,
-  Field,
-  ID,
-  InterfaceType,
-  ObjectType,
-} from "@nestjs/graphql";
+import { Directive, Field, ID, InterfaceType, ObjectType } from '@nestjs/graphql';
 
 @InterfaceType()
 export abstract class Base {
-  @Field((type) => ID)
+  @Field(type => ID)
   id: string;
 }
 
 @InterfaceType({
-  resolveType: (value) => {
+  resolveType: value => {
     return Recipe;
   },
 })
@@ -22,7 +16,7 @@ export abstract class IRecipe extends Base {
   title: string;
 
   @Field()
-  @Directive("@external")
+  @Directive('@external')
   externalField: string;
 }
 

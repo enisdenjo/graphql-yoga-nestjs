@@ -1,6 +1,6 @@
+import { PubSub } from 'graphql-subscriptions';
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
-import { PubSub } from 'graphql-subscriptions';
 import { Cat } from '../graphql.schema';
 import { CatsGuard } from './cats.guard';
 import { CatsService } from './cats.service';

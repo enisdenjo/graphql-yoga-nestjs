@@ -1,8 +1,8 @@
-import { Parent, ResolveField, Resolver } from "@nestjs/graphql";
-import { PostService } from "../post/post.service.js";
-import { User } from "./user.entity.js";
+import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
+import { PostService } from '../post/post.service.js';
+import { User } from './user.entity.js';
 
-@Resolver((of) => User)
+@Resolver(of => User)
 export class UserResolver {
   constructor(private readonly postService: PostService) {}
 

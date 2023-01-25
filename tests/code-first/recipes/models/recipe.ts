@@ -1,24 +1,18 @@
-import {
-  Field,
-  ID,
-  InterfaceType,
-  MiddlewareContext,
-  NextFn,
-  ObjectType,
-} from "@nestjs/graphql";
+import { Field, ID, InterfaceType, MiddlewareContext, NextFn, ObjectType } from '@nestjs/graphql';
+
 // import { METADATA_FACTORY_NAME } from "@nestjs/graphql/plugin/plugin-constants";
 
-const METADATA_FACTORY_NAME = "_GRAPHQL_METADATA_FACTORY";
+const METADATA_FACTORY_NAME = '_GRAPHQL_METADATA_FACTORY';
 
 @InterfaceType()
 export abstract class Base {
-  @Field((type) => ID)
+  @Field(type => ID)
   id: string;
 }
 
 @InterfaceType({
-  description: "example interface",
-  resolveType: (value) => {
+  description: 'example interface',
+  resolveType: value => {
     return Recipe;
   },
 })
@@ -27,14 +21,14 @@ export abstract class IRecipe extends Base {
   title: string;
 }
 
-@ObjectType({ implements: IRecipe, description: "recipe object type" })
+@ObjectType({ implements: IRecipe, description: 'recipe object type' })
 export class Recipe extends IRecipe {
   @Field({
     nullable: true,
     middleware: [
       async (ctx: MiddlewareContext, next: NextFn) => {
         const value = await next();
-        return value ? "Description: " + value : "Placeholder";
+        return value ? 'Description: ' + value : 'Placeholder';
       },
     ],
   })
@@ -58,7 +52,7 @@ export class Recipe extends IRecipe {
       lastRate: {
         nullable: true,
         type: () => Number,
-        description: "last rate description",
+        description: 'last rate description',
       },
       tags: { nullable: false, type: () => [String] },
     };

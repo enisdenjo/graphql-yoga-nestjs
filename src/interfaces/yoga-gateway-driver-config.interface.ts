@@ -1,12 +1,7 @@
-import { GatewayConfig } from "@apollo/gateway";
-import { Type } from "@nestjs/common";
-import {
-  GqlModuleAsyncOptions,
-  GqlOptionsFactory,
-  GraphQLDriver,
-} from "@nestjs/graphql";
-
-import { YogaDriverConfig } from "./yoga-driver-config.interface.js";
+import { GatewayConfig } from '@apollo/gateway';
+import { Type } from '@nestjs/common';
+import { GqlModuleAsyncOptions, GqlOptionsFactory, GraphQLDriver } from '@nestjs/graphql';
+import { YogaDriverConfig } from './yoga-driver-config.interface.js';
 
 export interface YogaGatewayDriverConfig<TDriver extends GraphQLDriver = any> {
   /**
@@ -22,23 +17,21 @@ export interface YogaGatewayDriverConfig<TDriver extends GraphQLDriver = any> {
    */
   server?: Omit<
     YogaDriverConfig,
-    | "endpoint"
-    | "schema"
-    | "typeDefs"
-    | "definitions"
-    | "resolvers"
-    | "resolverValidationOptions"
-    | "directiveResolvers"
-    | "autoSchemaFile"
-    | "transformSchema"
-    | "subscriptions"
-    | "buildSchemaOptions"
-    | "fieldResolverEnhancers"
-    | "driver"
+    | 'endpoint'
+    | 'schema'
+    | 'typeDefs'
+    | 'definitions'
+    | 'resolvers'
+    | 'resolverValidationOptions'
+    | 'directiveResolvers'
+    | 'autoSchemaFile'
+    | 'transformSchema'
+    | 'subscriptions'
+    | 'buildSchemaOptions'
+    | 'fieldResolverEnhancers'
+    | 'driver'
   >;
 }
 
-export type YogaGatewayDriverConfigFactory =
-  GqlOptionsFactory<YogaGatewayDriverConfig>;
-export type YogaGatewayDriverAsyncConfig =
-  GqlModuleAsyncOptions<YogaGatewayDriverConfig>;
+export type YogaGatewayDriverConfigFactory = GqlOptionsFactory<YogaGatewayDriverConfig>;
+export type YogaGatewayDriverAsyncConfig = GqlModuleAsyncOptions<YogaGatewayDriverConfig>;

@@ -1,6 +1,6 @@
 ## GraphQL Standalone API - Code First
-A simple example of a GraphQL server built with GraphQL Yoga using the Code First approach.
 
+A simple example of a GraphQL server built with GraphQL Yoga using the Code First approach.
 
 <p>&nbsp;</p>
 
@@ -16,7 +16,8 @@ yarn
 yarn start
 ```
 
-Then, open your favorite browser at [http://localhost:3000/graphql](http://localhost:3000/graphql), and try the following query:
+Then, open your favorite browser at [http://localhost:3000/graphql](http://localhost:3000/graphql),
+and try the following query:
 
 ```gql
 {
@@ -27,4 +28,5 @@ Then, open your favorite browser at [http://localhost:3000/graphql](http://local
 }
 ```
 
-To add some data, feel free to edit the `sample/34-graphql-yoga/src/recipes/recipes.resolver.ts` file.
+To add some data, feel free to edit the `sample/34-graphql-yoga/src/recipes/recipes.resolver.ts`
+file.

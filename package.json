@@ -1,19 +1,16 @@
 {
   "name": "@graphql-yoga/nestjs",
   "version": "0.2.0",
+  "type": "module",
   "description": "Yoga driver for Nest GraphQL",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/charlypoly/graphql-yoga-nestjs"
+  },
   "author": "Charly Poly <charly@the-guild.dev>",
   "license": "MIT",
-  "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "typings": "dist/typings/index.d.ts",
-  "typescript": {
-    "definition": "dist/typings/index.d.ts"
-  },
-  "buildOptions": {
-    "input": "./src/index.ts"
-  },
   "exports": {
     ".": {
       "require": {
@@ -31,34 +28,44 @@
     },
     "./package.json": "./package.json"
   },
+  "typings": "dist/typings/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "graphql",
     "server",
     "nestjs",
     "graphql-yoga"
   ],
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "directory": "dist",
-    "access": "public"
-  },
   "scripts": {
-    "test": "jest --passWithNoTests --config ./tests/jest-e2e.ts --runInBand",
-    "test:dev": "jest --passWithNoTests --config ./tests/jest-e2e.ts --runInBand --watch",
-    "prepublishOnly": "yarn build",
+    "build": "bob build",
     "clean": "rimraf dist",
+    "lint": "eslint .",
     "postinstall": "patch-package",
     "prebuild": "yarn clean",
-    "build": "bob build --single",
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check .",
-    "lint": "eslint .",
-    "prerelease": "yarn build",
-    "bob:bootstrap": "bob bootstrap",
-    "release": "changeset publish",
-    "release:canary": "(node scripts/canary-release.cjs && yarn build && yarn changeset publish --tag canary) || echo Skipping Canary..."
+    "release": "yarn build && changeset publish",
+    "release:canary": "(node scripts/canary-release.cjs && yarn build && yarn changeset publish --tag canary) || echo Skipping Canary...",
+    "test": "jest --config ./tests/jest-e2e.ts --runInBand",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@apollo/gateway": "^0.44.1 || ^0.46.0 || ^0.48.0 || ^0.49.0 || ^0.50.0 || ^0.51.0 || ^2.0.0",
+    "@nestjs/common": "^8.4.7 || ^9.0.0",
+    "@nestjs/core": "^8.4.7 || ^9.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@apollo/gateway": {
+      "optional": true
+    },
+    "@apollo/subgraph": {
+      "optional": true
+    },
+    "@envelop/apollo-federation": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@envelop/apollo-server-errors": "^4.0.4",
@@ -76,6 +83,8 @@
     "@nestjs/platform-express": "9.2.1",
     "@nestjs/platform-fastify": "9.2.1",
     "@nestjs/testing": "9.2.1",
+    "@theguild/eslint-config": "^0.7.0",
+    "@theguild/prettier-config": "^1.1.0",
     "@types/jest": "27.5.2",
     "@typescript-eslint/eslint-plugin": "5.27.0",
     "@typescript-eslint/parser": "5.27.0",
@@ -85,7 +94,7 @@
     "bob-the-bundler": "4.0.0",
     "class-transformer": "0.5.1",
     "class-validator": "0.13.2",
-    "eslint": "8.16.0",
+    "eslint": "^8.32.0",
     "eslint-config-prettier": "8.5.0",
     "fastify": "3.29.4",
     "graphql": "15.8.0",
@@ -94,7 +103,7 @@
     "jest": "28.1.3",
     "lint-staged": "12.5.0",
     "patch-package": "6.4.7",
-    "prettier": "2.6.2",
+    "prettier": "^2.8.3",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.5.5",
@@ -104,34 +113,24 @@
     "ts-node": "10.8.0",
     "typescript": "4.7.2"
   },
-  "peerDependencies": {
-    "@apollo/gateway": "^0.44.1 || ^0.46.0 || ^0.48.0 || ^0.49.0 || ^0.50.0 || ^0.51.0 || ^2.0.0",
-    "@nestjs/common": "^8.4.7 || ^9.0.0",
-    "@nestjs/core": "^8.4.7 || ^9.0.0"
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
   },
-  "peerDependenciesMeta": {
-    "@apollo/gateway": {
-      "optional": true
-    },
-    "@envelop/apollo-federation": {
-      "optional": true
-    },
-    "@apollo/subgraph": {
-      "optional": true
+  "buildOptions": {
+    "input": "./src/index.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/charlypoly/graphql-yoga-nestjs"
   },
   "lint-staged": {
     "{src,test}/**/*": [
       "prettier --write"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "typescript": {
+    "definition": "dist/typings/index.d.ts"
   }
 }

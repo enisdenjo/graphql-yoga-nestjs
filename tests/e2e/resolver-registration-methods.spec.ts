@@ -1,33 +1,33 @@
-import { INestApplication } from "@nestjs/common";
-import { Test } from "@nestjs/testing";
-import request from "supertest";
-import { ApplicationModule } from "../code-first/app.module.js";
-import { CatsModule } from "../code-first/cats/cats.module.js";
+import request from 'supertest';
+import { INestApplication } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+import { ApplicationModule } from '../code-first/app.module.js';
+import { CatsModule } from '../code-first/cats/cats.module.js';
 
-describe("GraphQL - Resolver registration methods", () => {
+describe('GraphQL - Resolver registration methods', () => {
   let app: INestApplication;
 
-  describe("useClass", () => {
+  describe('useClass', () => {
     beforeEach(async () => {
       const module = await Test.createTestingModule({
-        imports: [ApplicationModule, CatsModule.register("useClass")],
+        imports: [ApplicationModule, CatsModule.register('useClass')],
       }).compile();
 
       app = module.createNestApplication();
       await app.init();
     });
 
-    it("should return the cats result", async () => {
+    it('should return the cats result', async () => {
       return request(app.getHttpServer())
-        .post("/graphql")
+        .post('/graphql')
         .send({
           operationName: null,
           variables: {},
-          query: "query {\n  getAnimalName \n}\n",
+          query: 'query {\n  getAnimalName \n}\n',
         })
         .expect(200, {
           data: {
-            getAnimalName: "cat",
+            getAnimalName: 'cat',
           },
         });
     });
@@ -37,27 +37,27 @@ describe("GraphQL - Resolver registration methods", () => {
     });
   });
 
-  describe("useValue", () => {
+  describe('useValue', () => {
     beforeEach(async () => {
       const module = await Test.createTestingModule({
-        imports: [ApplicationModule, CatsModule.register("useValue")],
+        imports: [ApplicationModule, CatsModule.register('useValue')],
       }).compile();
 
       app = module.createNestApplication();
       await app.init();
     });
 
-    it("should return the cats result", async () => {
+    it('should return the cats result', async () => {
       return request(app.getHttpServer())
-        .post("/graphql")
+        .post('/graphql')
         .send({
           operationName: null,
           variables: {},
-          query: "query {\n  getAnimalName \n}\n",
+          query: 'query {\n  getAnimalName \n}\n',
         })
         .expect(200, {
           data: {
-            getAnimalName: "cat",
+            getAnimalName: 'cat',
           },
         });
     });
@@ -67,27 +67,27 @@ describe("GraphQL - Resolver registration methods", () => {
     });
   });
 
-  describe("useFactory", () => {
+  describe('useFactory', () => {
     beforeEach(async () => {
       const module = await Test.createTestingModule({
-        imports: [ApplicationModule, CatsModule.register("useFactory")],
+        imports: [ApplicationModule, CatsModule.register('useFactory')],
       }).compile();
 
       app = module.createNestApplication();
       await app.init();
     });
 
-    it("should return the cats result", async () => {
+    it('should return the cats result', async () => {
       return request(app.getHttpServer())
-        .post("/graphql")
+        .post('/graphql')
         .send({
           operationName: null,
           variables: {},
-          query: "query {\n  getAnimalName \n}\n",
+          query: 'query {\n  getAnimalName \n}\n',
         })
         .expect(200, {
           data: {
-            getAnimalName: "cat",
+            getAnimalName: 'cat',
           },
         });
     });

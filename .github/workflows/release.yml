@@ -41,7 +41,7 @@ jobs:
       - name: Cache Yarn
         uses: actions/cache@v3
         with:
-          path: "**/node_modules"
+          path: '**/node_modules'
           key: ${{runner.os}}-16-yarn-${{hashFiles('yarn.lock')}}
           restore-keys: |
             ${{runner.os}}-16-yarn-${{hashFiles('yarn.lock')}}
@@ -55,7 +55,7 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: yarn release
-          commit: "chore(release): update monorepo packages versions"
+          commit: 'chore(release): update monorepo packages versions'
           title: Upcoming Release Changes
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

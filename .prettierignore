@@ -1,7 +1,9 @@
-tests/**
 node_modules/
-coverage/
 dist/
 yarn.lock
 .bob/
-examples/
+
+# auto-generated
+examples/code-first/schema.gql
+examples/schema-first/src/graphql.schema.ts
+tests/generated-definitions/

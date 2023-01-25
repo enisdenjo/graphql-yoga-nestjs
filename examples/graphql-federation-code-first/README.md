@@ -1,7 +1,7 @@
 ## GraphQL Federation API - Code First approach
 
-A simple example of a GraphQL Federation setup built with GraphQL Yoga using the Code First approach.
-
+A simple example of a GraphQL Federation setup built with GraphQL Yoga using the Code First
+approach.
 
 <p>&nbsp;</p>
 
@@ -17,7 +17,8 @@ yarn
 yarn start
 ```
 
-Then, open your favorite browser at [http://localhost:3002/graphql](http://localhost:3002/graphql), and try the following query:
+Then, open your favorite browser at [http://localhost:3002/graphql](http://localhost:3002/graphql),
+and try the following query:
 
 ```gql
 {

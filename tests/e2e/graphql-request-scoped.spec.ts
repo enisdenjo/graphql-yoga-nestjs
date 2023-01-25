@@ -1,14 +1,14 @@
-import { INestApplication } from "@nestjs/common";
-import { GraphQLModule } from "@nestjs/graphql";
-import { Test } from "@nestjs/testing";
-import { join } from "path";
-import request from "supertest";
-import { YogaDriverConfig } from "../../src/index.js";
-import { YogaDriver } from "../../src/drivers/index.js";
-import { CatsRequestScopedService } from "../graphql/cats/cats-request-scoped.service.js";
-import { CatsModule } from "../graphql/cats/cats.module.js";
+import { join } from 'path';
+import request from 'supertest';
+import { INestApplication } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { Test } from '@nestjs/testing';
+import { YogaDriver } from '../../src/drivers/index.js';
+import { YogaDriverConfig } from '../../src/index.js';
+import { CatsRequestScopedService } from '../graphql/cats/cats-request-scoped.service.js';
+import { CatsModule } from '../graphql/cats/cats.module.js';
 
-describe("GraphQL request scoped", () => {
+describe('GraphQL request scoped', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe("GraphQL request scoped", () => {
         CatsModule.enableRequestScope(),
         GraphQLModule.forRoot<YogaDriverConfig>({
           driver: YogaDriver,
-          typePaths: [join(__dirname, "..", "graphql", "**", "*.graphql")],
+          typePaths: [join(__dirname, '..', 'graphql', '**', '*.graphql')],
         }),
       ],
     }).compile();
@@ -25,13 +25,13 @@ describe("GraphQL request scoped", () => {
     app = module.createNestApplication();
     await app.init();
 
-    const performHttpCall = (end) =>
+    const performHttpCall = end =>
       request(app.getHttpServer())
-        .post("/graphql")
+        .post('/graphql')
         .send({
           operationName: null,
           variables: {},
-          query: "{\n  getCats {\n    id\n  }\n}\n",
+          query: '{\n  getCats {\n    id\n  }\n}\n',
         })
         .expect(200, {
           data: {
@@ -47,9 +47,9 @@ describe("GraphQL request scoped", () => {
           end();
         });
 
-    await new Promise((resolve) => performHttpCall(resolve));
-    await new Promise((resolve) => performHttpCall(resolve));
-    await new Promise((resolve) => performHttpCall(resolve));
+    await new Promise(resolve => performHttpCall(resolve));
+    await new Promise(resolve => performHttpCall(resolve));
+    await new Promise(resolve => performHttpCall(resolve));
   });
 
   it(`should create resolver for each incoming request`, () => {
