@@ -11,9 +11,9 @@ export class PostsResolvers {
   getPosts(@Args('type') type: PostType) {
     if (type) {
       return this.postsService.findByType(type);
-    } else {
+    } 
       return this.postsService.findAll();
-    }
+    
   }
 
   @Mutation()

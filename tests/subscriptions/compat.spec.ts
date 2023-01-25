@@ -25,8 +25,8 @@ describe('Use graphql-ws + subscriptions-transport-ws', () => {
   let wsClient: Client;
   let subWsClient: SubscriptionClient;
 
-  let gqlWsOnConnect = jest.fn();
-  let subTransWsOnConnect = jest.fn();
+  const gqlWsOnConnect = jest.fn();
+  const subTransWsOnConnect = jest.fn();
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -36,9 +36,9 @@ describe('Use graphql-ws + subscriptions-transport-ws', () => {
             const { authorization } = context?.connectionParams ?? {};
             if (authorization) {
               return { user: authorization.split('Bearer ')[1] };
-            } else {
+            } 
               return context?.connection?.context ?? {};
-            }
+            
           },
           subscriptions: {
             'graphql-ws': {

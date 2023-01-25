@@ -34,13 +34,13 @@ describe('Code-first - Federation', () => {
   externalField: String! @external
 }
 
-type Post @key(fields: \"id\") {
+type Post @key(fields: "id") {
   id: ID!
   title: String!
   authorId: Int!
 }
 
-type User @extends @key(fields: \"id\") {
+type User @extends @key(fields: "id") {
   id: ID! @external
   posts: [Post!]!
 }
@@ -55,11 +55,11 @@ type Recipe implements IRecipe {
 type Query {
   findPost(id: Float!): Post!
   getPosts: [Post!]!
-  search: [FederationSearchResultUnion!]! @deprecated(reason: \"test\")
+  search: [FederationSearchResultUnion!]! @deprecated(reason: "test")
   recipe: IRecipe!
 }
 
-\"\"\"Search result description\"\"\"
+"""Search result description"""
 union FederationSearchResultUnion = Post | User
 `,
           },

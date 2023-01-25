@@ -5,10 +5,10 @@ import { ArgsType, Field, Int } from '@nestjs/graphql';
 export class RecipesArgs {
   @Field(type => Int, { description: 'number of items to skip' })
   @Min(0)
-  skip: number = 0;
+  skip = 0;
 
   @Field(type => Int)
   @Min(1)
   @Max(50)
-  take: number = 25;
+  take = 25;
 }

@@ -7,8 +7,7 @@ import {
   printSchema,
   TypeKind,
 } from 'graphql';
-import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
-import { GRAPHQL_SDL_FILE_HEADER } from '@nestjs/graphql';
+import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory , GRAPHQL_SDL_FILE_HEADER } from '@nestjs/graphql';
 import { Test } from '@nestjs/testing';
 import { DirectionsResolver } from '../code-first/directions/directions.resolver.js';
 import { SampleOrphanedEnum } from '../code-first/enums/sample-orphaned.enum.js';
