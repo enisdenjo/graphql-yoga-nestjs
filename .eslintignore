@@ -2,6 +2,7 @@ node_modules/
 dist/
 yarn.lock
 .bob/
+.changeset/
 
 # auto-generated
 examples/code-first/schema.gql
