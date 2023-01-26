@@ -634,7 +634,11 @@ describe('Code-first - schema factory', () => {
               defaultValue: '"1"',
               description: 'recipe id',
               name: 'id',
-              type: { kind: TypeKind.SCALAR, name: 'String', ofType: null },
+              type: {
+                kind: 'NON_NULL',
+                name: null,
+                ofType: { kind: 'SCALAR', name: 'String', ofType: null },
+              },
             },
           ]),
         );
@@ -711,13 +715,21 @@ describe('Code-first - schema factory', () => {
               defaultValue: '0',
               description: 'number of items to skip',
               name: 'skip',
-              type: { kind: TypeKind.SCALAR, name: 'Int', ofType: null },
+              type: {
+                kind: 'NON_NULL',
+                name: null,
+                ofType: { kind: 'SCALAR', name: 'Int', ofType: null },
+              },
             },
             {
               defaultValue: '25',
               description: null,
               name: 'take',
-              type: { kind: TypeKind.SCALAR, name: 'Int', ofType: null },
+              type: {
+                kind: 'NON_NULL',
+                name: null,
+                ofType: { kind: 'SCALAR', name: 'Int', ofType: null },
+              },
             },
           ]),
         );
