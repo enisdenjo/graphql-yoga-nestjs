@@ -94,7 +94,7 @@
     "apollo-link-ws": "1.0.20",
     "bob-the-bundler": "4.1.1",
     "class-transformer": "0.5.1",
-    "class-validator": "0.13.2",
+    "class-validator": "0.14.0",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "8.5.0",
     "fastify": "3.29.5",
