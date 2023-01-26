@@ -97,7 +97,7 @@
     "class-validator": "0.13.2",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "8.5.0",
-    "fastify": "3.29.4",
+    "fastify": "3.29.5",
     "graphql": "15.8.0",
     "graphql-subscriptions": "2.0.0",
     "husky": "8.0.2",
