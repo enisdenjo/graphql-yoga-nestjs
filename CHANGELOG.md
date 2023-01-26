@@ -1,5 +1,11 @@
 # @graphql-yoga/nestjs
 
+## 0.3.0
+
+### Minor Changes
+
+- 2c1f603: @nestjs/graphql should be a peer dependency
+
 ## 0.2.0
 
 ### Minor Changes
