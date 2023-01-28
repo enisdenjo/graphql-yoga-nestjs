@@ -108,7 +108,7 @@
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.8.0",
-    "supertest": "6.2.3",
+    "supertest": "6.3.3",
     "ts-jest": "29.0.5",
     "ts-morph": "15.0.0",
     "ts-node": "10.8.0",
