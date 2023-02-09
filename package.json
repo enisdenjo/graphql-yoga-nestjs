@@ -76,7 +76,7 @@
   "devDependencies": {
     "@apollo/gateway": "0.54.1",
     "@apollo/subgraph": "0.6.1",
-    "@changesets/cli": "2.22.0",
+    "@changesets/cli": "2.26.0",
     "@envelop/apollo-federation": "2.6.0",
     "@nestjs/common": "9.2.1",
     "@nestjs/core": "9.2.1",
