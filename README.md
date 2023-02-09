@@ -1,10 +1,13 @@
 <p align="center">
   <img src="YOGA x Nest.png" width="320" alt="GraphQL Yoga and Nest Logo" />
+  <h3 align="center">
+    <a href="https://the-guild.dev/graphql/yoga-server">GraphQL Yoga</a> x <a href="https://nestjs.com">NestJS</a>
+  </h3>
 </p>
 
-</p>
+<br />
 
-GraphQL Yoga is a Fully-featured GraphQL Server with a focus on easy setup, performance & great
+[GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) is a Fully-featured GraphQL Server with a focus on easy setup, performance & great
 developer experience:
 
 - **The easiest way to run a GraphQL server:** Sensible defaults & includes everything you need with
@@ -18,7 +21,7 @@ developer experience:
   [WHATWG Fetch API](https://fetch.spec.whatwg.org/) so it can run and deploy in any environment
   (Serverless, Workers, Deno, Node).
 - **Easily Extendable:** New GraphQL-Yoga support all [`envelop`](https://www.envelop.dev) plugins.
-- **[Nest](https://nestjs.com/) integration:** support for standalone GraphQL server, Apollo
+- **[NestJS integration](https://nestjs.com/):** support for standalone GraphQL server, Apollo
   Federation (Gateway and service), along with all Nest GraphQL features.
 
 <p>&nbsp;</p>
@@ -30,9 +33,11 @@ developer experience:
 ## Quick Start
 
 Get started with Nest and GraphQL Yoga with the
-[Overview & Tutorial](https://docs.nestjs.com/graphql/quick-start). For more information regarding
-GraphQL Yoga configuration, please refer to
-[GraphQL Yoga documentation](https://www.graphql-yoga.com/docs/quick-start).
+[GraphQL and TypeScript guide](https://docs.nestjs.com/graphql/quick-start).
+
+For more information regarding
+GraphQL Yoga itself, please refer to
+[GraphQL Yoga's documentation](https://the-guild.dev/graphql/yoga-server/docs).
 
 <p>&nbsp;</p>
 
