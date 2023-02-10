@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
@@ -17,7 +17,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(3000);
-  // eslint-disable-next-line no-console
-  console.log(`Application is runconsolening on: ${await app.getUrl()}`);
+  Logger.log(`Application is running on: ${await app.getUrl()} 🚀`, 'NestApplication');
 }
 bootstrap();
