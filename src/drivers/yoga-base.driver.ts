@@ -106,6 +106,8 @@ export abstract class YogaBaseDriver<
         reply.status(response.status);
 
         reply.send(response.body);
+
+        return reply;
       },
     });
   }
