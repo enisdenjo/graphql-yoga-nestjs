@@ -885,10 +885,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@envelop/apollo-federation@2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@envelop/apollo-federation/-/apollo-federation-2.6.0.tgz#0fc99c4344c5cbb543eaad607c860b2cfeea3aca"
-  integrity sha512-zHsDVCzXTg3YrRfpnNlahf7e5x0Db+evxt3GTvEwtnVhH7MHsAkkwMFMx1N8wKH0tD9CqiHGPIZRShYUOdKfGA==
+"@envelop/apollo-federation@3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@envelop/apollo-federation/-/apollo-federation-3.0.4.tgz#be51f41e53756f0ec4be9e2c3a219943513d8020"
+  integrity sha512-zFvmnf3GuvKHeL3OrLy5Ex1JsUbUiXwIFtO+g/TrvWh/+jkh/2HQFhUKkfqrjzDKUsW6iUyHiPrJf21IvVPlmQ==
   dependencies:
     apollo-server-caching "^3.1.0"
     apollo-server-types "^3.2.0"
