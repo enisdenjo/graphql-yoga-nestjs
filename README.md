@@ -7,8 +7,8 @@
 
 <br />
 
-[GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) is a Fully-featured GraphQL Server with a focus on easy setup, performance & great
-developer experience:
+[GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) is a Fully-featured GraphQL Server with a
+focus on easy setup, performance & great developer experience:
 
 - **The easiest way to run a GraphQL server:** Sensible defaults & includes everything you need with
   minimal setup (we also export a platform/env-agnostic handler so you can build your wrappers
@@ -35,8 +35,7 @@ developer experience:
 Get started with Nest and GraphQL Yoga with the
 [GraphQL and TypeScript guide](https://docs.nestjs.com/graphql/quick-start).
 
-For more information regarding
-GraphQL Yoga itself, please refer to
+For more information regarding GraphQL Yoga itself, please refer to
 [GraphQL Yoga's documentation](https://the-guild.dev/graphql/yoga-server/docs).
 
 <p>&nbsp;</p>
