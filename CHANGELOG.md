@@ -1,5 +1,11 @@
 # @graphql-yoga/nestjs
 
+## 0.3.1
+
+### Patch Changes
+
+- 05d838c: Make Fastify platform work (#79)
+
 ## 0.3.0
 
 ### Minor Changes
