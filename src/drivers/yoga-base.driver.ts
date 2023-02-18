@@ -1,6 +1,5 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { createYoga, YogaServerInstance } from 'graphql-yoga';
-import { useApolloServerErrors } from '@envelop/apollo-server-errors';
 import { Logger } from '@nestjs/common';
 import { AbstractGraphQLDriver } from '@nestjs/graphql';
 import { YogaDriverConfig } from '../interfaces/index.js';
@@ -18,7 +17,6 @@ export abstract class YogaBaseDriver<
 
     const opts = {
       ...options,
-      plugins: [...(options.plugins || []), useApolloServerErrors()],
       // disable error masking by default
       maskedErrors: options.maskedErrors ? true : false,
       // disable graphiql in production

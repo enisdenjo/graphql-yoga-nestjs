@@ -1,25 +1,16 @@
 {
   "compilerOptions": {
-    "types": ["node"],
-    "composite": true,
-    "module": "es2015",
-    "moduleResolution": "Node",
-    "declaration": true,
-    "declarationMap": true,
-    "noImplicitAny": false,
-    "importHelpers": true,
-    "removeComments": false,
-    "esModuleInterop": true,
-    "noLib": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "moduleResolution": "node",
     "target": "es2018",
-    "sourceMap": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
+    "checkJs": true,
+    "experimentalDecorators": true
   },
-  "include": ["./src"],
-  "exclude": ["node_modules", "dist", "tests/**/*", "*.spec.ts"]
+  "include": ["src"]
 }
