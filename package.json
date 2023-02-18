@@ -20,6 +20,11 @@
       "import": "./lib/index.mjs",
       "types": "./lib/index.d.ts"
     },
+    "./lib/federation": {
+      "require": "./lib/federation.js",
+      "import": "./lib/federation.mjs",
+      "types": "./lib/federation.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "types": "lib/index.d.ts",
@@ -67,6 +72,8 @@
     }
   },
   "devDependencies": {
+    "@apollo/gateway": "^2.3.2",
+    "@envelop/apollo-federation": "^3.0.5",
     "@nestjs/common": "^9.2.1",
     "@nestjs/core": "^9.2.1",
     "@nestjs/graphql": "^10.1.7",
@@ -77,9 +84,12 @@
     "@theguild/eslint-config": "^0.7.0",
     "@theguild/prettier-config": "^1.1.0",
     "@types/eslint": "^8.21.1",
+    "@types/express": "^4.17.17",
     "@types/glob": "^8.0.1",
     "@whatwg-node/fetch": "^0.8.1",
     "eslint": "^8.32.0",
+    "express": "^4.18.2",
+    "fastify": "^4.13.0",
     "glob": "^8.1.0",
     "graphql": "^16.6.0",
     "graphql-yoga": "^3.6.0",
