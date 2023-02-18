@@ -126,11 +126,9 @@ export abstract class AbstractYogaDriver<
     const yoga = createYoga<YogaDriverServerContext<'fastify'>>({
       ...options,
       graphqlEndpoint: options.path,
-      logging: !options.logging
-        ? false
-        : typeof options.logging === 'boolean'
-        ? app.log
-        : options.logging,
+      // disable logging by default
+      // however, if `true` use fastify logger
+      logging: options.logging == null ? false : options.logging ? app.log : options.logging,
     });
 
     this.yoga = yoga as YogaDriverServerInstance<Platform>;
