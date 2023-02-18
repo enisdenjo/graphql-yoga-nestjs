@@ -10,7 +10,8 @@
     "forceConsistentCasingInFileNames": true,
     "useUnknownInCatchVariables": false,
     "checkJs": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true // necessary for nestjs dependency injection
   },
   "include": [".eslintrc.cjs", "vitest.config.ts", "src", "tests"]
 }
