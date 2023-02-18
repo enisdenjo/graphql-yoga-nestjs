@@ -5,9 +5,9 @@
   "description": "Yoga driver for Nest GraphQL",
   "repository": {
     "type": "git",
-    "url": "https://github.com/charlypoly/graphql-yoga-nestjs"
+    "url": "https://github.com/enisdenjo/graphql-yoga-nestjs"
   },
-  "author": "Charly Poly <charly@the-guild.dev>",
+  "author": "Denis Badurina <badurinadenis@gmail.com>",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
