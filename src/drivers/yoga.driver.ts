@@ -32,7 +32,7 @@ export class YogaDriver extends YogaBaseDriver {
             : {};
         subscriptionsOptions['graphql-ws'].onSubscribe = async (ctx, msg) => {
           const { schema, execute, subscribe, contextFactory, parse, validate } =
-            this.yogaInstance.getEnveloped({
+            this.yoga.getEnveloped({
               ...ctx,
               req: (ctx.extra as any).request,
               socket: (ctx.extra as any).socket,
@@ -66,7 +66,7 @@ export class YogaDriver extends YogaBaseDriver {
           ws: WebSocket,
         ) => {
           const { schema, execute, subscribe, contextFactory, parse, validate } =
-            this.yogaInstance.getEnveloped({
+            this.yoga.getEnveloped({
               ...params.context,
               req:
                 // @ts-expect-error upgradeReq does exist but is untyped

@@ -3,13 +3,12 @@ import { createYoga, YogaServerInstance } from 'graphql-yoga';
 import { Logger } from '@nestjs/common';
 import { AbstractGraphQLDriver } from '@nestjs/graphql';
 import { YogaDriverConfig } from '../interfaces/index.js';
-import { createAsyncIterator } from '../utils/async-iterator.util.js';
 
 export abstract class YogaBaseDriver<
   T extends YogaDriverConfig = YogaDriverConfig,
 > extends AbstractGraphQLDriver<T> {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  protected yogaInstance: YogaServerInstance<{}, {}>;
+  protected yoga: YogaServerInstance<{}, {}>;
 
   public async start(options: T) {
     const httpAdapter = this.httpAdapterHost.httpAdapter;
@@ -60,7 +59,7 @@ export abstract class YogaBaseDriver<
         : options.logging,
     });
 
-    this.yogaInstance = yoga;
+    this.yoga = yoga;
 
     app.use(options.path, yoga);
   }
@@ -87,7 +86,7 @@ export abstract class YogaBaseDriver<
         : options.logging,
     });
 
-    this.yogaInstance = yoga;
+    this.yoga = yoga;
 
     app.route({
       url: options.path,
