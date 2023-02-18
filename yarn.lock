@@ -595,6 +595,7 @@ __metadata:
     "@theguild/prettier-config": ^1.1.0
     "@types/eslint": ^8.21.1
     eslint: ^8.32.0
+    glob: ^8.1.0
     graphql: ^16.6.0
     graphql-yoga: ^3.6.0
     prettier: ^2.8.3
@@ -3209,7 +3210,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^8.0.1":
+"glob@npm:^8.0.1, glob@npm:^8.1.0":
   version: 8.1.0
   resolution: "glob@npm:8.1.0"
   dependencies:

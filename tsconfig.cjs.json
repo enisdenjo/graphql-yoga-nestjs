@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "lib",
+    "declaration": false // already built by `tsconfig.esm.json`
+  },
+  "include": ["src"]
+}
