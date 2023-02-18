@@ -12,6 +12,7 @@ const config = {
     'unicorn/prefer-node-protocol': 'off',
     'import/extensions': 'off',
     'import/no-default-export': 'off',
+    'no-undef': 'off', // this is typescripts responsibility
   },
 };
 module.exports = config;
