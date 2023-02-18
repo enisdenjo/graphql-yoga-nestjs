@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { loadPackage } from '@nestjs/common/utils/load-package.util.js';
+import { loadPackage } from '@nestjs/common/utils/load-package.util';
 import { GraphQLFederationFactory } from '@nestjs/graphql';
-import { YogaFederationDriverConfig } from '../interfaces/index.js';
-import { YogaBaseDriver } from './yoga-base.driver.js';
+import { YogaFederationDriverConfig } from '../interfaces/index';
+import { YogaBaseDriver } from './yoga-base.driver';
 
 @Injectable()
 export class YogaFederationDriver extends YogaBaseDriver<YogaFederationDriverConfig> {

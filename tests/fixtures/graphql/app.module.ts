@@ -1,9 +1,8 @@
 import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { YogaDriver } from '../../src/drivers/index.js';
-import { YogaDriverConfig } from '../../src/index.js';
-import { CatsModule } from './cats/cats.module.js';
+import { YogaDriver, YogaDriverConfig } from '../../../src';
+import { CatsModule } from './cats/cats.module';
 
 @Module({
   imports: [
@@ -14,4 +13,4 @@ import { CatsModule } from './cats/cats.module.js';
     }),
   ],
 })
-export class ApplicationModule {}
+export class AppModule {}

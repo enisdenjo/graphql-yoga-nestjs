@@ -3,7 +3,7 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 import { createYoga, YogaServerInstance } from 'graphql-yoga';
 import { Logger } from '@nestjs/common';
 import { AbstractGraphQLDriver } from '@nestjs/graphql';
-import { YogaDriverConfig } from '../interfaces/index.js';
+import { YogaDriverConfig } from '../interfaces/index';
 
 export abstract class YogaBaseDriver<
   T extends YogaDriverConfig = YogaDriverConfig,

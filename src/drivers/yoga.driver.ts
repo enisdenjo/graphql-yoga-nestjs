@@ -3,8 +3,8 @@ import { printSchema } from 'graphql';
 import type { ExecutionParams } from 'subscriptions-transport-ws';
 import { Injectable } from '@nestjs/common';
 import { GqlSubscriptionService, SubscriptionConfig } from '@nestjs/graphql';
-import { YogaDriverConfig } from '../interfaces/index.js';
-import { YogaBaseDriver } from './yoga-base.driver.js';
+import { YogaDriverConfig } from '../interfaces/index';
+import { YogaBaseDriver } from './yoga-base.driver';
 
 @Injectable()
 export class YogaDriver extends YogaBaseDriver {

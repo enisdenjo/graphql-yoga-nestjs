@@ -2,7 +2,7 @@
 import { GatewayConfig } from '@apollo/gateway';
 import { Type } from '@nestjs/common';
 import { GqlModuleAsyncOptions, GqlOptionsFactory, GraphQLDriver } from '@nestjs/graphql';
-import { YogaDriverConfig } from './yoga-driver-config.interface.js';
+import { YogaDriverConfig } from './yoga-driver-config.interface';
 
 export interface YogaGatewayDriverConfig<TDriver extends GraphQLDriver = any> {
   /**

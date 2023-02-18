@@ -2,9 +2,9 @@
 import type { ApolloGateway } from '@apollo/gateway';
 import { useApolloFederation as useApolloFederationPlugin } from '@envelop/apollo-federation';
 import { Injectable } from '@nestjs/common';
-import { loadPackage } from '@nestjs/common/utils/load-package.util.js';
-import { YogaGatewayDriverConfig } from '../interfaces/index.js';
-import { YogaBaseDriver } from './yoga-base.driver.js';
+import { loadPackage } from '@nestjs/common/utils/load-package.util';
+import { YogaGatewayDriverConfig } from '../interfaces/index';
+import { YogaBaseDriver } from './yoga-base.driver';
 
 @Injectable()
 export class YogaGatewayDriver extends YogaBaseDriver<YogaGatewayDriverConfig> {

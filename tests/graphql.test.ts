@@ -1,50 +1,45 @@
-import request from 'supertest';
-import { afterEach, beforeEach, describe, it } from 'vitest';
+import { afterAll, beforeAll, it } from 'vitest';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { ApplicationModule } from '../graphql/app.module.js';
+import { AppModule } from './fixtures/graphql/app.module';
+import { gqlf } from './utils/gqlf';
 
-describe('GraphQL', () => {
-  let app: INestApplication;
+let app: INestApplication;
 
-  beforeEach(async () => {
-    const module = await Test.createTestingModule({
-      imports: [ApplicationModule],
-    }).compile();
+beforeAll(async () => {
+  const module = await Test.createTestingModule({
+    imports: [AppModule],
+  }).compile();
+  app = module.createNestApplication();
+  await app.init();
+  await app.listen(0);
+});
 
-    app = module.createNestApplication();
-    await app.init();
+afterAll(() => app.close());
+
+it('should return query result', async ({ expect }) => {
+  const res = await gqlf(app, {
+    query: /* GraphQL */ `
+      {
+        getCats {
+          id
+          color
+          weight
+        }
+      }
+    `,
   });
-
-  it(`should return query result`, () => {
-    return request(app.getHttpServer())
-      .post('/graphql')
-      .send({
-        operationName: null,
-        variables: {},
-        query: `
-        {
-          getCats {
-            id,
-            color,
-            weight
-          }
-        }`,
-      })
-      .expect(200, {
-        data: {
-          getCats: [
-            {
-              id: 1,
-              color: 'black',
-              weight: 5,
-            },
-          ],
-        },
-      });
-  });
-
-  afterEach(async () => {
-    await app.close();
-  });
+  await expect(res.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "data": {
+        "getCats": [
+          {
+            "color": "black",
+            "id": 1,
+            "weight": 5,
+          },
+        ],
+      },
+    }
+  `);
 });
