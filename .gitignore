@@ -5,3 +5,4 @@ lib
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
+tsconfig.tsbuildinfo
