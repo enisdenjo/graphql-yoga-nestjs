@@ -658,6 +658,7 @@ __metadata:
     "@nestjs/platform-express": ^9.3.9
     "@nestjs/platform-fastify": ^9.3.9
     "@nestjs/testing": ^9.3.9
+    "@swc/core": ^1.3.35
     "@theguild/eslint-config": ^0.7.0
     "@theguild/prettier-config": ^1.1.0
     "@types/eslint": ^8.21.1
@@ -670,6 +671,7 @@ __metadata:
     reflect-metadata: ^0.1.13
     rxjs: ^7.8.0
     typescript: 4.9.4
+    unplugin-swc: ^1.3.2
     vitest: ^0.28.5
   peerDependencies:
     "@apollo/gateway": ^2.0.0
@@ -1082,6 +1084,115 @@ __metadata:
   version: 1.2.0
   resolution: "@rushstack/eslint-patch@npm:1.2.0"
   checksum: faa749faae0e83c26ae9eb00ad36a897ac78f3cf27da8e8ff21c00bcf7973b598d823d8f2b3957ef66079288bcf577f94df831eae2d65f3f68d8ca32f18b6aff
+  languageName: node
+  linkType: hard
+
+"@swc/core-darwin-arm64@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-darwin-arm64@npm:1.3.35"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-darwin-x64@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-darwin-x64@npm:1.3.35"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm-gnueabihf@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.35"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-gnu@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.35"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-musl@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.35"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-gnu@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.35"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-musl@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.35"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-arm64-msvc@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.35"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-ia32-msvc@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.35"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-x64-msvc@npm:1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.35"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core@npm:^1.3.35":
+  version: 1.3.35
+  resolution: "@swc/core@npm:1.3.35"
+  dependencies:
+    "@swc/core-darwin-arm64": 1.3.35
+    "@swc/core-darwin-x64": 1.3.35
+    "@swc/core-linux-arm-gnueabihf": 1.3.35
+    "@swc/core-linux-arm64-gnu": 1.3.35
+    "@swc/core-linux-arm64-musl": 1.3.35
+    "@swc/core-linux-x64-gnu": 1.3.35
+    "@swc/core-linux-x64-musl": 1.3.35
+    "@swc/core-win32-arm64-msvc": 1.3.35
+    "@swc/core-win32-ia32-msvc": 1.3.35
+    "@swc/core-win32-x64-msvc": 1.3.35
+  dependenciesMeta:
+    "@swc/core-darwin-arm64":
+      optional: true
+    "@swc/core-darwin-x64":
+      optional: true
+    "@swc/core-linux-arm-gnueabihf":
+      optional: true
+    "@swc/core-linux-arm64-gnu":
+      optional: true
+    "@swc/core-linux-arm64-musl":
+      optional: true
+    "@swc/core-linux-x64-gnu":
+      optional: true
+    "@swc/core-linux-x64-musl":
+      optional: true
+    "@swc/core-win32-arm64-msvc":
+      optional: true
+    "@swc/core-win32-ia32-msvc":
+      optional: true
+    "@swc/core-win32-x64-msvc":
+      optional: true
+  checksum: 263e01904fe4f4d6cbf6deef90439d6d93f28c04252d917fc290aadde131a1716820eb488a615b3c0dbe3f48d6d7ac0f1c886e2c2acd07a72e3d99e4a245b3de
   languageName: node
   linkType: hard
 
@@ -2153,7 +2264,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:3.5.3":
+"chokidar@npm:3.5.3, chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
   dependencies:
@@ -7487,6 +7598,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"unplugin-swc@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "unplugin-swc@npm:1.3.2"
+  dependencies:
+    unplugin: ^0.6.0
+  peerDependencies:
+    "@swc/core": ^1.2.108
+  checksum: 3aea46ef5980603ec8842597c4d75254d8c09729ece3f221ab2b51f589bbbe4c53cd54d617baadc2786a68c4ddcf27bf53a4cd91226ff775d5b5736c2091d6c4
+  languageName: node
+  linkType: hard
+
+"unplugin@npm:^0.6.0":
+  version: 0.6.3
+  resolution: "unplugin@npm:0.6.3"
+  dependencies:
+    chokidar: ^3.5.3
+    webpack-sources: ^3.2.3
+    webpack-virtual-modules: ^0.4.3
+  peerDependencies:
+    esbuild: ">=0.13"
+    rollup: ^2.50.0
+    vite: ^2.3.0
+    webpack: 4 || 5
+  peerDependenciesMeta:
+    esbuild:
+      optional: true
+    rollup:
+      optional: true
+    vite:
+      optional: true
+    webpack:
+      optional: true
+  checksum: 14e1f9c941e87e97fdda3efc745183e027de7d8b88eed8be5fa0708c2ec5dd114cc10e569c4b9dd2dafc89ba84d8bf90935d01e02cef510b7faedaa8af2b081f
+  languageName: node
+  linkType: hard
+
 "update-browserslist-db@npm:^1.0.10":
   version: 1.0.10
   resolution: "update-browserslist-db@npm:1.0.10"
@@ -7743,6 +7890,20 @@ __metadata:
   version: 3.0.1
   resolution: "webidl-conversions@npm:3.0.1"
   checksum: c92a0a6ab95314bde9c32e1d0a6dfac83b578f8fa5f21e675bc2706ed6981bc26b7eb7e6a1fab158e5ce4adf9caa4a0aee49a52505d4d13c7be545f15021b17c
+  languageName: node
+  linkType: hard
+
+"webpack-sources@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "webpack-sources@npm:3.2.3"
+  checksum: 989e401b9fe3536529e2a99dac8c1bdc50e3a0a2c8669cbafad31271eadd994bc9405f88a3039cd2e29db5e6d9d0926ceb7a1a4e7409ece021fe79c37d9c4607
+  languageName: node
+  linkType: hard
+
+"webpack-virtual-modules@npm:^0.4.3":
+  version: 0.4.6
+  resolution: "webpack-virtual-modules@npm:0.4.6"
+  checksum: cb056ba8c50b35436ae43149554b051b80065b0cf79f2d528ca692ddf344a422ac71c415adb9da83dc3acc6e7e58f518388cc1cd11cb4fa29dc04f2c4494afe3
   languageName: node
   linkType: hard
 
