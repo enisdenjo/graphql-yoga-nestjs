@@ -43,7 +43,7 @@ jobs:
         run: yarn type-check
 
   test:
-    name: Test
+    name: Test (Node.js v${{ matrix.node_version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
