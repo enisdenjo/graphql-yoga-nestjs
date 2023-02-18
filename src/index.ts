@@ -135,19 +135,15 @@ export abstract class AbstractYogaDriver<
 
     this.yoga = yoga as YogaDriverServerInstance<Platform>;
 
-    app.route({
-      url: yoga.graphqlEndpoint,
-      method: ['GET', 'POST', 'OPTIONS'],
-      handler: async (req, reply) => {
-        const response = await yoga.handleNodeRequest(req, {
-          req,
-          reply,
-        });
-        response.headers.forEach((value, key) => reply.header(key, value));
-        reply.status(response.status);
-        reply.send(response.body);
-        return reply;
-      },
+    app.all(yoga.graphqlEndpoint, async (req, reply) => {
+      const response = await yoga.handleNodeRequest(req, {
+        req,
+        reply,
+      });
+      response.headers.forEach((value, key) => reply.header(key, value));
+      reply.status(response.status);
+      reply.send(response.body);
+      return reply;
     });
   }
 }
