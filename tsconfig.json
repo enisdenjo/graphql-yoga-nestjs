@@ -12,5 +12,5 @@
     "checkJs": true,
     "experimentalDecorators": true
   },
-  "include": ["src"]
+  "include": [".eslintrc.cjs", "vitest.config.ts", "src", "tests"]
 }

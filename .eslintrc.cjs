@@ -1,4 +1,7 @@
-module.exports = {
+/**
+ * @type {import('eslint').Linter.Config}
+ */
+const config = {
   extends: ['@theguild'],
   rules: {
     '@typescript-eslint/no-explicit-any': 'warn',
@@ -8,5 +11,7 @@ module.exports = {
     'no-empty': 'off',
     'unicorn/prefer-node-protocol': 'off',
     'import/extensions': 'off',
+    'import/no-default-export': 'off',
   },
 };
+module.exports = config;
