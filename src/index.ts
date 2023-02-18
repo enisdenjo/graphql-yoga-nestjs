@@ -37,13 +37,9 @@ export type YogaDriverServerInstance<Platform extends YogaDriverPlatform> = Yoga
 export type YogaDriverConfig<Platform extends YogaDriverPlatform = 'express'> = GqlModuleOptions &
   YogaDriverServerOptions<Platform> & {
     /**
-     * If enabled, `subscriptions-transport-ws` will be automatically registered.
+     * Subscriptions configuration. Passing `true` will install only `graphql-ws`.
      */
-    installSubscriptionHandlers?: boolean;
-    /**
-     * Subscriptions configuration.
-     */
-    subscriptions?: YogaDriverSubscriptionConfig;
+    subscriptions?: boolean | YogaDriverSubscriptionConfig;
   };
 
 export type YogaDriverSubscriptionConfig = {
@@ -174,12 +170,17 @@ export class YogaDriver<
 
     await super.start(opts);
 
-    if (opts.subscriptions || opts.installSubscriptionHandlers) {
+    if (opts.subscriptions) {
       if (!opts.schema) {
         throw new Error('Schema is required when using subscriptions');
       }
 
-      const config: SubscriptionConfig = opts.subscriptions || {};
+      const config: SubscriptionConfig =
+        opts.subscriptions === true
+          ? {
+              'graphql-ws': true,
+            }
+          : opts.subscriptions;
 
       if (config['graphql-ws']) {
         config['graphql-ws'] = typeof config['graphql-ws'] === 'object' ? config['graphql-ws'] : {};

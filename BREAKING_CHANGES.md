@@ -10,3 +10,5 @@
 - Optional federation drivers have been moved to `@graphql-yoga/nestjs/lib/federation`
 - `@apollo/gateway` `@envelop/apollo-federation` are optional peer dependencies and have to be
   installed if federation drivers are used
+- `installSubscriptionHandlers` driver option has been dropped, please use the `subscriptions`
+  option
