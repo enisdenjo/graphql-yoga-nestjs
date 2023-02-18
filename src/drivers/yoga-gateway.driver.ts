@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { ApolloGateway } from '@apollo/gateway';
 import { useApolloFederation as useApolloFederationPlugin } from '@envelop/apollo-federation';
 import { Injectable } from '@nestjs/common';

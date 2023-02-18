@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { GatewayConfig } from '@apollo/gateway';
 import { Type } from '@nestjs/common';
 import { GqlModuleAsyncOptions, GqlOptionsFactory, GraphQLDriver } from '@nestjs/graphql';

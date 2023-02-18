@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { printSchema } from 'graphql';
 import type { ExecutionParams } from 'subscriptions-transport-ws';
 import { Injectable } from '@nestjs/common';

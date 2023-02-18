@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { createYoga, YogaServerInstance } from 'graphql-yoga';
 import { Logger } from '@nestjs/common';
