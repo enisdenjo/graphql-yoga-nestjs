@@ -13,5 +13,5 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true // necessary for nestjs dependency injection
   },
-  "include": [".eslintrc.cjs", "vitest.config.ts", "src", "tests"]
+  "include": [".eslintrc.cjs", "vitest.config.ts", "src", "tests", "scripts"]
 }
