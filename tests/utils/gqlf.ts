@@ -11,10 +11,11 @@ export interface GQLFParams {
 export interface GQLFOptions {
   /** @default /graphql */
   endpoint?: string;
+  signal?: AbortSignal;
 }
 
 export async function gqlf(app: INestApplication, params: GQLFParams, opts: GQLFOptions = {}) {
-  const { endpoint = '/graphql' } = opts;
+  const { endpoint = '/graphql', signal } = opts;
   const url = await app.getUrl();
   return await fetch(url + endpoint, {
     method: 'POST',
@@ -22,5 +23,6 @@ export async function gqlf(app: INestApplication, params: GQLFParams, opts: GQLF
       'content-type': 'application/json',
     },
     body: JSON.stringify(params),
+    signal,
   });
 }
