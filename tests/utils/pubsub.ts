@@ -1,6 +1,9 @@
-export type Iterator<T> = AsyncGenerator<T, void, T>;
+export interface Generator<T> {
+  gen: AsyncGenerator<T, void, T>;
+  next(val: T): void;
+}
 
-function createIterator<T>(): Iterator<T> {
+function createGenerator<T>(): Generator<T> {
   const pending: T[] = [];
 
   const deferred = {
@@ -11,7 +14,7 @@ function createIterator<T>(): Iterator<T> {
     },
   };
 
-  const iterator = (async function* iterator() {
+  const gen = (async function* gen() {
     for (;;) {
       if (!pending.length) {
         // only wait if there are no pending messages available
@@ -33,7 +36,7 @@ function createIterator<T>(): Iterator<T> {
     }
   })();
 
-  iterator.throw = async err => {
+  gen.throw = async err => {
     if (!deferred.done) {
       deferred.done = true;
       deferred.error = err;
@@ -42,7 +45,7 @@ function createIterator<T>(): Iterator<T> {
     return { done: true, value: undefined };
   };
 
-  iterator.return = async () => {
+  gen.return = async () => {
     if (!deferred.done) {
       deferred.done = true;
       deferred.resolve();
@@ -50,24 +53,30 @@ function createIterator<T>(): Iterator<T> {
     return { done: true, value: undefined };
   };
 
-  return iterator;
+  return {
+    gen,
+    next(val) {
+      pending.push(val);
+      deferred.resolve();
+    },
+  };
 }
 
 export function createPubSub<T>() {
-  const i: Iterator<T>[] = [];
+  const nexts: Generator<T>['next'][] = [];
   return {
     pub(val: T) {
-      i.forEach(iterator => iterator.next(val));
+      nexts.forEach(next => next(val));
     },
     sub() {
-      const iterator = createIterator<T>();
-      i.push(iterator);
-      const origReturn = iterator.return;
-      iterator.return = () => {
-        i.splice(i.indexOf(iterator), 1);
+      const { gen, next } = createGenerator<T>();
+      nexts.push(next);
+      const origReturn = gen.return;
+      gen.return = () => {
+        nexts.splice(nexts.indexOf(next), 1);
         return origReturn();
       };
-      return iterator;
+      return gen;
     },
   };
 }
