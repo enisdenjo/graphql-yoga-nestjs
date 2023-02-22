@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, it } from 'vitest';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { AbortController } from '@whatwg-node/fetch';
 import { AppModule } from './fixtures/graphql/app.module';
 import { gqlf } from './utils/gqlf';
 
