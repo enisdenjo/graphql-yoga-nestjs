@@ -48,7 +48,7 @@
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier -c .",
-    "test": "vitest tests",
+    "test": "vitest",
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
