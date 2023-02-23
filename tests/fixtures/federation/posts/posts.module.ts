@@ -10,7 +10,9 @@ import { UsersResolver } from './users.resolver';
   imports: [
     GraphQLModule.forRoot<YogaFederationDriverConfig>({
       driver: YogaFederationDriver,
-      autoSchemaFile: true,
+      autoSchemaFile: {
+        federation: 2,
+      },
       buildSchemaOptions: {
         orphanedTypes: [User],
       },

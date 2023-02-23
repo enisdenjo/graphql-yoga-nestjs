@@ -9,7 +9,9 @@ import { UsersService } from './users.service';
   imports: [
     GraphQLModule.forRoot<YogaFederationDriverConfig>({
       driver: YogaFederationDriver,
-      autoSchemaFile: true,
+      autoSchemaFile: {
+        federation: 2,
+      },
     }),
   ],
 })
