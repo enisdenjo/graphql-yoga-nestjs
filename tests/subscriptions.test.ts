@@ -18,58 +18,24 @@ beforeAll(async () => {
 afterAll(() => app.close());
 
 it('should subscribe using sse', async ({ expect }) => {
-  const ctrl = new AbortController();
-  const sub = await gqlf(
-    app,
-    {
-      query: /* GraphQL */ `
-        subscription {
-          catCreated {
-            name
-          }
-        }
-      `,
-    },
-    { signal: ctrl.signal },
-  );
-  let data = '';
-  (async () => {
-    for await (const chunk of sub.body!) {
-      data += chunk.toString();
-    }
-  })().catch(() => {
-    // noop
-  });
-
-  const mut = await gqlf(app, {
+  const sub = await gqlf(app, {
     query: /* GraphQL */ `
-      mutation {
-        createCat(name: "Dog") {
-          name
-        }
+      subscription {
+        greetings
       }
     `,
   });
 
-  await expect(mut.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "data": {
-        "createCat": {
-          "name": "Dog",
-        },
-      },
-    }
-  `);
+  await expect(sub.text()).resolves.toMatchInlineSnapshot(`
+    "data: {\\"data\\":{\\"greetings\\":\\"Hi\\"}}
 
-  // let the subscriptions flush
-  await new Promise(resolve => setTimeout(resolve, 0));
+    data: {\\"data\\":{\\"greetings\\":\\"Bonjour\\"}}
 
-  ctrl.abort();
+    data: {\\"data\\":{\\"greetings\\":\\"Hola\\"}}
 
-  expect(data).toMatchInlineSnapshot(`
-    ":
+    data: {\\"data\\":{\\"greetings\\":\\"Ciao\\"}}
 
-    data: {\\"data\\":{\\"catCreated\\":{\\"name\\":\\"Dog\\"}}}
+    data: {\\"data\\":{\\"greetings\\":\\"Zdravo\\"}}
 
     "
   `);
