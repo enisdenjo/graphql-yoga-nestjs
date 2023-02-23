@@ -51,7 +51,7 @@ before you get started off.
 
 Feel free to open issues, pull requests and create discussions. Community support is always welcome!
 
-### Code of Conduct
+## Code of Conduct
 
 Help us keep Yoga open and inclusive. Please read and follow our
 [ of Conduct](https://github.com/the-guild-org/Stack/blob/master/CODE_OF_CONDUCT.md) as adopted from
