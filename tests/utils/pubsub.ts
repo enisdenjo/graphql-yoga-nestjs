@@ -1,6 +1,6 @@
 export interface Generator<T> {
   gen: AsyncGenerator<T, void, T>;
-  next(val: T): void;
+  produce(val: T): void;
 }
 
 function createGenerator<T>(): Generator<T> {
@@ -55,7 +55,7 @@ function createGenerator<T>(): Generator<T> {
 
   return {
     gen,
-    next(val) {
+    produce(val) {
       pending.push(val);
       deferred.resolve();
     },
@@ -63,17 +63,17 @@ function createGenerator<T>(): Generator<T> {
 }
 
 export function createPubSub<T>() {
-  const nexts: Generator<T>['next'][] = [];
+  const producers: Generator<T>['produce'][] = [];
   return {
     pub(val: T) {
-      nexts.forEach(next => next(val));
+      producers.forEach(next => next(val));
     },
     sub() {
-      const { gen, next } = createGenerator<T>();
-      nexts.push(next);
+      const { gen, produce } = createGenerator<T>();
+      producers.push(produce);
       const origReturn = gen.return;
       gen.return = () => {
-        nexts.splice(nexts.indexOf(next), 1);
+        producers.splice(producers.indexOf(produce), 1);
         return origReturn();
       };
       return gen;
