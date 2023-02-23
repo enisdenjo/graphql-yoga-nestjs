@@ -1,9 +1,6 @@
-import {
-  YogaFederationDriver,
-  YogaFederationDriverConfig,
-} from '@graphql-yoga/nestjs/lib/federation';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { YogaFederationDriver, YogaFederationDriverConfig } from '../../../../src/federation';
 import { UsersResolver } from './users.resolver';
 import { UsersService } from './users.service';
 
