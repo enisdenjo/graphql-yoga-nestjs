@@ -47,6 +47,26 @@ TODO
 
 TODO
 
+### Apollo Federation
+
+<small>⚠️ Apollo Federation drivers should be used with `graphql@15`.</small>
+
+This integration supports building Apollo Federation Gateways and Services through `federation`
+drivers:
+
+```typescript
+import { YogaFederationDriver, YogaGatewayDriver } from '@graphql-yoga/nestjs/lib/federation'
+```
+
+Additional dependencies need to be installed:
+
+```shell
+npm i @apollo/gateway @envelop/apollo-federation
+```
+
+A complete example is available in
+[examples/graphql-federation-code-first](examples/graphql-federation-code-first).
+
 ## Contributing
 
 If this is your first time contributing to this project, please do read our
