@@ -205,6 +205,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@apollo/cache-control-types@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@apollo/cache-control-types@npm:1.0.2"
+  peerDependencies:
+    graphql: 14.x || 15.x || 16.x
+  checksum: 1e00c57b45fbd8656c96cdcd254658f332c1955bd8db9274c665e1c6ef8ac881a6b6a3f953b60638ae5f59fdfce6b005adb9a5b945b694903579a9665499e823
+  languageName: node
+  linkType: hard
+
 "@apollo/composition@npm:2.3.2":
   version: 2.3.2
   resolution: "@apollo/composition@npm:2.3.2"
@@ -417,6 +426,18 @@ __metadata:
   peerDependencies:
     graphql: ^15.8.0 || ^16.0.0
   checksum: f5233d8d1a62148215f6e9ec35fbc181d778084715b30fe596cfc2572b51bc2be34f3a4150570c14dd0cc534ea59d6ab333f54c27790d13f5443367e98580aac
+  languageName: node
+  linkType: hard
+
+"@apollo/subgraph@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "@apollo/subgraph@npm:2.3.2"
+  dependencies:
+    "@apollo/cache-control-types": ^1.0.2
+    "@apollo/federation-internals": 2.3.2
+  peerDependencies:
+    graphql: ^16.5.0
+  checksum: 047bf80079d58f57f7c93c99735375899528e46189f1a1bb9ce12114c66716ca49d02b941694a2f8167e1c6a1054a51ba85255e5052422605713c8c450f57a75
   languageName: node
   linkType: hard
 
@@ -1604,6 +1625,7 @@ __metadata:
   resolution: "@graphql-yoga/nestjs@workspace:."
   dependencies:
     "@apollo/gateway": ^2.3.2
+    "@apollo/subgraph": ^2.3.2
     "@envelop/apollo-federation": ^3.0.5
     "@envelop/core": ^3.0.6
     "@nestjs/common": ^9.2.1
@@ -7473,13 +7495,6 @@ __metadata:
   version: 16.6.0
   resolution: "graphql@npm:16.6.0"
   checksum: bf1d9e3c1938ce3c1a81e909bd3ead1ae4707c577f91cff1ca2eca474bfbc7873d5d7b942e1e9777ff5a8304421dba57a4b76d7a29eb19de8711cb70e3c2415e
-  languageName: node
-  linkType: hard
-
-"graphql@npm:^15":
-  version: 15.8.0
-  resolution: "graphql@npm:15.8.0"
-  checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
   languageName: node
   linkType: hard
 
@@ -14048,102 +14063,6 @@ __metadata:
     ts-node: 10.4.0
     tsconfig-paths: 3.11.0
     typescript: 4.9.5
-  languageName: unknown
-  linkType: soft
-
-"yoga-nest-federation-gateway@workspace:examples/graphql-federation-code-first/gateway":
-  version: 0.0.0-use.local
-  resolution: "yoga-nest-federation-gateway@workspace:examples/graphql-federation-code-first/gateway"
-  dependencies:
-    "@apollo/gateway": 0.51.0
-    "@graphql-yoga/nestjs": "workspace:*"
-    "@nestjs/cli": 8.1.5
-    "@nestjs/common": 8.4.7
-    "@nestjs/core": 8.4.7
-    "@nestjs/platform-express": 8.4.7
-    "@nestjs/platform-fastify": 8.4.7
-    "@nestjs/schematics": 8.0.8
-    "@nestjs/testing": 8.2.3
-    "@types/express": 4.17.13
-    "@types/node": 16.11.26
-    "@types/supertest": 2.0.11
-    class-transformer: 0.5.1
-    class-validator: 0.13.2
-    graphql: ^15
-    graphql-subscriptions: 2.0.0
-    jest: 27.5.1
-    reflect-metadata: 0.1.13
-    rxjs: 7.4.0
-    supertest: 6.1.6
-    ts-jest: 27.0.7
-    ts-loader: 9.2.8
-    ts-node: 10.4.0
-    tsconfig-paths: 3.11.0
-    typescript: 4.4.2
-  languageName: unknown
-  linkType: soft
-
-"yoga-nest-federation-service-posts@workspace:examples/graphql-federation-code-first/posts-application":
-  version: 0.0.0-use.local
-  resolution: "yoga-nest-federation-service-posts@workspace:examples/graphql-federation-code-first/posts-application"
-  dependencies:
-    "@apollo/gateway": 0.51.0
-    "@graphql-yoga/nestjs": "workspace:*"
-    "@nestjs/cli": 8.1.5
-    "@nestjs/common": 8.4.7
-    "@nestjs/core": 8.4.7
-    "@nestjs/platform-express": 8.4.7
-    "@nestjs/platform-fastify": 8.4.7
-    "@nestjs/schematics": 8.0.8
-    "@nestjs/testing": 8.2.3
-    "@types/express": 4.17.13
-    "@types/node": 16.11.26
-    "@types/supertest": 2.0.11
-    class-transformer: 0.5.1
-    class-validator: 0.13.2
-    graphql: ^15
-    graphql-subscriptions: 2.0.0
-    jest: 27.5.1
-    reflect-metadata: 0.1.13
-    rxjs: 7.4.0
-    supertest: 6.1.6
-    ts-jest: 27.0.7
-    ts-loader: 9.2.8
-    ts-node: 10.4.0
-    tsconfig-paths: 3.11.0
-    typescript: 4.4.2
-  languageName: unknown
-  linkType: soft
-
-"yoga-nest-federation-service-users@workspace:examples/graphql-federation-code-first/users-application":
-  version: 0.0.0-use.local
-  resolution: "yoga-nest-federation-service-users@workspace:examples/graphql-federation-code-first/users-application"
-  dependencies:
-    "@apollo/gateway": 0.51.0
-    "@graphql-yoga/nestjs": "workspace:*"
-    "@nestjs/cli": 8.1.5
-    "@nestjs/common": 8.4.7
-    "@nestjs/core": 8.4.7
-    "@nestjs/platform-express": 8.4.7
-    "@nestjs/platform-fastify": 8.4.7
-    "@nestjs/schematics": 8.0.8
-    "@nestjs/testing": 8.2.3
-    "@types/express": 4.17.13
-    "@types/node": 16.11.26
-    "@types/supertest": 2.0.11
-    class-transformer: 0.5.1
-    class-validator: 0.13.2
-    graphql: ^15
-    graphql-subscriptions: 2.0.0
-    jest: 27.5.1
-    reflect-metadata: 0.1.13
-    rxjs: 7.4.0
-    supertest: 6.1.6
-    ts-jest: 27.0.7
-    ts-loader: 9.2.8
-    ts-node: 10.4.0
-    tsconfig-paths: 3.11.0
-    typescript: 4.4.2
   languageName: unknown
   linkType: soft
 
