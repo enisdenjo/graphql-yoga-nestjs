@@ -8,7 +8,7 @@ let app: INestApplication;
 
 beforeAll(async () => {
   const module = await Test.createTestingModule({
-    imports: [AppModule],
+    imports: [AppModule.forRoot()],
   }).compile();
   app = module.createNestApplication();
   await app.listen(0);
