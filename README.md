@@ -7,6 +7,10 @@
 
   <h6>Fully-featured GraphQL server as a plugin for the progressive Node.js framework.</h6>
 
+<p>
+Check out the <a href="https://the-guild.dev/graphql/yoga-server/docs/integrations/integration-with-nestjs">integration with NestJS documentation</a>!
+</p>
+
   <br />
 </div>
 
