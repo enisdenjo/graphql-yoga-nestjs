@@ -2,7 +2,7 @@ import type { ApolloGateway, GatewayConfig } from '@apollo/gateway';
 import { useApolloFederation as useApolloFederationPlugin } from '@envelop/apollo-federation';
 import { Injectable, Type } from '@nestjs/common';
 import { loadPackage } from '@nestjs/common/utils/load-package.util';
-import type { GraphQLFederationFactory } from '@nestjs/graphql';
+import { GraphQLFederationFactory } from '@nestjs/graphql';
 import { AbstractYogaDriver, YogaDriver, YogaDriverConfig, YogaDriverPlatform } from './index';
 
 export type YogaFederationDriverConfig<Platform extends YogaDriverPlatform = 'express'> =
