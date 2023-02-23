@@ -49,7 +49,7 @@ TODO
 
 ### Apollo Federation
 
-<small>⚠️ Apollo Federation drivers should be used with `graphql@15`.</small>
+<small>⚠️ Drivers should be used with `graphql@15`.</small>
 
 This integration supports building Apollo Federation Gateways and Services through `federation`
 drivers:
