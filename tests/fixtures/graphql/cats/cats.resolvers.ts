@@ -46,4 +46,11 @@ export class CatsResolvers {
   catCreated() {
     return catCreated.sub();
   }
+
+  @Subscription('greetings')
+  async *greetings() {
+    for (const hi of ['Hi', 'Bonjour', 'Hola', 'Ciao', 'Zdravo']) {
+      yield { greetings: hi };
+    }
+  }
 }
