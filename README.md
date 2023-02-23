@@ -51,8 +51,6 @@ before you get started off.
 
 Feel free to open issues, pull requests and create discussions. Community support is always welcome!
 
-<p>&nbsp;</p>
-
 ### Code of Conduct
 
 Help us keep Yoga open and inclusive. Please read and follow our
