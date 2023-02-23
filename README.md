@@ -61,7 +61,7 @@ import { YogaFederationDriver, YogaGatewayDriver } from '@graphql-yoga/nestjs/li
 Additional dependencies need to be installed:
 
 ```shell
-npm i @apollo/gateway @envelop/apollo-federation
+npm i @apollo/gateway @envelop/apollo-federation @envelop/core
 ```
 
 A complete example is available in

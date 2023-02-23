@@ -11,7 +11,10 @@
     "useUnknownInCatchVariables": false,
     "checkJs": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true // necessary for nestjs dependency injection
+    "emitDecoratorMetadata": true, // necessary for nestjs dependency injection
+    "paths": {
+      "@graphql-yoga/nestjs": ["./src/index.ts"]
+    }
   },
-  "include": [".eslintrc.cjs", "vitest.config.ts", "src", "tests", "scripts"]
+  "include": [".eslintrc.cjs", "vitest.config.ts", "src", "tests", "scripts", "examples/**/*"]
 }

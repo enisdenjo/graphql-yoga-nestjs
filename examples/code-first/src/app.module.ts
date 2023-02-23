@@ -12,7 +12,7 @@ import { RecipesModule } from './recipes/recipes.module';
       driver: YogaDriver,
       autoSchemaFile: 'schema.gql',
       transformSchema: schema => upperDirectiveTransformer(schema, 'upper'),
-      installSubscriptionHandlers: true,
+      subscriptions: true,
       buildSchemaOptions: {
         directives: [
           new GraphQLDirective({

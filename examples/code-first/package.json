@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@apollo/gateway": "0.51.0",
-    "@graphql-yoga/nestjs": "0.3.0",
+    "@graphql-yoga/nestjs": "workspace:*",
     "@nestjs/common": "9.3.7",
     "@nestjs/core": "9.3.7",
     "@nestjs/graphql": "10.2.0",

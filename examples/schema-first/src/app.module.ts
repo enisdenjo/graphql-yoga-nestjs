@@ -9,7 +9,7 @@ import { CatsModule } from './cats/cats.module';
     GraphQLModule.forRoot<YogaDriverConfig>({
       driver: YogaDriver,
       typePaths: ['./**/*.graphql'],
-      installSubscriptionHandlers: true,
+      subscriptions: true,
     }),
   ],
 })
