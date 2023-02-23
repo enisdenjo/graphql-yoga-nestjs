@@ -1,10 +1,10 @@
 import { afterAll, beforeAll, it } from 'vitest';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { fetch } from '@whatwg-node/fetch';
 import { AppModule } from './fixtures/graphql/app.module';
-import { gqlf } from './utils/gqlf';
 
-let app: INestApplication;
+let app: INestApplication, url: string;
 
 beforeAll(async () => {
   const module = await Test.createTestingModule({
@@ -12,21 +12,28 @@ beforeAll(async () => {
   }).compile();
   app = module.createNestApplication();
   await app.listen(0);
+  url = (await app.getUrl()) + '/graphql';
 });
 
 afterAll(() => app.close());
 
 it('should return query result', async ({ expect }) => {
-  const res = await gqlf(app, {
-    query: /* GraphQL */ `
-      {
-        getCats {
-          id
-          color
-          weight
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: /* GraphQL */ `
+        {
+          getCats {
+            id
+            color
+            weight
+          }
         }
-      }
-    `,
+      `,
+    }),
   });
   await expect(res.json()).resolves.toMatchInlineSnapshot(`
     {
