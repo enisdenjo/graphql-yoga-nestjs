@@ -1,4 +1,3 @@
-import { createClient } from 'graphql-ws';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { afterAll, beforeAll, it } from 'vitest';
 import { WebSocket } from 'ws';
@@ -84,4 +83,7 @@ it('should subscribe using subscriptions-transport-ws', async ({ expect }) => {
         },
       ]
     `);
+
+  // somehow, even in lazy mode, it keeps the connection after subscriptions complete
+  client.close();
 });
