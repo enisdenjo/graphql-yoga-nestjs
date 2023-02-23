@@ -5,13 +5,13 @@ import { Field, InputType } from '@nestjs/graphql';
 export class NewRecipeInput {
   @Field()
   @MaxLength(30)
-  title: string;
+  title!: string;
 
   @Field({ nullable: true })
   @IsOptional()
   @Length(30, 255)
   description?: string;
 
-  @Field(type => [String])
-  ingredients: string[];
+  @Field(_type => [String])
+  ingredients!: string[];
 }

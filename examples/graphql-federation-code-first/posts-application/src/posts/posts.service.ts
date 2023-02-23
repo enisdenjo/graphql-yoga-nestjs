@@ -14,7 +14,7 @@ export class PostsService {
     return this.posts.filter(post => post.authorId === Number(authorId));
   }
 
-  findOne(postId: number): Post {
+  findOne(postId: number): Post | undefined {
     return this.posts.find(post => post.id === postId);
   }
 

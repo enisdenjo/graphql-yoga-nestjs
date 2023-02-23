@@ -3,5 +3,5 @@ import { CreateCatInput } from '../../graphql.schema';
 
 export class CreateCatDto extends CreateCatInput {
   @Min(1)
-  age: number;
+  age!: number;
 }

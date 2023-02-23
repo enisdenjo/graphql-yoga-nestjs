@@ -17,7 +17,7 @@ export class CatsService {
     return this.cats;
   }
 
-  findOneById(id: number): Cat {
+  findOneById(id: number): Cat | undefined {
     return this.cats.find(cat => cat.id === id);
   }
 }

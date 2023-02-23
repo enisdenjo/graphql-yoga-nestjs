@@ -8,7 +8,7 @@ export class UsersService {
     { id: 2, name: 'Richard Roe' },
   ];
 
-  findById(id: number): User {
+  findById(id: number): User | undefined {
     return this.users.find(user => user.id === Number(id));
   }
 }

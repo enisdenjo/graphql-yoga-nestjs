@@ -7,7 +7,7 @@ export class CatOwnerResolver {
   constructor(private readonly ownersService: OwnersService) {}
 
   @ResolveField()
-  async owner(@Parent() cat: Cat & { ownerId: number }): Promise<Owner> {
+  owner(@Parent() cat: Cat & { ownerId: number }): Owner | undefined {
     return this.ownersService.findOneById(cat.ownerId);
   }
 }

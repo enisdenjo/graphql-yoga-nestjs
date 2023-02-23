@@ -53,7 +53,6 @@ export type YogaDriverSubscriptionConfig = {
 export abstract class AbstractYogaDriver<
   Platform extends YogaDriverPlatform,
 > extends AbstractGraphQLDriver<YogaDriverConfig<Platform>> {
-  // @ts-expect-error this class has no constructor
   protected yoga: YogaDriverServerInstance<Platform>;
 
   public async start(options: YogaDriverConfig<Platform>) {

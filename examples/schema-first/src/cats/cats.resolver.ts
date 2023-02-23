@@ -19,10 +19,10 @@ export class CatsResolver {
   }
 
   @Query('cat')
-  async findOneById(
+  findOneById(
     @Args('id', ParseIntPipe)
     id: number,
-  ): Promise<Cat> {
+  ): Cat | undefined {
     return this.catsService.findOneById(id);
   }
 

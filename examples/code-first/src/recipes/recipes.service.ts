@@ -11,19 +11,19 @@ export class RecipesService {
    * Left for demonstration purposes
    */
 
-  async create(data: NewRecipeInput): Promise<Recipe> {
+  async create(_data: NewRecipeInput): Promise<Recipe> {
     return {} as any;
   }
 
-  async findOneById(id: string): Promise<Recipe> {
+  async findOneById(_id: string): Promise<Recipe> {
     return {} as any;
   }
 
-  async findAll(recipesArgs: RecipesArgs): Promise<Recipe[]> {
+  async findAll(_recipesArgs: RecipesArgs): Promise<Recipe[]> {
     return [] as Recipe[];
   }
 
-  async remove(id: string): Promise<boolean> {
+  async remove(_id: string): Promise<boolean> {
     return true;
   }
 }

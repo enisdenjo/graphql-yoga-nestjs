@@ -12,8 +12,10 @@
     "checkJs": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true, // necessary for nestjs dependency injection
+    "strictPropertyInitialization": false, // TODO: fix generation of examples/schema-first/src/graphql.schema.ts
     "paths": {
-      "@graphql-yoga/nestjs": ["./src/index.ts"]
+      "@graphql-yoga/nestjs": ["./src/index.ts"],
+      "@graphql-yoga/nestjs/lib/federation": ["./src/federation.ts"]
     }
   },
   "include": [".eslintrc.cjs", "vitest.config.ts", "src", "tests", "scripts", "examples/**/*"]

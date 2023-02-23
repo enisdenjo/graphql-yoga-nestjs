@@ -1,5 +1,5 @@
 import { IntrospectAndCompose } from '@apollo/gateway';
-import { YogaGatewayDriver, YogaGatewayDriverConfig } from '@graphql-yoga/nestjs';
+import { YogaGatewayDriver, YogaGatewayDriverConfig } from '@graphql-yoga/nestjs/lib/federation';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
